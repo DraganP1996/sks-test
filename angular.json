@@ -118,6 +118,6 @@
   },
   "defaultProject": "sks-test",
   "cli": {
-    "defaultCollection": "@angular-eslint/schematics"
+    "defaultCollection": "@ngrx/schematics"
   }
 }

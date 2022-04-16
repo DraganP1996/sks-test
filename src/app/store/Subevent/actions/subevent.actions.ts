@@ -1,0 +1,21 @@
+import { EntityMap, EntityMapOne, Predicate, Update } from "@ngrx/entity";
+import { createAction, props } from "@ngrx/store";
+import { SubEvent } from "../../store.model";
+
+export const loadSubevents = createAction('[Subevent/API] Load Subevents', props<{ subevents: SubEvent[] }>());
+export const loadSubeventsSuccess = createAction('[Subevent/API] Load Subevents', props<{ data: SubEvent[] }>());
+export const loadSubeventsFailure = createAction('[Subevent/API] Load Subevents', props<{ error: Error }>());
+export const setSubevents = createAction('[Subevent/API] Set Subevents', props<{ subevents: SubEvent[] }>());
+export const addSubevent = createAction('[Subevent/API] Add Subevent', props<{ subevent: SubEvent }>());
+export const setSubevent = createAction('[Subevent/API] Set Subevent', props<{ subevent: SubEvent }>());
+export const upsertSubevent = createAction('[Subevent/API] Upsert Subevent', props<{ subevent: SubEvent }>());
+export const addSubevents = createAction('[Subevent/API] Add Subevents', props<{ subevents: SubEvent[] }>());
+export const upsertSubevents = createAction('[Subevent/API] Upsert Subevents', props<{ subevents: SubEvent[] }>());
+export const updateSubevent = createAction('[Subevent/API] Update Subevent', props<{ update: Update<SubEvent> }>());
+export const updateSubevents = createAction('[Subevent/API] Update Subevents', props<{ updates: Update<SubEvent>[] }>());
+export const mapSubevent = createAction('[Subevent/API] Map Subevent', props<{ entityMap: EntityMapOne<SubEvent> }>());
+export const mapSubevents = createAction('[Subevent/API] Map Subevents', props<{ entityMap: EntityMap<SubEvent> }>());
+export const deleteSubevent = createAction('[Subevent/API] Delete Subevent', props<{ id: string }>());
+export const deleteSubevents = createAction('[Subevent/API] Delete Subevents', props<{ ids: string[] }>());
+export const deleteSubeventsByPredicate = createAction('[Subevent/API] Delete Subevents By Predicate', props<{ predicate: Predicate<SubEvent> }>());
+export const clearSubevents = createAction('[Subevent/API] Clear Subevents');
