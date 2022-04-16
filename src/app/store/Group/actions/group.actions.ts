@@ -1,10 +1,12 @@
 import { EntityMap, EntityMapOne, Predicate, Update } from "@ngrx/entity";
 import { createAction, props } from "@ngrx/store";
-import { Group } from "../../store.model";
+import { Group, IEvent } from "../../store.model";
 
-export const loadGroups = createAction('[Group/API] Load Groups', props<{ groups: Group[] }>());
-export const loadGroupsSuccess = createAction('[Group/API] Load Groups', props<{ data: Group[] }>());
-export const loadGroupsFailure = createAction('[Group/API] Load Groups', props<{ error: Error }>());
+export const loadGroups = createAction('[Group/API] Load Groups For Sport', props<{ sportId: number }>());
+export const loadGroupsSuccess = createAction('[Group/API] Load Groups For Sport Success', props<{ groups: Group[], events: IEvent[] }>());
+export const loadGroupsFailure = createAction('[Group/API] Load Groups For Sport Failure', props<{ error: Error }>());
+
+
 export const setGroups = createAction('[Group/API] Set Groups', props<{ groups: Group[] }>());
 export const addGroup = createAction('[Group/API] Add Group', props<{ group: Group }>());
 export const setGroup = createAction('[Group/API] Set Group', props<{ group: Group }>());

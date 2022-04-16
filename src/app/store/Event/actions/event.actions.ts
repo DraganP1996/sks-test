@@ -3,8 +3,13 @@ import { createAction, props } from "@ngrx/store";
 import { IEvent } from "../../store.model";
 
 export const loadEvents = createAction('[Event/API] Load Events', props<{ events: IEvent[] }>());
-export const loadEventsSuccess = createAction('[Event/API] Load Events', props<{ data: IEvent[] }>());
-export const loadEventsFailure = createAction('[Event/API] Load Events', props<{ error: Error }>());
+export const loadEventsSuccess = createAction('[Event/API] Load Events Success', props<{ events: IEvent[] }>());
+
+export const loadTopEvents = createAction('[Top Events/API] Load Top Events');
+export const loadTopEventsSuccess = createAction('[Top Events/API] Load Top Events Success', props<{ids: number[]}>());
+
+export const loadEventsFailure = createAction('[Event/API] Load Events Failure', props<{ error: Error }>());
+
 export const setEvents = createAction('[Event/API] Set Events', props<{ events: IEvent[] }>());
 export const addEvent = createAction('[Event/API] Add Event', props<{ event: IEvent }>());
 export const setEvent = createAction('[Event/API] Set Event', props<{ event: IEvent }>());

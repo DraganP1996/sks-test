@@ -1,0 +1,13 @@
+<ul>
+    <li *ngFor="let group of groupsForSelectedSport$ | async" (click)="selectGroup(group.id)">
+        {{ group.Name }}
+
+        <ng-container *ngIf="selectedGroupId === group.id">
+            <ul>
+                <li *ngFor="let event of eventsForSelectedGroup$ | async">
+                    {{ event.Name }}
+                </li>
+            </ul>
+        </ng-container>
+    </li>
+</ul>

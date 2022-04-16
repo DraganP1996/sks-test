@@ -1,24 +1,27 @@
-import { EntityState } from '@ngrx/entity';
 import { createFeatureSelector, createSelector } from '@ngrx/store';
 
-import { Sport } from '../../store.model';
-import * as fromSport from '../reducers/sport.reducer';
-
-export const selectSportState = createFeatureSelector<fromSport.SportState>(
-  fromSport.sportFeatureKey
-);
+import { selectAll, SportState } from '../reducers/sport.reducer';
 
 
-export const selectSportsState = createFeatureSelector<EntityState<Sport>>('sport');
+export const sportsFeatureSelector = createFeatureSelector<SportState>('sports');
+
+export const sportsSelector = createSelector(
+  sportsFeatureSelector,
+  (state: SportState) => state
+)
 
 export const selectsportById = (sportId: number) => createSelector(
-  selectSportsState,
+  sportsSelector,
   sportState => sportState.entities[sportId]
 );
 
+export const getSelectedSport = createSelector(
+  sportsSelector,
+  sportState => sportState.selectedSportId
+);
 
-export const selectAllCourses = createSelector(
-  selectSportsState,
-  fromSport.selectAll
+export const selectAllSports = createSelector(
+  sportsFeatureSelector,
+  selectAll
 );
 

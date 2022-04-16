@@ -1,18 +1,32 @@
 import { createEntityAdapter, EntityAdapter, EntityState } from '@ngrx/entity';
 import { Action, createReducer, on } from '@ngrx/store';
+import { loadGroupsSuccess } from '../../Group/actions/group.actions';
 import { IEvent } from '../../store.model';
 import * as EventActions from '../actions/event.actions';
 
 export const eventFeatureKey = 'event';
 
-export interface EventState extends EntityState<IEvent> { };
+export interface EventState extends EntityState<IEvent> { 
+  topEventIds: number[];
+};
 
 export const adapter: EntityAdapter<IEvent> = createEntityAdapter<IEvent>();
 
-export const initialState: EventState = adapter.getInitialState({});
+export const initialState: EventState = adapter.getInitialState({
+  topEventIds: []
+});
 
 export const eventReducer = createReducer(
   initialState,
+  on(EventActions.loadTopEventsSuccess, (state, { ids }) => {
+    return {
+      ...state,
+      topEventIds: ids
+    }
+  }),
+  on(loadGroupsSuccess, (state, { events }) => {
+    return adapter.addMany(events, state)
+  }),
   on(EventActions.addEvent, (state, { event }) => {
     return adapter.addOne(event, state)
   }),

@@ -2,11 +2,16 @@ import { EntityMap, EntityMapOne, Predicate, Update } from "@ngrx/entity";
 import { createAction, props } from "@ngrx/store";
 import { Sport } from "../../store.model";
 
-export const loadSports = createAction('[Sport/API] Load Sports', props<{ sports: Sport[] }>());
-export const loadSportsSuccess = createAction('[Sport/API] Load Sports', props<{ data: Sport[] }>());
+export const loadSports = createAction('[Sport/API] Load Sports');
+export const loadSportsSuccess = createAction('[Sport/API] Load Sports Success', props<{ sports: Sport[] }>());
 export const loadSportsFailure = createAction('[Sport/API] Load Sports', props<{ error: Error }>());
+
+export const selectSport = createAction('[Sport List Component] Sport Selection', props<{id: number}>());
+
 export const setSports = createAction('[Sport/API] Set Sports', props<{ sports: Sport[] }>());
+
 export const addSport = createAction('[Sport/API] Add Sport', props<{ sport: Sport }>());
+
 export const setSport = createAction('[Sport/API] Set Sport', props<{ sport: Sport }>());
 export const upsertSport = createAction('[Sport/API] Upsert Sport', props<{ sport: Sport }>());
 export const addSports = createAction('[Sport/API] Add Sports', props<{ sports: Sport[] }>());

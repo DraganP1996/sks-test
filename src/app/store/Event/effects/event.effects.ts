@@ -1,30 +1,30 @@
 import { Injectable } from '@angular/core';
 import { Actions, createEffect, ofType } from '@ngrx/effects';
-import { catchError, map, concatMap } from 'rxjs/operators';
+import { catchError, map, concatMap, mergeMap, tap } from 'rxjs/operators';
 import { Observable, EMPTY, of } from 'rxjs';
 
 import * as SportActions from '../actions/event.actions';
+import { MockDataService } from '../../mockData.service';
 
 
 
 @Injectable()
 export class EventEffects {
 
-  loadSports$ = createEffect(() => {
+  constructor(
+    private actions$: Actions,
+    private _mockDataService: MockDataService) {}
+
+  loadEvents$ = createEffect(() => {
     return this.actions$.pipe( 
 
-      ofType(SportActions.loadEvents),
-      concatMap(() =>
-        /** An EMPTY observable only emits completion. Replace with your own observable API request */
-        EMPTY.pipe(
-          map(data => SportActions.loadEventsSuccess({ data })),
+      ofType(SportActions.loadTopEvents),
+      mergeMap(() =>
+        this._mockDataService.getTopEventList().pipe(
+          map(data => SportActions.loadTopEventsSuccess({ ids: data.map(topEvent => topEvent.Id) })),
           catchError(error => of(SportActions.loadEventsFailure({ error }))))
       )
     );
   });
-
-
-
-  constructor(private actions$: Actions) {}
 
 }

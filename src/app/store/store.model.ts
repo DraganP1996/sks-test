@@ -1,29 +1,43 @@
 export interface SimpleItem {
     id: number;
-    name: string;
+    Name: string;
 }
 
 export interface OrderableItem extends SimpleItem {
-    order: number;
+    Order: number;
 }
 
 export interface Sport extends OrderableItem {
-    numSubEvents: number;
-    numQuote: number;
-    antePost: boolean;
+    NumSubevents: number;
+    NumQuote: number;
+    Antepost: number;
 }
 
-export interface Group extends OrderableItem {
-    numQuote: number;
-    antePost: boolean;
-    sportId: number,
+export interface GroupResponse extends OrderableItem {
+    NumQuote: number;
+    Sport: string;
+    SportId: number;
+    Antepost: number;
+    Events: IEvent[];
+}
+
+export interface Group extends OrderableItem { 
+    NumQuote: number;
+    Sport: string;
+    SportId: number;
+    Antepost: number;
+    Events: number[];
 }
 
 export interface IEvent extends OrderableItem {
-    antePost: boolean;
-    numSubevents: number;
-    eventTypeId: number;
-    groupOrder: number;
+    Antepost: number;
+    NumSubevents: number;
+    SportId: number;
+    SportName: string;
+    GroupId: number,
+    GroupName: string;
+    EventTypeId: number;
+    GroupOrder: number;
 }
 
 export interface MarketCategory extends OrderableItem { }
@@ -42,4 +56,20 @@ export interface SubEvent extends OrderableItem {
     numQuote: number,
     eventId: number,
     eventTypeId: number
+}
+
+
+export interface SportResponse {
+
+}
+
+export interface TopEventResponse {
+    Id: number,
+    Order: number,
+    Name: string,
+    NumSubevents: number,
+    SportId: number,
+    SportName: string,
+    GroupId: number,
+    GroupName: string
 }

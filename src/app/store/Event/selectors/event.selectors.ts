@@ -1,23 +1,40 @@
-import { EntityState } from '@ngrx/entity';
 import { createFeatureSelector, createSelector } from '@ngrx/store';
 import { IEvent } from '../../store.model';
-import * as fromIEvent from '../reducers/event.reducer';
+import { EventState, selectAll } from '../reducers/event.reducer';
 
-export const selectIEventState = createFeatureSelector<fromIEvent.EventState>(
-  fromIEvent.eventFeatureKey
+export const eventFeatureStoreState = createFeatureSelector<EventState>('events');
+
+export const eventsSelector = createSelector(
+  eventFeatureStoreState,
+  (state: EventState) => state
 );
 
-
-export const selectIEventsState = createFeatureSelector<EntityState<IEvent>>('event');
-
-export const selecteventById = (eventId: number) => createSelector(
-  selectIEventsState,
+export const selectEventById = (eventId: number) => createSelector(
+  eventsSelector,
   eventState => eventState.entities[eventId]
 );
 
 
-export const selectAllCourses = createSelector(
-  selectIEventsState,
-  fromIEvent.selectAll
+export const selectAllEvents = createSelector(
+  eventsSelector,
+  selectAll
 );
 
+export const selectTopEventIds = createSelector(
+  eventsSelector,
+  eventState => eventState.topEventIds
+);
+
+export const selectEventsByIds = (eventIds: number[]) => createSelector(
+  eventsSelector,
+  eventState => {
+    const events = eventIds.map((id: number) => eventState.entities[id]);
+
+    return !!events.length ? events as IEvent[] : [];
+  }
+);
+
+export const selectEventsForGroup = (groupId: number) => createSelector(
+  selectAllEvents,
+  event => event.filter(event => event.GroupId === groupId)
+);

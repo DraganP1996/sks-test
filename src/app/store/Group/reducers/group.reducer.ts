@@ -1,6 +1,6 @@
 import { createEntityAdapter, EntityAdapter, EntityState } from '@ngrx/entity';
 import { Action, createReducer, on } from '@ngrx/store';
-import { Group } from '../../store.model';
+import { Group, GroupResponse } from '../../store.model';
 import * as GroupActions from '../actions/group.actions';
 
 export const groupFeatureKey = 'group';
@@ -34,23 +34,23 @@ export const groupReducer = createReducer(
   on(GroupActions.updateGroups, (state, { updates }) => {
     return adapter.updateMany(updates, state);
   }),
-  on(GroupActions.mapGroup, (state, { entityMap }) => {
-    return adapter.mapOne(entityMap, state);
-  }),
-  on(GroupActions.mapGroups, (state, { entityMap }) => {
-    return adapter.map(entityMap, state);
-  }),
+  // on(GroupActions.mapGroup, (state, { entityMap }) => {
+  //   return adapter.mapOne(entityMap, state);
+  // }),
+  // on(GroupActions.mapGroups, (state, { entityMap }) => {
+  //   return adapter.map(entityMap, state);
+  // }),
   on(GroupActions.deleteGroup, (state, { id }) => {
     return adapter.removeOne(id, state);
   }),
   on(GroupActions.deleteGroups, (state, { ids }) => {
     return adapter.removeMany(ids, state);
   }),
-  on(GroupActions.deleteGroupsByPredicate, (state, { predicate }) => {
-    return adapter.removeMany(predicate, state);
-  }),
-  on(GroupActions.loadGroups, (state, { groups }) => {
-    return adapter.setAll(groups, state);
+  // on(GroupActions.deleteGroupsByPredicate, (state, { predicate }) => {
+  //   return adapter.removeMany(predicate, state);
+  // }),
+  on(GroupActions.loadGroupsSuccess, (state, { groups }) => {
+    return adapter.upsertMany(groups, state);
   }),
   on(GroupActions.setGroups, (state, { groups }) => {
     return adapter.setMany(groups, state);
@@ -65,5 +65,4 @@ export const {
   selectEntities,
   selectIds,
   selectTotal
-
 } = adapter.getSelectors();
