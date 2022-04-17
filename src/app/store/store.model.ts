@@ -88,7 +88,6 @@ export interface SubEvent<T> {
     NumberOfParticipants: number,
     SottoEventoTypeId: number
     Markets?: T[];
-    oddIds?: number[];
     activeMarketIds?: number[];
     activeMarketCategoryIds?: number[];
     activeOddIds?: number[];

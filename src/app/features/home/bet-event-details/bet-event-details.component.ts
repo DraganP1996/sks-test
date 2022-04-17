@@ -1,11 +1,11 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { Store } from '@ngrx/store';
-import { mergeMap, Observable, Subject, take, takeUntil, tap } from 'rxjs';
+import { map, Observable, Subject, switchMap, take, takeUntil, tap } from 'rxjs';
 import { EventState, getEventSubEvents, getSelectedEventId, selectEvent, selectEventById, selectEventsByIds } from 'src/app/store/Event';
 import { getSelectedGroupId, GroupState, loadGroups, selectAllEventsForGroup, selectAllGroupsForSportId, selectedGroupId } from 'src/app/store/Group';
-import {  MarketState } from 'src/app/store/Market';
+import { OddState, selectOddsByIds } from 'src/app/store/Odds';
 import { getSelectedSport, SportState } from 'src/app/store/Sport';
-import { Group, IEvent, MarketCategory, SubEvent } from 'src/app/store/store.model';
+import { Group, IEvent, OddData, SubEvent } from 'src/app/store/store.model';
 import { selectSubEventsByIds } from 'src/app/store/Subevent';
 
 @Component({
@@ -23,13 +23,18 @@ export class BetEventDetailsComponent implements OnInit, OnDestroy {
   eventsForSelectedGroup$ = new Observable<IEvent[]>();
   subEventsForSelectedEvent$ = new Observable<SubEvent<number>[]>();
 
+  subEvents: SubEvent<number>[] = [];
+
+  quotasExample: {[key: string]: OddData} = {};
+
   private _unsubscribe$ = new Subject<void>();
 
   constructor(
     private _sportStore: Store<SportState>,
     private _groupStore: Store<GroupState>,
     private _eventStore: Store<EventState>,
-    private _subeventStore: Store<EventState>
+    private _subeventStore: Store<EventState>,
+    private _oddStore: Store<OddState>
   ) { }
 
   ngOnInit(): void {
@@ -44,30 +49,23 @@ export class BetEventDetailsComponent implements OnInit, OnDestroy {
       });
 
     this._groupStore.select(getSelectedGroupId)
-      .pipe(takeUntil(this._unsubscribe$))
-      .subscribe(selectedGroupId => {
-        if (selectedGroupId) {
-          this.selectedGroupId = selectedGroupId;
-          this._groupStore.select(selectAllEventsForGroup(selectedGroupId))
-            .pipe(take(1))
-            .subscribe(eventIds => {
-              if (!!eventIds)
-                this.eventsForSelectedGroup$ = this._eventStore.select(selectEventsByIds(eventIds))
-            });
-          }
-      });
+      .pipe(
+        tap(selectedGroupId => !!selectedGroupId ? this.selectedGroupId = selectedGroupId : null),
+        switchMap(selectedGroupId => this._groupStore.select(selectAllEventsForGroup(selectedGroupId!))),
+        tap(eventIds => this.eventsForSelectedGroup$ = this._eventStore.select(selectEventsByIds(eventIds))),
+        takeUntil(this._unsubscribe$))
+      .subscribe();
 
     this._eventStore.select(getSelectedEventId)
       .pipe(
-        tap(selectedEventId => this.selectedEventId = selectedEventId),
-        tap(selectedEventId => console.log(`Selected event id ${selectedEventId}`)),
-        mergeMap(selectedEventId => this._eventStore.select(getEventSubEvents(selectedEventId))),
+        tap(selectedEventId => !!selectedEventId ? this.selectedEventId = selectedEventId : null),
+        switchMap(selectedEventId => this._eventStore.select(getEventSubEvents(selectedEventId))),
+        switchMap(subEventIds => this._subeventStore.select(selectSubEventsByIds(subEventIds))),
+        tap(subEvents => this.subEvents = subEvents),
+        map(subEvents => this.mapSubEventToOddIds(subEvents)),
+        switchMap(oddIds => this._oddStore.select(selectOddsByIds(oddIds))),
         takeUntil(this._unsubscribe$))
-      .subscribe(subEventIds => {
-        console.log('SubEvents of selected event id', subEventIds);
-        this.subEventsForSelectedEvent$ = this._subeventStore.select(selectSubEventsByIds(subEventIds))
-        
-      })
+      .subscribe(odds => odds.forEach(odd => this.quotasExample[odd.Id] = odd));
   }
 
   selectGroup(groupId: number): void {
@@ -76,6 +74,14 @@ export class BetEventDetailsComponent implements OnInit, OnDestroy {
 
   selectEvent(selectedEventId: number): void {
     this._eventStore.dispatch(selectEvent({ selectedEventId }));
+  }
+
+  mapSubEventToOddIds(subEventIds: SubEvent<number>[]): number[] {
+    let oddIds: number[] = [];
+
+    subEventIds.forEach(subEvent => oddIds = !!subEvent.activeOddIds ? [...oddIds, ...subEvent.activeOddIds] : oddIds);
+
+    return oddIds;
   }
 
   ngOnDestroy(): void {

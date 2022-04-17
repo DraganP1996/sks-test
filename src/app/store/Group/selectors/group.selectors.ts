@@ -50,7 +50,7 @@ export const selectAllGroupsForSportId = (sportId: number) => createSelector(
  * @param groupId 
  * @returns 
  */
-export const selectAllEventsForGroup = (groupId: number) => createSelector(
-  selectgroupById(groupId),
-  group => group?.Events
+export const selectAllEventsForGroup = (groupId?: number) => createSelector(
+  selectgroupById(groupId!),
+  group => !!group ? group.Events : []
 );

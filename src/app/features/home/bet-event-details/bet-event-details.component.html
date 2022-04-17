@@ -9,9 +9,15 @@
 
                     <ng-container *ngIf="selectedEventId === event.id">
                         <ul>
-                            <li *ngFor="let subevent of subEventsForSelectedEvent$ | async">
+                            <li *ngFor="let subevent of subEvents">
                                 {{ subevent.Name }}
-
+                                <ng-container *ngIf="subevent.activeOddIds">
+                                    <ul>
+                                        <li *ngFor="let odd of subevent.activeOddIds">
+                                            {{ quotasExample[odd].Selection }} - {{ quotasExample[odd].Value }}
+                                        </li>
+                                    </ul>
+                                </ng-container>
                             </li>
                         </ul>
                     </ng-container>

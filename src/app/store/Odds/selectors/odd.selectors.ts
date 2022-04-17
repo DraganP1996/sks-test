@@ -1,4 +1,5 @@
 import { createFeatureSelector, createSelector } from '@ngrx/store';
+import { OddData } from '../../store.model';
 
 import { selectAll, OddState } from '../reducers/odd.reducer';
 
@@ -10,9 +11,18 @@ export const oddsSelector = createSelector(
   (state: OddState) => state
 )
 
-export const selectoddById = (oddId: number) => createSelector(
+export const selectOddById = (oddId: number) => createSelector(
   oddsSelector,
   oddsState => oddsState.entities[oddId]
+);
+
+export const selectOddsByIds = (oddIds: number[]) => createSelector(
+  oddsSelector,
+  oddsState => {
+    const odds = oddIds.map((id: number) => oddsState.entities[id]);
+
+    return !!odds.length ? odds as OddData[] : [];
+  }
 );
 
 export const getSelectedOdd = createSelector(
