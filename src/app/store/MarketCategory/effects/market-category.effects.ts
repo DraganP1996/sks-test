@@ -5,7 +5,7 @@ import { of } from 'rxjs';
 
 import * as MarketCategoryActions from '../actions/market-category.actions';
 import { MockDataService } from '../../mockData.service';
-import { Market } from '../../store.model';
+import { Market, MarketCategory } from '../../store.model';
 
 
 
@@ -32,7 +32,7 @@ export class MarketCategoryEffects {
 
               markets = [...markets, ...marketCategory.Markets];
 
-              return { id, Name, Order, marketIds }
+              return { id, Name, Order, Markets: marketIds }
             });
             return MarketCategoryActions.loadMarketCategoriesSuccess({ marketCategories:  formattedMarketCategories })
           

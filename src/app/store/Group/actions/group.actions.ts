@@ -12,15 +12,15 @@ const CLEAR_GROUPS = '[Group/API] Clear Groups';
 
 // LOAD GROUPS FOR SPECIFIC SPORT ID
 export const loadGroups = createAction(LOAD_GROUPS, props<{ sportId: number }>());
-export const loadGroupsSuccess = createAction(LOAD_GROUPS_SUCCESS, props<{ groups: Group[], events: IEvent[] }>());
+export const loadGroupsSuccess = createAction(LOAD_GROUPS_SUCCESS, props<{ groups: Group<number>[], events: IEvent[] }>());
 export const loadGroupsFailure = createAction(LOAD_GROUPS_FAILURE, props<{ error: Error }>());
 
 // GROUP SELECTION
 export const selectedGroupId = createAction(SELECTED_GROUP_ID, props<{id: number}>());
 
 // SET/UPSERT GROUP
-export const setGroups = createAction(SET_GROUPS, props<{ groups: Group[] }>());
-export const upsertGroups = createAction(UPSERT_GROUPS, props<{ groups: Group[] }>());
+export const setGroups = createAction(SET_GROUPS, props<{ groups: Group<number>[] }>());
+export const upsertGroups = createAction(UPSERT_GROUPS, props<{ groups: Group<number>[] }>());
 
 // CLEAR GROUP
 export const clearGroups = createAction(CLEAR_GROUPS);

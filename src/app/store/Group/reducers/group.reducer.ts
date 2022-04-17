@@ -1,15 +1,15 @@
 import { createEntityAdapter, EntityAdapter, EntityState } from '@ngrx/entity';
-import { Action, createReducer, on } from '@ngrx/store';
-import { Group, GroupResponse } from '../../store.model';
+import { createReducer, on } from '@ngrx/store';
+import { Group } from '../../store.model';
 import * as GroupActions from '../actions/group.actions';
 
 export const groupFeatureKey = 'group';
 
-export interface GroupState  extends EntityState<Group> { 
+export interface GroupState  extends EntityState<Group<number>> { 
   selectedGroupId: number | null;
 }
 
-export const adapter: EntityAdapter<Group> = createEntityAdapter<Group>();
+export const adapter: EntityAdapter<Group<number>> = createEntityAdapter<Group<number>>();
 
 export const initialState: GroupState = adapter.getInitialState({
   selectedGroupId: null,

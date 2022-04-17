@@ -1,6 +1,6 @@
-import { MarketCategoryResponse } from "src/app/store/store.model";
+import { Market, MarketCategory } from "src/app/store/store.model";
 
-export const marketCategories: MarketCategoryResponse[] = [
+export const marketCategories: MarketCategory<Market>[] = [
     {
       Name: "Principale",
       id: 101,

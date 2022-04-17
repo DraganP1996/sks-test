@@ -1,4 +1,6 @@
-export const subevents = [
+import { SubEventDetailsResponse } from "src/app/store/store.model";
+
+export const subevents= [
     {
       Id: 1648275,
       Name: "Mondiali 2022 - Partite",

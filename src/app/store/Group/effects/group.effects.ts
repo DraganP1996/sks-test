@@ -24,7 +24,7 @@ export class GroupsEffects {
         this._mockDataService.getGroupsForSport(payload.sportId).pipe(
           map(groups => {
             let events: IEvent[] = [];
-            const formattedGroups: Group[] = groups.map(group => {
+            const formattedGroups: Group<number>[] = groups.map(group => {
               const { id, Name, Order, NumQuote, Sport, SportId, Antepost } = group;
               const Events = group.Events.map(event => event.id);
 

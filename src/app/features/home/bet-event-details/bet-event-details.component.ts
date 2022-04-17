@@ -18,7 +18,7 @@ export class BetEventDetailsComponent implements OnInit, OnDestroy {
   selectedSportId!: number;
   selectedGroupId!: number;
 
-  groupsForSelectedSport$ = new Observable<Group[]>();
+  groupsForSelectedSport$ = new Observable<Group<number>[]>();
 
   eventsForSelectedGroup$ = new Observable<IEvent[]>();
   
@@ -29,7 +29,7 @@ export class BetEventDetailsComponent implements OnInit, OnDestroy {
     private _groupStore: Store<GroupState>,
     private _eventStore: Store<EventState>,
     private _marketStore: Store<MarketState>,
-    private _marketCategoriesStore: Store<MarketCategory>
+    private _marketCategoriesStore: Store<MarketCategory<number>>
   ) { }
 
   ngOnInit(): void {

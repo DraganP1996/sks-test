@@ -13,20 +13,16 @@ export interface Sport extends OrderableItem {
     Antepost: number;
 }
 
-export interface GroupResponse extends OrderableItem {
+/**
+ * T = number for group in the store
+ * T = IEvent for BE response
+ */
+export interface Group<T> extends OrderableItem { 
     NumQuote: number;
     Sport: string;
     SportId: number;
     Antepost: number;
-    Events: IEvent[];
-}
-
-export interface Group extends OrderableItem { 
-    NumQuote: number;
-    Sport: string;
-    SportId: number;
-    Antepost: number;
-    Events: number[];
+    Events: T[];
 }
 
 export interface IEvent extends OrderableItem {
@@ -40,33 +36,96 @@ export interface IEvent extends OrderableItem {
     GroupOrder: number;
 }
 
-export interface MarketCategoryResponse extends OrderableItem {
-    Markets: Market[];
- }
-
-export interface MarketCategory extends OrderableItem {
-    marketIds: number[];
-}
-
 export interface Market extends OrderableItem {
     IsNewMarket: boolean;
     ShortName: string | null;
     NumberOfParticipants?: number;
 }
 
-export interface SubEvent extends OrderableItem {
-    publicationCode: number;
-    startTimeUtc: string;
-    betradarMatchId: number,
-    betradarMatchUid: string,
-    numQuote: number,
-    eventId: number,
-    eventTypeId: number
+export interface MarketOdds extends Market {
+    PartecipantOddsCount: number;
+    Odds: OddData[]
+}
+
+/**
+ * T = Market for BE response without Odds
+ * T = MarketOdds for BE response with Odds
+ * T = number for the store
+ */
+export interface MarketCategory<T> extends OrderableItem {
+    Markets: T[]
 }
 
 
-export interface SportResponse {
+export interface SubEventResponse {
+    Id: number,
+    Name: string,
+    PublicationCode: number,
+    StartTimeUtc: string,
+    BetradarMatchId: number,
+    BetradarMatchUid: string,
+    NumQuote: number,
+    EventId: number,
+    EventTypeId: number,
+    EventName: string,
+    SportName: string,
+    GroupName: string,
+    Participants: number | null,
+    HasParticipants: false,
+    NumberOfParticipants: number,
+    SottoEventoTypeId: number
+    Markets: Market[]
+}
 
+export interface SubEvent {
+    Id: number;
+    Name: string;
+    PublicationCode: number;
+    StartTimeUtc: string;
+    BetradarMatchId: number;
+    BetradarMatchUid: string;
+    NumQuote: number;
+    EventId: number;
+    EventTypeId: number;
+    EventName: string;
+    SportName: string;
+    GroupName: string;
+    Participants: number | null;
+    HasParticipants: false;
+    NumberOfParticipants: number;
+    SottoEventoTypeId: number;
+    marketIds: number[];
+    oddIds: number[];
+}
+
+export interface SubEventDetailsResponse {
+    Id: number,
+    Name: string,
+    PublicationCode: number,
+    StartTimeUtc: string,
+    BetradarMatchId: number,
+    BetradarMatchUid: string,
+    NumQuote: number,
+    EventId: number,
+    EventTypeId: number,
+    EventName: string,
+    SportName: string,
+    GroupName: string,
+    Playabilities: number[];
+    GroupedMarkets: [];
+}
+
+export interface OddData {
+    Id: number;
+    Value: number;
+    Hnd: number;
+    HndType: number;
+    MarketId: number;
+    SelectionId: number;
+    Selection: string;
+    PlayabilityId: number;
+    IdClasseQuotaParamInstance: number;
+    MarketParams: number[];
 }
 
 export interface TopEventResponse {

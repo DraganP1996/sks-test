@@ -1,6 +1,6 @@
-import { GroupResponse } from "src/app/store/store.model";
+import { Group, IEvent } from "src/app/store/store.model";
 
-export const groupList: GroupResponse[] = [
+export const groupList: Group<IEvent>[] = [
     {
       id: 2379,
       Name: "Internazionali",

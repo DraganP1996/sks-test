@@ -1,15 +1,15 @@
 import { createEntityAdapter, EntityAdapter, EntityState } from '@ngrx/entity';
 import { Action, createReducer, on } from '@ngrx/store';
-import { MarketCategory, MarketCategoryResponse } from '../../store.model';
+import { MarketCategory } from '../../store.model';
 import * as MarketCategoryActions from '../actions/market-category.actions';
 
 export const marketCategoryFeatureKey = 'MarketCategory';
 
-export interface MarketCategoryState extends EntityState<MarketCategory> { 
+export interface MarketCategoryState extends EntityState<MarketCategory<number>> { 
   selectedMarketCategoryId: number | null;
 };
 
-export const adapter: EntityAdapter<MarketCategory> = createEntityAdapter<MarketCategory>();
+export const adapter: EntityAdapter<MarketCategory<number>> = createEntityAdapter<MarketCategory<number>>();
 
 export const initialState: MarketCategoryState = adapter.getInitialState({
   selectedMarketCategoryId: null

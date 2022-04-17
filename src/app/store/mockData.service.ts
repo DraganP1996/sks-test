@@ -5,7 +5,7 @@ import { marketCategories } from "src/mocks/market-categories.mock";
 import { markets } from "src/mocks/markets.mock";
 import { sports } from "src/mocks/sports.mock";
 import { topEvents } from "src/mocks/top-events.mock";
-import { GroupResponse, Market, MarketCategoryResponse, Sport, TopEventResponse } from "./store.model";
+import { Group, IEvent, Market, MarketCategory, Sport, TopEventResponse } from "./store.model";
 
 @Injectable()
 export class MockDataService {
@@ -18,7 +18,7 @@ export class MockDataService {
         return of(topEvents)
     }
 
-    getGroupsForSport(sportId: number): Observable<GroupResponse[]> {
+    getGroupsForSport(sportId: number): Observable<Group<IEvent>[]> {
         if (sportId !== 342)
             return of([]);
 
@@ -33,7 +33,7 @@ export class MockDataService {
     }
 
 
-    getMarketCategories(): Observable<MarketCategoryResponse[]> {
+    getMarketCategories(): Observable<MarketCategory<Market>[]> {
         return of(marketCategories)
     }
 
