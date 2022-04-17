@@ -28,12 +28,12 @@ export class MarketCategoryEffects {
             let markets: Market[] = [];
 
             const marketCategories = categories.map(categoriy => {
-              const { id, Name, Order } = categoriy;
-              const marketIds = categoriy.Markets.map(market => market.id);
+              const { Id, Name, Order } = categoriy;
+              const marketIds = categoriy.Markets.map(market => market.Id);
 
               markets = [...markets, ...categoriy.Markets];
 
-              return { id, Name, Order, Markets: marketIds }
+              return { Id, Name, Order, Markets: marketIds }
             });
             return MarketCategoryActions.loadActiveMarketCategoriesSuccess({ marketCategories, markets, eventId: payload.selectedEventId });          
           }),

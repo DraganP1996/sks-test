@@ -12,7 +12,9 @@ export interface EventState extends EntityState<IEvent> {
   selectedEventId: number | null;
 };
 
-export const adapter: EntityAdapter<IEvent> = createEntityAdapter<IEvent>();
+export const adapter: EntityAdapter<IEvent> = createEntityAdapter<IEvent>({
+  selectId: (event: IEvent) => event.Id,
+});
 
 export const initialState: EventState = adapter.getInitialState({
   topEventIds: [],
@@ -34,13 +36,13 @@ export const eventReducer = createReducer(
 
   // Loading of groups successfully
   on(loadActiveMarketsForEventSuccess, (state, { markets, eventId }) => {
-    const event = {...state.entities[eventId], activeMarketIds: markets.map(market => market.id)};
+    const event = {...state.entities[eventId], activeMarketIds: markets.map(market => market.Id)};
 
     return adapter.setOne(event as IEvent, state)
   }),
 
   on(loadActiveMarketCategoriesSuccess, (state, { eventId, marketCategories }) => {
-    const event = {...state.entities[eventId], activeMarketCategoryIds: marketCategories.map(market => market.id)};
+    const event = {...state.entities[eventId], activeMarketCategoryIds: marketCategories.map(market => market.Id)};
 
     return adapter.setOne(event as IEvent, state)
   }),

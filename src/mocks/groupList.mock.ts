@@ -2,7 +2,7 @@ import { Group, IEvent } from "src/app/store/store.model";
 
 export const groupList: Group<IEvent>[] = [
     {
-      id: 2379,
+      Id: 2379,
       Name: "Internazionali",
       Order: 1,
       NumQuote: 16853,
@@ -11,7 +11,7 @@ export const groupList: Group<IEvent>[] = [
       Antepost: 0,
       Events: [
         {
-          id: 1648275,
+          Id: 1648275,
           Name: "Mondiali 2022 - Partite",
           Order: 0,
           SportId: 342,
@@ -24,7 +24,7 @@ export const groupList: Group<IEvent>[] = [
           GroupOrder: 0
         },
         {
-          id: 1350550,
+          Id: 1350550,
           Name: "Mondiali 2022 - Vincente",
           Order: 0,
           SportId: 342,
@@ -37,7 +37,7 @@ export const groupList: Group<IEvent>[] = [
           GroupOrder: 0
         },
         {
-          id: 653501,
+          Id: 653501,
           Name: "UEFA Nations League",
           Order: 0,
           SportId: 342,
@@ -52,7 +52,7 @@ export const groupList: Group<IEvent>[] = [
       ]
     },
     {
-      id: 2380,
+      Id: 2380,
       Name: "Int. di Club",
       Order: 2,
       NumQuote: 21941,
@@ -61,7 +61,7 @@ export const groupList: Group<IEvent>[] = [
       Antepost: 0,
       Events: [
         {
-          id: 7937,
+          Id: 7937,
           Name: "Champions League",
           Order: 1,
           SportId: 342,
@@ -74,7 +74,7 @@ export const groupList: Group<IEvent>[] = [
           GroupOrder: 0
         },
         {
-          id: 7944,
+          Id: 7944,
           Name: "Europa League",
           Order: 2,
           SportId: 342,
@@ -87,7 +87,7 @@ export const groupList: Group<IEvent>[] = [
           GroupOrder: 0
         },
         {
-          id: 9767,
+          Id: 9767,
           Name: "Copa Libertadores",
           Order: 3,
           SportId: 342,
@@ -100,7 +100,7 @@ export const groupList: Group<IEvent>[] = [
           GroupOrder: 0
         },
         {
-          id: 7943,
+          Id: 7943,
           Name: "Copa Sudamericana",
           Order: 3,
           SportId: 342,
@@ -113,7 +113,7 @@ export const groupList: Group<IEvent>[] = [
           GroupOrder: 0
         },
         {
-          id: 7947,
+          Id: 7947,
           Name: "CONCACAF Champ.League",
           Order: 5,
           SportId: 342,
@@ -126,7 +126,7 @@ export const groupList: Group<IEvent>[] = [
           GroupOrder: 0
         },
         {
-          id: 1332553,
+          Id: 1332553,
           Name: "UEFA Europa Conference League",
           Order: 50,
           SportId: 342,
@@ -141,7 +141,7 @@ export const groupList: Group<IEvent>[] = [
       ]
     },
     {
-      id: 2381,
+      Id: 2381,
       Name: "Int. Giovanili",
       Order: 3,
       NumQuote: 2770,
@@ -150,7 +150,7 @@ export const groupList: Group<IEvent>[] = [
       Antepost: 0,
       Events: [
         {
-          id: 121324,
+          Id: 121324,
           Name: "U20 CONMEBOL Champ. Women (in Chile)",
           Order: 16,
           SportId: 342,
@@ -163,7 +163,7 @@ export const groupList: Group<IEvent>[] = [
           GroupOrder: 0
         },
         {
-          id: 84729,
+          Id: 84729,
           Name: "U19 Euro Qualificazioni Femminili",
           Order: 17,
           SportId: 342,
@@ -178,7 +178,7 @@ export const groupList: Group<IEvent>[] = [
       ]
     },
     {
-      id: 2382,
+      Id: 2382,
       Name: "Italia",
       Order: 4,
       NumQuote: 37238,
@@ -187,7 +187,7 @@ export const groupList: Group<IEvent>[] = [
       Antepost: 0,
       Events: [
         {
-          id: 8294,
+          Id: 8294,
           Name: "Italia - Coppa Italia",
           Order: 1,
           SportId: 342,
@@ -200,7 +200,7 @@ export const groupList: Group<IEvent>[] = [
           GroupOrder: 0
         },
         {
-          id: 7882,
+          Id: 7882,
           Name: "Italia - Serie A",
           Order: 2,
           SportId: 342,
@@ -213,7 +213,7 @@ export const groupList: Group<IEvent>[] = [
           GroupOrder: 0
         },
         {
-          id: 7844,
+          Id: 7844,
           Name: "Italia - Serie B",
           Order: 3,
           SportId: 342,
@@ -226,7 +226,7 @@ export const groupList: Group<IEvent>[] = [
           GroupOrder: 0
         },
         {
-          id: 8064,
+          Id: 8064,
           Name: "Italia - Coppa Italia Serie C",
           Order: 5,
           SportId: 342,
@@ -239,7 +239,7 @@ export const groupList: Group<IEvent>[] = [
           GroupOrder: 0
         },
         {
-          id: 7859,
+          Id: 7859,
           Name: "Italia - Serie C Gruppo A",
           Order: 8,
           SportId: 342,
@@ -252,7 +252,7 @@ export const groupList: Group<IEvent>[] = [
           GroupOrder: 0
         },
         {
-          id: 7860,
+          Id: 7860,
           Name: "Italia - Serie C Gruppo B",
           Order: 9,
           SportId: 342,
@@ -265,7 +265,7 @@ export const groupList: Group<IEvent>[] = [
           GroupOrder: 0
         },
         {
-          id: 157422,
+          Id: 157422,
           Name: "Italia - Serie C Gruppo C",
           Order: 9,
           SportId: 342,
@@ -278,7 +278,7 @@ export const groupList: Group<IEvent>[] = [
           GroupOrder: 0
         },
         {
-          id: 500149,
+          Id: 500149,
           Name: "Italia - Serie A Donne",
           Order: 20,
           SportId: 342,
@@ -293,7 +293,7 @@ export const groupList: Group<IEvent>[] = [
       ]
     },
     {
-      id: 2383,
+      Id: 2383,
       Name: "Regno Unito & Irlanda",
       Order: 5,
       NumQuote: 70327,
@@ -302,7 +302,7 @@ export const groupList: Group<IEvent>[] = [
       Antepost: 0,
       Events: [
         {
-          id: 8125,
+          Id: 8125,
           Name: "Inghilterra - FA Cup",
           Order: 0,
           SportId: 342,
@@ -315,7 +315,7 @@ export const groupList: Group<IEvent>[] = [
           GroupOrder: 0
         },
         {
-          id: 7909,
+          Id: 7909,
           Name: "Inghilterra - Premier League",
           Order: 1,
           SportId: 342,
@@ -328,7 +328,7 @@ export const groupList: Group<IEvent>[] = [
           GroupOrder: 0
         },
         {
-          id: 7920,
+          Id: 7920,
           Name: "Inghilterra - Championship",
           Order: 2,
           SportId: 342,
@@ -341,7 +341,7 @@ export const groupList: Group<IEvent>[] = [
           GroupOrder: 0
         },
         {
-          id: 7845,
+          Id: 7845,
           Name: "Inghilterra - League One",
           Order: 3,
           SportId: 342,
@@ -354,7 +354,7 @@ export const groupList: Group<IEvent>[] = [
           GroupOrder: 0
         },
         {
-          id: 7846,
+          Id: 7846,
           Name: "Inghilterra - League Two",
           Order: 4,
           SportId: 342,
@@ -367,7 +367,7 @@ export const groupList: Group<IEvent>[] = [
           GroupOrder: 0
         },
         {
-          id: 7881,
+          Id: 7881,
           Name: "Inghilterra - National League",
           Order: 5,
           SportId: 342,
@@ -380,7 +380,7 @@ export const groupList: Group<IEvent>[] = [
           GroupOrder: 0
         },
         {
-          id: 7878,
+          Id: 7878,
           Name: "Inghilterra - National League North",
           Order: 6,
           SportId: 342,
@@ -393,7 +393,7 @@ export const groupList: Group<IEvent>[] = [
           GroupOrder: 0
         },
         {
-          id: 7877,
+          Id: 7877,
           Name: "Inghilterra - National League South",
           Order: 7,
           SportId: 342,
@@ -406,7 +406,7 @@ export const groupList: Group<IEvent>[] = [
           GroupOrder: 0
         },
         {
-          id: 593218,
+          Id: 593218,
           Name: "Inghilterra - Southern Premier Division South",
           Order: 9,
           SportId: 342,
@@ -419,7 +419,7 @@ export const groupList: Group<IEvent>[] = [
           GroupOrder: 0
         },
         {
-          id: 375925,
+          Id: 375925,
           Name: "Inghilterra - U23 Professional Development League",
           Order: 12,
           SportId: 342,
@@ -432,7 +432,7 @@ export const groupList: Group<IEvent>[] = [
           GroupOrder: 0
         },
         {
-          id: 8126,
+          Id: 8126,
           Name: "Scozia - FA Cup",
           Order: 14,
           SportId: 342,
@@ -445,7 +445,7 @@ export const groupList: Group<IEvent>[] = [
           GroupOrder: 0
         },
         {
-          id: 7913,
+          Id: 7913,
           Name: "Scozia - Premier League",
           Order: 17,
           SportId: 342,
@@ -458,7 +458,7 @@ export const groupList: Group<IEvent>[] = [
           GroupOrder: 0
         },
         {
-          id: 7902,
+          Id: 7902,
           Name: "Scozia - Championship",
           Order: 18,
           SportId: 342,
@@ -471,7 +471,7 @@ export const groupList: Group<IEvent>[] = [
           GroupOrder: 0
         },
         {
-          id: 7903,
+          Id: 7903,
           Name: "Scozia - League One",
           Order: 19,
           SportId: 342,
@@ -484,7 +484,7 @@ export const groupList: Group<IEvent>[] = [
           GroupOrder: 0
         },
         {
-          id: 7904,
+          Id: 7904,
           Name: "Scozia - League Two",
           Order: 20,
           SportId: 342,
@@ -497,7 +497,7 @@ export const groupList: Group<IEvent>[] = [
           GroupOrder: 0
         },
         {
-          id: 15698,
+          Id: 15698,
           Name: "Irlanda - Premier",
           Order: 23,
           SportId: 342,
@@ -510,7 +510,7 @@ export const groupList: Group<IEvent>[] = [
           GroupOrder: 0
         },
         {
-          id: 7908,
+          Id: 7908,
           Name: "Irlanda - 1st Division",
           Order: 24,
           SportId: 342,
@@ -523,7 +523,7 @@ export const groupList: Group<IEvent>[] = [
           GroupOrder: 0
         },
         {
-          id: 7940,
+          Id: 7940,
           Name: "Irlanda del Nord - Premier",
           Order: 26,
           SportId: 342,
@@ -538,7 +538,7 @@ export const groupList: Group<IEvent>[] = [
       ]
     },
     {
-      id: 2384,
+      Id: 2384,
       Name: "Francia",
       Order: 6,
       NumQuote: 19883,
@@ -547,7 +547,7 @@ export const groupList: Group<IEvent>[] = [
       Antepost: 0,
       Events: [
         {
-          id: 8378,
+          Id: 8378,
           Name: "Francia - Coupe de France",
           Order: 0,
           SportId: 342,
@@ -560,7 +560,7 @@ export const groupList: Group<IEvent>[] = [
           GroupOrder: 0
         },
         {
-          id: 90377,
+          Id: 90377,
           Name: "Francia - Coupe de France Final (allo Stade de France)",
           Order: 0,
           SportId: 342,
@@ -573,7 +573,7 @@ export const groupList: Group<IEvent>[] = [
           GroupOrder: 0
         },
         {
-          id: 7918,
+          Id: 7918,
           Name: "Francia - Ligue 1",
           Order: 1,
           SportId: 342,
@@ -586,7 +586,7 @@ export const groupList: Group<IEvent>[] = [
           GroupOrder: 0
         },
         {
-          id: 7847,
+          Id: 7847,
           Name: "Francia - Ligue 2",
           Order: 2,
           SportId: 342,
@@ -599,7 +599,7 @@ export const groupList: Group<IEvent>[] = [
           GroupOrder: 0
         },
         {
-          id: 8002,
+          Id: 8002,
           Name: "Francia - National",
           Order: 3,
           SportId: 342,
@@ -614,7 +614,7 @@ export const groupList: Group<IEvent>[] = [
       ]
     },
     {
-      id: 2385,
+      Id: 2385,
       Name: "Germania",
       Order: 7,
       NumQuote: 33766,
@@ -623,7 +623,7 @@ export const groupList: Group<IEvent>[] = [
       Antepost: 0,
       Events: [
         {
-          id: 8137,
+          Id: 8137,
           Name: "Germania - DFB Pokal",
           Order: 1,
           SportId: 342,
@@ -636,7 +636,7 @@ export const groupList: Group<IEvent>[] = [
           GroupOrder: 0
         },
         {
-          id: 7916,
+          Id: 7916,
           Name: "Germania - Bundesliga",
           Order: 4,
           SportId: 342,
@@ -649,7 +649,7 @@ export const groupList: Group<IEvent>[] = [
           GroupOrder: 0
         },
         {
-          id: 7919,
+          Id: 7919,
           Name: "Germania - 2.Bundesliga",
           Order: 5,
           SportId: 342,
@@ -662,7 +662,7 @@ export const groupList: Group<IEvent>[] = [
           GroupOrder: 0
         },
         {
-          id: 7939,
+          Id: 7939,
           Name: "Germania - 3.Liga",
           Order: 6,
           SportId: 342,
@@ -675,7 +675,7 @@ export const groupList: Group<IEvent>[] = [
           GroupOrder: 0
         },
         {
-          id: 142338,
+          Id: 142338,
           Name: "Germania - Regional Cup Westfalen",
           Order: 7,
           SportId: 342,
@@ -688,7 +688,7 @@ export const groupList: Group<IEvent>[] = [
           GroupOrder: 0
         },
         {
-          id: 59356,
+          Id: 59356,
           Name: "Germania - Regional Bavaria",
           Order: 8,
           SportId: 342,
@@ -701,7 +701,7 @@ export const groupList: Group<IEvent>[] = [
           GroupOrder: 0
         },
         {
-          id: 59377,
+          Id: 59377,
           Name: "Germania - Regional NordEst",
           Order: 8,
           SportId: 342,
@@ -714,7 +714,7 @@ export const groupList: Group<IEvent>[] = [
           GroupOrder: 0
         },
         {
-          id: 8098,
+          Id: 8098,
           Name: "Germania - Regional Ovest",
           Order: 8,
           SportId: 342,
@@ -727,7 +727,7 @@ export const groupList: Group<IEvent>[] = [
           GroupOrder: 0
         },
         {
-          id: 59355,
+          Id: 59355,
           Name: "Germania - Regional SudOvest",
           Order: 8,
           SportId: 342,
@@ -740,7 +740,7 @@ export const groupList: Group<IEvent>[] = [
           GroupOrder: 0
         },
         {
-          id: 164905,
+          Id: 164905,
           Name: "Germania - Hessenliga",
           Order: 9,
           SportId: 342,
@@ -753,7 +753,7 @@ export const groupList: Group<IEvent>[] = [
           GroupOrder: 0
         },
         {
-          id: 165729,
+          Id: 165729,
           Name: "Germania - Bayernliga North",
           Order: 10,
           SportId: 342,
@@ -766,7 +766,7 @@ export const groupList: Group<IEvent>[] = [
           GroupOrder: 0
         },
         {
-          id: 166682,
+          Id: 166682,
           Name: "Germania - Bayernliga South",
           Order: 10,
           SportId: 342,
@@ -779,7 +779,7 @@ export const groupList: Group<IEvent>[] = [
           GroupOrder: 0
         },
         {
-          id: 168768,
+          Id: 168768,
           Name: "Germania - Bremen Liga",
           Order: 13,
           SportId: 342,
@@ -792,7 +792,7 @@ export const groupList: Group<IEvent>[] = [
           GroupOrder: 0
         },
         {
-          id: 165731,
+          Id: 165731,
           Name: "Germania - Oberliga Baden Wuerttemberg",
           Order: 13,
           SportId: 342,
@@ -805,7 +805,7 @@ export const groupList: Group<IEvent>[] = [
           GroupOrder: 0
         },
         {
-          id: 166680,
+          Id: 166680,
           Name: "Germania - Oberliga Mittelrhein",
           Order: 13,
           SportId: 342,
@@ -818,7 +818,7 @@ export const groupList: Group<IEvent>[] = [
           GroupOrder: 0
         },
         {
-          id: 167281,
+          Id: 167281,
           Name: "Germania - Oberliga NOFV South",
           Order: 13,
           SportId: 342,
@@ -831,7 +831,7 @@ export const groupList: Group<IEvent>[] = [
           GroupOrder: 0
         },
         {
-          id: 167282,
+          Id: 167282,
           Name: "Germania - Oberliga Westfalen",
           Order: 13,
           SportId: 342,
@@ -846,7 +846,7 @@ export const groupList: Group<IEvent>[] = [
       ]
     },
     {
-      id: 3394,
+      Id: 3394,
       Name: "Turchia",
       Order: 8,
       NumQuote: 13187,
@@ -855,7 +855,7 @@ export const groupList: Group<IEvent>[] = [
       Antepost: 0,
       Events: [
         {
-          id: 7955,
+          Id: 7955,
           Name: "Turchia - Super Lig",
           Order: 2,
           SportId: 342,
@@ -868,7 +868,7 @@ export const groupList: Group<IEvent>[] = [
           GroupOrder: 0
         },
         {
-          id: 8171,
+          Id: 8171,
           Name: "Turchia - TFF 1. Lig",
           Order: 3,
           SportId: 342,
@@ -883,7 +883,7 @@ export const groupList: Group<IEvent>[] = [
       ]
     },
     {
-      id: 2386,
+      Id: 2386,
       Name: "Spagna",
       Order: 8,
       NumQuote: 32169,
@@ -892,7 +892,7 @@ export const groupList: Group<IEvent>[] = [
       Antepost: 0,
       Events: [
         {
-          id: 8140,
+          Id: 8140,
           Name: "Spagna - Copa del Rey",
           Order: 0,
           SportId: 342,
@@ -905,7 +905,7 @@ export const groupList: Group<IEvent>[] = [
           GroupOrder: 0
         },
         {
-          id: 208539,
+          Id: 208539,
           Name: "Spagna - Copa del Rey Finale",
           Order: 0,
           SportId: 342,
@@ -918,7 +918,7 @@ export const groupList: Group<IEvent>[] = [
           GroupOrder: 0
         },
         {
-          id: 7910,
+          Id: 7910,
           Name: "Spagna - Liga",
           Order: 1,
           SportId: 342,
@@ -931,7 +931,7 @@ export const groupList: Group<IEvent>[] = [
           GroupOrder: 0
         },
         {
-          id: 7858,
+          Id: 7858,
           Name: "Spagna - Segunda Division",
           Order: 2,
           SportId: 342,
@@ -944,7 +944,7 @@ export const groupList: Group<IEvent>[] = [
           GroupOrder: 0
         },
         {
-          id: 1388193,
+          Id: 1388193,
           Name: "Spagna - Primera Division RFEF",
           Order: 8,
           SportId: 342,
@@ -957,7 +957,7 @@ export const groupList: Group<IEvent>[] = [
           GroupOrder: 0
         },
         {
-          id: 8783,
+          Id: 8783,
           Name: "Spagna - Segunda RFEF Gruppo I",
           Order: 8,
           SportId: 342,
@@ -970,7 +970,7 @@ export const groupList: Group<IEvent>[] = [
           GroupOrder: 0
         },
         {
-          id: 259996,
+          Id: 259996,
           Name: "Spagna - Tercera RFEF",
           Order: 10,
           SportId: 342,
@@ -983,7 +983,7 @@ export const groupList: Group<IEvent>[] = [
           GroupOrder: 0
         },
         {
-          id: 1495935,
+          Id: 1495935,
           Name: "Spagna - Division de Honor Juvenil",
           Order: 11,
           SportId: 342,
@@ -998,7 +998,7 @@ export const groupList: Group<IEvent>[] = [
       ]
     },
     {
-      id: 2387,
+      Id: 2387,
       Name: "Centro Europa",
       Order: 10,
       NumQuote: 42466,
@@ -1007,7 +1007,7 @@ export const groupList: Group<IEvent>[] = [
       Antepost: 0,
       Events: [
         {
-          id: 702016,
+          Id: 702016,
           Name: "Austria - Bundesliga Championship Round",
           Order: 1,
           SportId: 342,
@@ -1020,7 +1020,7 @@ export const groupList: Group<IEvent>[] = [
           GroupOrder: 0
         },
         {
-          id: 702017,
+          Id: 702017,
           Name: "Austria - Bundesliga Relegation Round",
           Order: 1,
           SportId: 342,
@@ -1033,7 +1033,7 @@ export const groupList: Group<IEvent>[] = [
           GroupOrder: 0
         },
         {
-          id: 7981,
+          Id: 7981,
           Name: "Austria - 2. Liga",
           Order: 2,
           SportId: 342,
@@ -1046,7 +1046,7 @@ export const groupList: Group<IEvent>[] = [
           GroupOrder: 0
         },
         {
-          id: 788484,
+          Id: 788484,
           Name: "Austria - Bundesliga Women",
           Order: 2,
           SportId: 342,
@@ -1059,7 +1059,7 @@ export const groupList: Group<IEvent>[] = [
           GroupOrder: 0
         },
         {
-          id: 1594895,
+          Id: 1594895,
           Name: "Austria - Regional Cup",
           Order: 2,
           SportId: 342,
@@ -1072,7 +1072,7 @@ export const groupList: Group<IEvent>[] = [
           GroupOrder: 0
         },
         {
-          id: 307203,
+          Id: 307203,
           Name: "Belgio - First Division A",
           Order: 3,
           SportId: 342,
@@ -1085,7 +1085,7 @@ export const groupList: Group<IEvent>[] = [
           GroupOrder: 0
         },
         {
-          id: 311833,
+          Id: 311833,
           Name: "Belgio - First Division B",
           Order: 3,
           SportId: 342,
@@ -1098,7 +1098,7 @@ export const groupList: Group<IEvent>[] = [
           GroupOrder: 0
         },
         {
-          id: 316416,
+          Id: 316416,
           Name: "Belgio - Reserve League",
           Order: 4,
           SportId: 342,
@@ -1111,7 +1111,7 @@ export const groupList: Group<IEvent>[] = [
           GroupOrder: 0
         },
         {
-          id: 7922,
+          Id: 7922,
           Name: "Olanda - Eredivisie",
           Order: 5,
           SportId: 342,
@@ -1124,7 +1124,7 @@ export const groupList: Group<IEvent>[] = [
           GroupOrder: 0
         },
         {
-          id: 7856,
+          Id: 7856,
           Name: "Olanda - Eerste Divisie",
           Order: 6,
           SportId: 342,
@@ -1137,7 +1137,7 @@ export const groupList: Group<IEvent>[] = [
           GroupOrder: 0
         },
         {
-          id: 330074,
+          Id: 330074,
           Name: "Olanda - Tweede Divisie",
           Order: 6,
           SportId: 342,
@@ -1150,7 +1150,7 @@ export const groupList: Group<IEvent>[] = [
           GroupOrder: 0
         },
         {
-          id: 1471545,
+          Id: 1471545,
           Name: "Luxembourg Cup",
           Order: 9,
           SportId: 342,
@@ -1163,7 +1163,7 @@ export const groupList: Group<IEvent>[] = [
           GroupOrder: 0
         },
         {
-          id: 7982,
+          Id: 7982,
           Name: "Svizzera - Super League",
           Order: 11,
           SportId: 342,
@@ -1176,7 +1176,7 @@ export const groupList: Group<IEvent>[] = [
           GroupOrder: 0
         },
         {
-          id: 7935,
+          Id: 7935,
           Name: "Svizzera - Challenge",
           Order: 12,
           SportId: 342,
@@ -1189,7 +1189,7 @@ export const groupList: Group<IEvent>[] = [
           GroupOrder: 0
         },
         {
-          id: 113645,
+          Id: 113645,
           Name: "Svizzera - Promotion League",
           Order: 13,
           SportId: 342,
@@ -1204,7 +1204,7 @@ export const groupList: Group<IEvent>[] = [
       ]
     },
     {
-      id: 2388,
+      Id: 2388,
       Name: "Nord Europa",
       Order: 11,
       NumQuote: 34708,
@@ -1213,7 +1213,7 @@ export const groupList: Group<IEvent>[] = [
       Antepost: 0,
       Events: [
         {
-          id: 59806,
+          Id: 59806,
           Name: "Danimarca - DBU Pokalen",
           Order: 1,
           SportId: 342,
@@ -1226,7 +1226,7 @@ export const groupList: Group<IEvent>[] = [
           GroupOrder: 0
         },
         {
-          id: 7933,
+          Id: 7933,
           Name: "Danimarca - Superliga",
           Order: 1,
           SportId: 342,
@@ -1239,7 +1239,7 @@ export const groupList: Group<IEvent>[] = [
           GroupOrder: 0
         },
         {
-          id: 25503,
+          Id: 25503,
           Name: "Danimarca - 1st Division",
           Order: 2,
           SportId: 342,
@@ -1252,7 +1252,7 @@ export const groupList: Group<IEvent>[] = [
           GroupOrder: 0
         },
         {
-          id: 7857,
+          Id: 7857,
           Name: "Finlandia  - Veikkausliiga",
           Order: 5,
           SportId: 342,
@@ -1265,7 +1265,7 @@ export const groupList: Group<IEvent>[] = [
           GroupOrder: 0
         },
         {
-          id: 8234,
+          Id: 8234,
           Name: "Norway - NM Cup",
           Order: 12,
           SportId: 342,
@@ -1278,7 +1278,7 @@ export const groupList: Group<IEvent>[] = [
           GroupOrder: 0
         },
         {
-          id: 7914,
+          Id: 7914,
           Name: "Norvegia - Eliteserien",
           Order: 13,
           SportId: 342,
@@ -1291,7 +1291,7 @@ export const groupList: Group<IEvent>[] = [
           GroupOrder: 0
         },
         {
-          id: 16071,
+          Id: 16071,
           Name: "Norvegia - 1st Division",
           Order: 14,
           SportId: 342,
@@ -1304,7 +1304,7 @@ export const groupList: Group<IEvent>[] = [
           GroupOrder: 0
         },
         {
-          id: 7934,
+          Id: 7934,
           Name: "Svezia - Allsvenskan",
           Order: 19,
           SportId: 342,
@@ -1317,7 +1317,7 @@ export const groupList: Group<IEvent>[] = [
           GroupOrder: 0
         },
         {
-          id: 7848,
+          Id: 7848,
           Name: "Svezia - Superettan",
           Order: 20,
           SportId: 342,
@@ -1330,7 +1330,7 @@ export const groupList: Group<IEvent>[] = [
           GroupOrder: 0
         },
         {
-          id: 53159,
+          Id: 53159,
           Name: "Svezia - Div. 2 Vastra Gotaland",
           Order: 22,
           SportId: 342,
@@ -1345,7 +1345,7 @@ export const groupList: Group<IEvent>[] = [
       ]
     },
     {
-      id: 2394,
+      Id: 2394,
       Name: "Sud Europa",
       Order: 12,
       NumQuote: 22781,
@@ -1354,7 +1354,7 @@ export const groupList: Group<IEvent>[] = [
       Antepost: 0,
       Events: [
         {
-          id: 919653,
+          Id: 919653,
           Name: "Grecia - Super League Championship Round",
           Order: 1,
           SportId: 342,
@@ -1367,7 +1367,7 @@ export const groupList: Group<IEvent>[] = [
           GroupOrder: 0
         },
         {
-          id: 949499,
+          Id: 949499,
           Name: "Grecia - Super League Relegation Round",
           Order: 1,
           SportId: 342,
@@ -1380,7 +1380,7 @@ export const groupList: Group<IEvent>[] = [
           GroupOrder: 0
         },
         {
-          id: 238154,
+          Id: 238154,
           Name: "Grecia - Super League 2",
           Order: 2,
           SportId: 342,
@@ -1393,7 +1393,7 @@ export const groupList: Group<IEvent>[] = [
           GroupOrder: 0
         },
         {
-          id: 7915,
+          Id: 7915,
           Name: "Portogallo - Primeira Liga",
           Order: 5,
           SportId: 342,
@@ -1406,7 +1406,7 @@ export const groupList: Group<IEvent>[] = [
           GroupOrder: 0
         },
         {
-          id: 17016,
+          Id: 17016,
           Name: "Portogallo - Segunda Liga",
           Order: 6,
           SportId: 342,
@@ -1419,7 +1419,7 @@ export const groupList: Group<IEvent>[] = [
           GroupOrder: 0
         },
         {
-          id: 8121,
+          Id: 8121,
           Name: "Cipro - Coppa",
           Order: 11,
           SportId: 342,
@@ -1432,7 +1432,7 @@ export const groupList: Group<IEvent>[] = [
           GroupOrder: 0
         },
         {
-          id: 48272,
+          Id: 48272,
           Name: "Israele - Gruppo Premier Championship",
           Order: 15,
           SportId: 342,
@@ -1445,7 +1445,7 @@ export const groupList: Group<IEvent>[] = [
           GroupOrder: 0
         },
         {
-          id: 48273,
+          Id: 48273,
           Name: "Israele - Gruppo Premier Retrocessione",
           Order: 16,
           SportId: 342,
@@ -1458,7 +1458,7 @@ export const groupList: Group<IEvent>[] = [
           GroupOrder: 0
         },
         {
-          id: 9038,
+          Id: 9038,
           Name: "Israele - National League",
           Order: 17,
           SportId: 342,
@@ -1471,7 +1471,7 @@ export const groupList: Group<IEvent>[] = [
           GroupOrder: 0
         },
         {
-          id: 252259,
+          Id: 252259,
           Name: "Gibilterra - Premier Division",
           Order: 21,
           SportId: 342,
@@ -1484,7 +1484,7 @@ export const groupList: Group<IEvent>[] = [
           GroupOrder: 0
         },
         {
-          id: 461110,
+          Id: 461110,
           Name: "San Marino - Campionato Sammarinese",
           Order: 21,
           SportId: 342,
@@ -1499,7 +1499,7 @@ export const groupList: Group<IEvent>[] = [
       ]
     },
     {
-      id: 2389,
+      Id: 2389,
       Name: "Est Europa",
       Order: 13,
       NumQuote: 51081,
@@ -1508,7 +1508,7 @@ export const groupList: Group<IEvent>[] = [
       Antepost: 0,
       Events: [
         {
-          id: 81112,
+          Id: 81112,
           Name: "Armenia - Premier League",
           Order: 1,
           SportId: 342,
@@ -1521,7 +1521,7 @@ export const groupList: Group<IEvent>[] = [
           GroupOrder: 0
         },
         {
-          id: 163348,
+          Id: 163348,
           Name: "Armenia - First League",
           Order: 2,
           SportId: 342,
@@ -1534,7 +1534,7 @@ export const groupList: Group<IEvent>[] = [
           GroupOrder: 0
         },
         {
-          id: 13663,
+          Id: 13663,
           Name: "Bosnia ed Erzegovina - Coppa",
           Order: 6,
           SportId: 342,
@@ -1547,7 +1547,7 @@ export const groupList: Group<IEvent>[] = [
           GroupOrder: 0
         },
         {
-          id: 320729,
+          Id: 320729,
           Name: "Bulgaria - First League",
           Order: 9,
           SportId: 342,
@@ -1560,7 +1560,7 @@ export const groupList: Group<IEvent>[] = [
           GroupOrder: 0
         },
         {
-          id: 320730,
+          Id: 320730,
           Name: "Bulgaria - Second League",
           Order: 9,
           SportId: 342,
@@ -1573,7 +1573,7 @@ export const groupList: Group<IEvent>[] = [
           GroupOrder: 0
         },
         {
-          id: 7957,
+          Id: 7957,
           Name: "Croazia - 1.HNL League",
           Order: 11,
           SportId: 342,
@@ -1586,7 +1586,7 @@ export const groupList: Group<IEvent>[] = [
           GroupOrder: 0
         },
         {
-          id: 7932,
+          Id: 7932,
           Name: "Repubblica Ceca - First League",
           Order: 14,
           SportId: 342,
@@ -1599,7 +1599,7 @@ export const groupList: Group<IEvent>[] = [
           GroupOrder: 0
         },
         {
-          id: 40210,
+          Id: 40210,
           Name: "Georgia - Erovnuli Liga",
           Order: 26,
           SportId: 342,
@@ -1612,7 +1612,7 @@ export const groupList: Group<IEvent>[] = [
           GroupOrder: 0
         },
         {
-          id: 7992,
+          Id: 7992,
           Name: "Ungheria - NB 1",
           Order: 30,
           SportId: 342,
@@ -1625,7 +1625,7 @@ export const groupList: Group<IEvent>[] = [
           GroupOrder: 0
         },
         {
-          id: 163926,
+          Id: 163926,
           Name: "Ungheria - NB 2",
           Order: 30,
           SportId: 342,
@@ -1638,7 +1638,7 @@ export const groupList: Group<IEvent>[] = [
           GroupOrder: 0
         },
         {
-          id: 8029,
+          Id: 8029,
           Name: "Lettonia - Virsliga",
           Order: 36,
           SportId: 342,
@@ -1651,7 +1651,7 @@ export const groupList: Group<IEvent>[] = [
           GroupOrder: 0
         },
         {
-          id: 8028,
+          Id: 8028,
           Name: "Lituania - A Lyga",
           Order: 39,
           SportId: 342,
@@ -1664,7 +1664,7 @@ export const groupList: Group<IEvent>[] = [
           GroupOrder: 0
         },
         {
-          id: 8444,
+          Id: 8444,
           Name: "Montenegro - 1. Liga",
           Order: 45,
           SportId: 342,
@@ -1677,7 +1677,7 @@ export const groupList: Group<IEvent>[] = [
           GroupOrder: 0
         },
         {
-          id: 8054,
+          Id: 8054,
           Name: "Polonia - Puchar Polski",
           Order: 47,
           SportId: 342,
@@ -1690,7 +1690,7 @@ export const groupList: Group<IEvent>[] = [
           GroupOrder: 0
         },
         {
-          id: 7949,
+          Id: 7949,
           Name: "Polonia - Ekstraklasa",
           Order: 48,
           SportId: 342,
@@ -1703,7 +1703,7 @@ export const groupList: Group<IEvent>[] = [
           GroupOrder: 0
         },
         {
-          id: 18436,
+          Id: 18436,
           Name: "Polonia - 1. Liga",
           Order: 49,
           SportId: 342,
@@ -1716,7 +1716,7 @@ export const groupList: Group<IEvent>[] = [
           GroupOrder: 0
         },
         {
-          id: 7926,
+          Id: 7926,
           Name: "Romania - Liga I",
           Order: 52,
           SportId: 342,
@@ -1729,7 +1729,7 @@ export const groupList: Group<IEvent>[] = [
           GroupOrder: 0
         },
         {
-          id: 276038,
+          Id: 276038,
           Name: "Romania - Liga I Championship Round",
           Order: 52,
           SportId: 342,
@@ -1742,7 +1742,7 @@ export const groupList: Group<IEvent>[] = [
           GroupOrder: 0
         },
         {
-          id: 96142,
+          Id: 96142,
           Name: "Romania - Liga I Relegation Round",
           Order: 52,
           SportId: 342,
@@ -1755,7 +1755,7 @@ export const groupList: Group<IEvent>[] = [
           GroupOrder: 0
         },
         {
-          id: 314114,
+          Id: 314114,
           Name: "Romania - Liga II",
           Order: 53,
           SportId: 342,
@@ -1768,7 +1768,7 @@ export const groupList: Group<IEvent>[] = [
           GroupOrder: 0
         },
         {
-          id: 18626,
+          Id: 18626,
           Name: "Serbia - Coppa",
           Order: 54,
           SportId: 342,
@@ -1781,7 +1781,7 @@ export const groupList: Group<IEvent>[] = [
           GroupOrder: 0
         },
         {
-          id: 87797,
+          Id: 87797,
           Name: "Serbia - Prva liga",
           Order: 56,
           SportId: 342,
@@ -1794,7 +1794,7 @@ export const groupList: Group<IEvent>[] = [
           GroupOrder: 0
         },
         {
-          id: 12159,
+          Id: 12159,
           Name: "Slovacchia - Coppa",
           Order: 58,
           SportId: 342,
@@ -1807,7 +1807,7 @@ export const groupList: Group<IEvent>[] = [
           GroupOrder: 0
         },
         {
-          id: 1625972,
+          Id: 1625972,
           Name: "Slovacchia - Super Liga Championship Round",
           Order: 59,
           SportId: 342,
@@ -1820,7 +1820,7 @@ export const groupList: Group<IEvent>[] = [
           GroupOrder: 0
         },
         {
-          id: 1625975,
+          Id: 1625975,
           Name: "Slovacchia - Super Liga Relegation Round",
           Order: 59,
           SportId: 342,
@@ -1833,7 +1833,7 @@ export const groupList: Group<IEvent>[] = [
           GroupOrder: 0
         },
         {
-          id: 171465,
+          Id: 171465,
           Name: "Slovacchia  - U19 League",
           Order: 61,
           SportId: 342,
@@ -1846,7 +1846,7 @@ export const groupList: Group<IEvent>[] = [
           GroupOrder: 0
         },
         {
-          id: 7988,
+          Id: 7988,
           Name: "Slovenia - Prva Liga",
           Order: 63,
           SportId: 342,
@@ -1861,7 +1861,7 @@ export const groupList: Group<IEvent>[] = [
       ]
     },
     {
-      id: 2390,
+      Id: 2390,
       Name: "Sud America",
       Order: 14,
       NumQuote: 65514,
@@ -1870,7 +1870,7 @@ export const groupList: Group<IEvent>[] = [
       Antepost: 0,
       Events: [
         {
-          id: 713916,
+          Id: 713916,
           Name: "Argentina - Liga Profesional Cup",
           Order: 1,
           SportId: 342,
@@ -1883,7 +1883,7 @@ export const groupList: Group<IEvent>[] = [
           GroupOrder: 0
         },
         {
-          id: 18414,
+          Id: 18414,
           Name: "Argentina - Primera Nacional",
           Order: 3,
           SportId: 342,
@@ -1896,7 +1896,7 @@ export const groupList: Group<IEvent>[] = [
           GroupOrder: 0
         },
         {
-          id: 7855,
+          Id: 7855,
           Name: "Brasile - Serie A",
           Order: 6,
           SportId: 342,
@@ -1909,7 +1909,7 @@ export const groupList: Group<IEvent>[] = [
           GroupOrder: 0
         },
         {
-          id: 7941,
+          Id: 7941,
           Name: "Brasile - Serie B",
           Order: 7,
           SportId: 342,
@@ -1922,7 +1922,7 @@ export const groupList: Group<IEvent>[] = [
           GroupOrder: 0
         },
         {
-          id: 895538,
+          Id: 895538,
           Name: "Brasile - Acreano",
           Order: 12,
           SportId: 342,
@@ -1935,7 +1935,7 @@ export const groupList: Group<IEvent>[] = [
           GroupOrder: 0
         },
         {
-          id: 1002715,
+          Id: 1002715,
           Name: "Brasile - Alagoano Playoff",
           Order: 12,
           SportId: 342,
@@ -1948,7 +1948,7 @@ export const groupList: Group<IEvent>[] = [
           GroupOrder: 0
         },
         {
-          id: 708487,
+          Id: 708487,
           Name: "Brasile - Maranhense Playoff",
           Order: 12,
           SportId: 342,
@@ -1961,7 +1961,7 @@ export const groupList: Group<IEvent>[] = [
           GroupOrder: 0
         },
         {
-          id: 363572,
+          Id: 363572,
           Name: "Brasile - Paraibano",
           Order: 12,
           SportId: 342,
@@ -1974,7 +1974,7 @@ export const groupList: Group<IEvent>[] = [
           GroupOrder: 0
         },
         {
-          id: 189432,
+          Id: 189432,
           Name: "Brasile - Paulista A3",
           Order: 12,
           SportId: 342,
@@ -1987,7 +1987,7 @@ export const groupList: Group<IEvent>[] = [
           GroupOrder: 0
         },
         {
-          id: 361079,
+          Id: 361079,
           Name: "Brasile - Potiguar",
           Order: 12,
           SportId: 342,
@@ -2000,7 +2000,7 @@ export const groupList: Group<IEvent>[] = [
           GroupOrder: 0
         },
         {
-          id: 894619,
+          Id: 894619,
           Name: "Brasile - Sul Matogrossense",
           Order: 12,
           SportId: 342,
@@ -2013,7 +2013,7 @@ export const groupList: Group<IEvent>[] = [
           GroupOrder: 0
         },
         {
-          id: 1270378,
+          Id: 1270378,
           Name: "Brazil - Sergipano Playoff",
           Order: 12,
           SportId: 342,
@@ -2026,7 +2026,7 @@ export const groupList: Group<IEvent>[] = [
           GroupOrder: 0
         },
         {
-          id: 7952,
+          Id: 7952,
           Name: "Cile - Primera",
           Order: 20,
           SportId: 342,
@@ -2039,7 +2039,7 @@ export const groupList: Group<IEvent>[] = [
           GroupOrder: 0
         },
         {
-          id: 17814,
+          Id: 17814,
           Name: "Colombia - Coppa",
           Order: 22,
           SportId: 342,
@@ -2052,7 +2052,7 @@ export const groupList: Group<IEvent>[] = [
           GroupOrder: 0
         },
         {
-          id: 15752,
+          Id: 15752,
           Name: "Colombia - Primera A",
           Order: 24,
           SportId: 342,
@@ -2065,7 +2065,7 @@ export const groupList: Group<IEvent>[] = [
           GroupOrder: 0
         },
         {
-          id: 79364,
+          Id: 79364,
           Name: "Colombia - Primera B",
           Order: 25,
           SportId: 342,
@@ -2078,7 +2078,7 @@ export const groupList: Group<IEvent>[] = [
           GroupOrder: 0
         },
         {
-          id: 1608958,
+          Id: 1608958,
           Name: "Colombia - Liga Femenina",
           Order: 26,
           SportId: 342,
@@ -2091,7 +2091,7 @@ export const groupList: Group<IEvent>[] = [
           GroupOrder: 0
         },
         {
-          id: 298365,
+          Id: 298365,
           Name: "Ecuador - Serie B",
           Order: 26,
           SportId: 342,
@@ -2104,7 +2104,7 @@ export const groupList: Group<IEvent>[] = [
           GroupOrder: 0
         },
         {
-          id: 8637,
+          Id: 8637,
           Name: "Paraguay - Primera",
           Order: 27,
           SportId: 342,
@@ -2117,7 +2117,7 @@ export const groupList: Group<IEvent>[] = [
           GroupOrder: 0
         },
         {
-          id: 7945,
+          Id: 7945,
           Name: "Peru - Primera",
           Order: 30,
           SportId: 342,
@@ -2130,7 +2130,7 @@ export const groupList: Group<IEvent>[] = [
           GroupOrder: 0
         },
         {
-          id: 8011,
+          Id: 8011,
           Name: "Uruguay - Primera",
           Order: 31,
           SportId: 342,
@@ -2145,7 +2145,7 @@ export const groupList: Group<IEvent>[] = [
       ]
     },
     {
-      id: 2391,
+      Id: 2391,
       Name: "Nord America",
       Order: 15,
       NumQuote: 26007,
@@ -2154,7 +2154,7 @@ export const groupList: Group<IEvent>[] = [
       Antepost: 0,
       Events: [
         {
-          id: 8005,
+          Id: 8005,
           Name: "Costa Rica - Primera",
           Order: 4,
           SportId: 342,
@@ -2167,7 +2167,7 @@ export const groupList: Group<IEvent>[] = [
           GroupOrder: 0
         },
         {
-          id: 9524,
+          Id: 9524,
           Name: "Guatemala - Liga Nacional",
           Order: 6,
           SportId: 342,
@@ -2180,7 +2180,7 @@ export const groupList: Group<IEvent>[] = [
           GroupOrder: 0
         },
         {
-          id: 923513,
+          Id: 923513,
           Name: "Guatemala - Primera Division",
           Order: 6,
           SportId: 342,
@@ -2193,7 +2193,7 @@ export const groupList: Group<IEvent>[] = [
           GroupOrder: 0
         },
         {
-          id: 76050,
+          Id: 76050,
           Name: "Honduras - Liga Nacional",
           Order: 7,
           SportId: 342,
@@ -2206,7 +2206,7 @@ export const groupList: Group<IEvent>[] = [
           GroupOrder: 0
         },
         {
-          id: 8091,
+          Id: 8091,
           Name: "Messico - Primera",
           Order: 10,
           SportId: 342,
@@ -2219,7 +2219,7 @@ export const groupList: Group<IEvent>[] = [
           GroupOrder: 0
         },
         {
-          id: 9529,
+          Id: 9529,
           Name: "Messico - Liga de Expansion",
           Order: 12,
           SportId: 342,
@@ -2232,7 +2232,7 @@ export const groupList: Group<IEvent>[] = [
           GroupOrder: 0
         },
         {
-          id: 427884,
+          Id: 427884,
           Name: "Messico - U20 League",
           Order: 13,
           SportId: 342,
@@ -2245,7 +2245,7 @@ export const groupList: Group<IEvent>[] = [
           GroupOrder: 0
         },
         {
-          id: 493714,
+          Id: 493714,
           Name: "Messico - Liga MX Donne",
           Order: 14,
           SportId: 342,
@@ -2258,7 +2258,7 @@ export const groupList: Group<IEvent>[] = [
           GroupOrder: 0
         },
         {
-          id: 328969,
+          Id: 328969,
           Name: "Nicaragua - Primera Division",
           Order: 14,
           SportId: 342,
@@ -2271,7 +2271,7 @@ export const groupList: Group<IEvent>[] = [
           GroupOrder: 0
         },
         {
-          id: 12511,
+          Id: 12511,
           Name: "USA - US Open Cup",
           Order: 14,
           SportId: 342,
@@ -2284,7 +2284,7 @@ export const groupList: Group<IEvent>[] = [
           GroupOrder: 0
         },
         {
-          id: 7853,
+          Id: 7853,
           Name: "USA - MLS",
           Order: 15,
           SportId: 342,
@@ -2299,7 +2299,7 @@ export const groupList: Group<IEvent>[] = [
       ]
     },
     {
-      id: 2465,
+      Id: 2465,
       Name: "Africa",
       Order: 16,
       NumQuote: 8029,
@@ -2308,7 +2308,7 @@ export const groupList: Group<IEvent>[] = [
       Antepost: 0,
       Events: [
         {
-          id: 21117,
+          Id: 21117,
           Name: "Algeria - Ligue 1",
           Order: 1,
           SportId: 342,
@@ -2321,7 +2321,7 @@ export const groupList: Group<IEvent>[] = [
           GroupOrder: 0
         },
         {
-          id: 923455,
+          Id: 923455,
           Name: "Angola - Girabola",
           Order: 1,
           SportId: 342,
@@ -2334,7 +2334,7 @@ export const groupList: Group<IEvent>[] = [
           GroupOrder: 0
         },
         {
-          id: 283709,
+          Id: 283709,
           Name: "Camerun - Elite One",
           Order: 2,
           SportId: 342,
@@ -2347,7 +2347,7 @@ export const groupList: Group<IEvent>[] = [
           GroupOrder: 0
         },
         {
-          id: 8820,
+          Id: 8820,
           Name: "Egitto - Premier League",
           Order: 3,
           SportId: 342,
@@ -2360,7 +2360,7 @@ export const groupList: Group<IEvent>[] = [
           GroupOrder: 0
         },
         {
-          id: 1140854,
+          Id: 1140854,
           Name: "Etiopia - Premier League",
           Order: 3,
           SportId: 342,
@@ -2373,7 +2373,7 @@ export const groupList: Group<IEvent>[] = [
           GroupOrder: 0
         },
         {
-          id: 17547,
+          Id: 17547,
           Name: "Marocco - Coppa",
           Order: 5,
           SportId: 342,
@@ -2386,7 +2386,7 @@ export const groupList: Group<IEvent>[] = [
           GroupOrder: 0
         },
         {
-          id: 9089,
+          Id: 9089,
           Name: "Nigeria - Premier League",
           Order: 7,
           SportId: 342,
@@ -2399,7 +2399,7 @@ export const groupList: Group<IEvent>[] = [
           GroupOrder: 0
         },
         {
-          id: 8808,
+          Id: 8808,
           Name: "Sudafrica - Premier",
           Order: 10,
           SportId: 342,
@@ -2412,7 +2412,7 @@ export const groupList: Group<IEvent>[] = [
           GroupOrder: 0
         },
         {
-          id: 358140,
+          Id: 358140,
           Name: "Tanzania - Premier League",
           Order: 12,
           SportId: 342,
@@ -2425,7 +2425,7 @@ export const groupList: Group<IEvent>[] = [
           GroupOrder: 0
         },
         {
-          id: 839390,
+          Id: 839390,
           Name: "Tunisia - Ligue 2",
           Order: 13,
           SportId: 342,
@@ -2438,7 +2438,7 @@ export const groupList: Group<IEvent>[] = [
           GroupOrder: 0
         },
         {
-          id: 311739,
+          Id: 311739,
           Name: "Zambia - Premier League",
           Order: 16,
           SportId: 342,
@@ -2453,7 +2453,7 @@ export const groupList: Group<IEvent>[] = [
       ]
     },
     {
-      id: 2392,
+      Id: 2392,
       Name: "Asia & Oceania",
       Order: 17,
       NumQuote: 27241,
@@ -2462,7 +2462,7 @@ export const groupList: Group<IEvent>[] = [
       Antepost: 0,
       Events: [
         {
-          id: 7906,
+          Id: 7906,
           Name: "Australia - A League",
           Order: 1,
           SportId: 342,
@@ -2475,7 +2475,7 @@ export const groupList: Group<IEvent>[] = [
           GroupOrder: 0
         },
         {
-          id: 87470,
+          Id: 87470,
           Name: "Australia - NSW Premier League",
           Order: 1,
           SportId: 342,
@@ -2488,7 +2488,7 @@ export const groupList: Group<IEvent>[] = [
           GroupOrder: 0
         },
         {
-          id: 53508,
+          Id: 53508,
           Name: "Australia - Victorian Premier League",
           Order: 1,
           SportId: 342,
@@ -2501,7 +2501,7 @@ export const groupList: Group<IEvent>[] = [
           GroupOrder: 0
         },
         {
-          id: 1011801,
+          Id: 1011801,
           Name: "Bahrain - Second Division",
           Order: 3,
           SportId: 342,
@@ -2514,7 +2514,7 @@ export const groupList: Group<IEvent>[] = [
           GroupOrder: 0
         },
         {
-          id: 311473,
+          Id: 311473,
           Name: "Bangladesh - Premier League",
           Order: 4,
           SportId: 342,
@@ -2527,7 +2527,7 @@ export const groupList: Group<IEvent>[] = [
           GroupOrder: 0
         },
         {
-          id: 9336,
+          Id: 9336,
           Name: "India - I League",
           Order: 13,
           SportId: 342,
@@ -2540,7 +2540,7 @@ export const groupList: Group<IEvent>[] = [
           GroupOrder: 0
         },
         {
-          id: 8209,
+          Id: 8209,
           Name: "Giappone - YBC Levain Cup",
           Order: 19,
           SportId: 342,
@@ -2553,7 +2553,7 @@ export const groupList: Group<IEvent>[] = [
           GroupOrder: 0
         },
         {
-          id: 7986,
+          Id: 7986,
           Name: "Giappone - J. League 2",
           Order: 21,
           SportId: 342,
@@ -2566,7 +2566,7 @@ export const groupList: Group<IEvent>[] = [
           GroupOrder: 0
         },
         {
-          id: 21438,
+          Id: 21438,
           Name: "Oman - League",
           Order: 31,
           SportId: 342,
@@ -2579,7 +2579,7 @@ export const groupList: Group<IEvent>[] = [
           GroupOrder: 0
         },
         {
-          id: 330706,
+          Id: 330706,
           Name: "Palestina - West Bank League",
           Order: 32,
           SportId: 342,
@@ -2592,7 +2592,7 @@ export const groupList: Group<IEvent>[] = [
           GroupOrder: 0
         },
         {
-          id: 181139,
+          Id: 181139,
           Name: "Arabia Saudita - Division 1",
           Order: 39,
           SportId: 342,
@@ -2605,7 +2605,7 @@ export const groupList: Group<IEvent>[] = [
           GroupOrder: 0
         },
         {
-          id: 11350,
+          Id: 11350,
           Name: "Corea del Sud - K League",
           Order: 43,
           SportId: 342,
@@ -2618,7 +2618,7 @@ export const groupList: Group<IEvent>[] = [
           GroupOrder: 0
         },
         {
-          id: 1550660,
+          Id: 1550660,
           Name: "UAE - U21 League",
           Order: 53,
           SportId: 342,

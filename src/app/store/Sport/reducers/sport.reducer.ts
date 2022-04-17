@@ -8,7 +8,9 @@ export interface SportState extends EntityState<Sport> {
   selectedSportId: number | null;
 };
 
-export const adapter: EntityAdapter<Sport> = createEntityAdapter<Sport>();
+export const adapter: EntityAdapter<Sport> = createEntityAdapter<Sport>({
+  selectId: (sport: Sport) => sport.Id,
+});
 
 export const initialState: SportState = adapter.getInitialState({
   selectedSportId: null,

@@ -1,19 +1,19 @@
 <ul>
-    <li *ngFor="let group of groupsForSelectedSport$ | async" (click)="selectGroup(group.id)">
+    <li *ngFor="let group of groupsForSelectedSport$ | async" (click)="selectGroup(group.Id)">
         {{ group.Name }}
 
-        <ng-container *ngIf="selectedGroupId === group.id">
+        <ng-container *ngIf="selectedGroupId === group.Id">
             <ul>
-                <li *ngFor="let event of eventsForSelectedGroup$ | async" (click)="selectEvent(event.id)">
+                <li *ngFor="let event of eventsForSelectedGroup$ | async" (click)="selectEvent(event.Id)">
                     {{ event.Name }}
 
-                    <ng-container *ngIf="selectedEventId === event.id">
+                    <ng-container *ngIf="selectedEventId === event.Id">
                         <ul>
                             <li *ngFor="let subevent of subEvents">
                                 {{ subevent.Name }}
-                                <ng-container *ngIf="subevent.activeOddIds">
+                                <ng-container *ngIf="subevent.mainActiveOddsIds">
                                     <ul>
-                                        <li *ngFor="let odd of subevent.activeOddIds">
+                                        <li *ngFor="let odd of subevent.mainActiveOddsIds">
                                             {{ quotasExample[odd].Selection }} - {{ quotasExample[odd].Value }}
                                         </li>
                                     </ul>

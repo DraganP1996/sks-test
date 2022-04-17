@@ -1,6 +1,6 @@
 <ul>
     <li *ngFor="let sport of sportList$ | async">
-        <button (click)="selectSport(sport.id)">
+        <button (click)="selectSport(sport.Id)">
             {{ sport.Name }}
         </button>
     </li>

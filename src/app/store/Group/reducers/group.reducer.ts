@@ -3,13 +3,13 @@ import { createReducer, on } from '@ngrx/store';
 import { Group } from '../../store.model';
 import * as GroupActions from '../actions/group.actions';
 
-export const groupFeatureKey = 'group';
-
 export interface GroupState  extends EntityState<Group<number>> { 
   selectedGroupId: number | null;
 }
 
-export const adapter: EntityAdapter<Group<number>> = createEntityAdapter<Group<number>>();
+export const adapter: EntityAdapter<Group<number>> = createEntityAdapter<Group<number>>({
+  selectId: (group: Group<number>) => group.Id,
+});
 
 export const initialState: GroupState = adapter.getInitialState({
   selectedGroupId: null,

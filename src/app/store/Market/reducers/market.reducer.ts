@@ -8,10 +8,11 @@ export interface MarketState extends EntityState<Market> {
   selectedMarketIds: number[] | null;
 };
 
-export const adapter: EntityAdapter<Market> = createEntityAdapter<Market>();
+export const adapter: EntityAdapter<Market> = createEntityAdapter<Market>({
+  selectId: (market: Market) => market.Id,
+});
 
 export const initialState: MarketState = adapter.getInitialState({
-  // additional entity state properties
   selectedMarketIds: null,
 });
 

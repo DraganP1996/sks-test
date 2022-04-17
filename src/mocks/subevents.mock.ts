@@ -2,7 +2,7 @@ import { IEventWithSubEvents } from "src/app/store/store.model";
 
 export const subevents: IEventWithSubEvents[] = [
     {
-      id: 1648275,
+      Id: 1648275,
       Name: "Mondiali 2022 - Partite",
       Order: 0,
       SportId: 342,
@@ -29,7 +29,7 @@ export const subevents: IEventWithSubEvents[] = [
           EventName: "Mondiali 2022 - Partite",
           Markets: [
             {
-              id: 1,
+              Id: 1,
               Name: "1X2",
               Order: 1,
               Odds: [
@@ -95,7 +95,7 @@ export const subevents: IEventWithSubEvents[] = [
           EventName: "Mondiali 2022 - Partite",
           Markets: [
             {
-              id: 1,
+              Id: 1,
               Name: "1X2",
               Order: 1,
               Odds: [
@@ -161,7 +161,7 @@ export const subevents: IEventWithSubEvents[] = [
           EventName: "Mondiali 2022 - Partite",
           Markets: [
             {
-              id: 1,
+              Id: 1,
               Name: "1X2",
               Order: 1,
               Odds: [
@@ -227,7 +227,7 @@ export const subevents: IEventWithSubEvents[] = [
           EventName: "Mondiali 2022 - Partite",
           Markets: [
             {
-              id: 1,
+              Id: 1,
               Name: "1X2",
               Order: 1,
               Odds: [
@@ -293,7 +293,7 @@ export const subevents: IEventWithSubEvents[] = [
           EventName: "Mondiali 2022 - Partite",
           Markets: [
             {
-              id: 1,
+              Id: 1,
               Name: "1X2",
               Order: 1,
               Odds: [
@@ -359,7 +359,7 @@ export const subevents: IEventWithSubEvents[] = [
           EventName: "Mondiali 2022 - Partite",
           Markets: [
             {
-              id: 1,
+              Id: 1,
               Name: "1X2",
               Order: 1,
               Odds: [
@@ -425,7 +425,7 @@ export const subevents: IEventWithSubEvents[] = [
           EventName: "Mondiali 2022 - Partite",
           Markets: [
             {
-              id: 1,
+              Id: 1,
               Name: "1X2",
               Order: 1,
               Odds: [
@@ -491,7 +491,7 @@ export const subevents: IEventWithSubEvents[] = [
           EventName: "Mondiali 2022 - Partite",
           Markets: [
             {
-              id: 1,
+              Id: 1,
               Name: "1X2",
               Order: 1,
               Odds: [
@@ -557,7 +557,7 @@ export const subevents: IEventWithSubEvents[] = [
           EventName: "Mondiali 2022 - Partite",
           Markets: [
             {
-              id: 1,
+              Id: 1,
               Name: "1X2",
               Order: 1,
               Odds: [
@@ -623,7 +623,7 @@ export const subevents: IEventWithSubEvents[] = [
           EventName: "Mondiali 2022 - Partite",
           Markets: [
             {
-              id: 1,
+              Id: 1,
               Name: "1X2",
               Order: 1,
               Odds: [
@@ -689,7 +689,7 @@ export const subevents: IEventWithSubEvents[] = [
           EventName: "Mondiali 2022 - Partite",
           Markets: [
             {
-              id: 1,
+              Id: 1,
               Name: "1X2",
               Order: 1,
               Odds: [
@@ -755,7 +755,7 @@ export const subevents: IEventWithSubEvents[] = [
           EventName: "Mondiali 2022 - Partite",
           Markets: [
             {
-              id: 1,
+              Id: 1,
               Name: "1X2",
               Order: 1,
               Odds: [
@@ -821,7 +821,7 @@ export const subevents: IEventWithSubEvents[] = [
           EventName: "Mondiali 2022 - Partite",
           Markets: [
             {
-              id: 1,
+              Id: 1,
               Name: "1X2",
               Order: 1,
               Odds: [

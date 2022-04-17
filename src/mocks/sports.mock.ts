@@ -2,7 +2,7 @@ import { Sport } from "src/app/store/store.model";
 
 export const sports: Sport[] = [
     {
-      id: 342,
+      Id: 342,
       Name: "Calcio",
       Order: 1,
       NumSubevents: 913,
@@ -10,7 +10,7 @@ export const sports: Sport[] = [
       Antepost: 0
     },
     {
-      id: 342,
+      Id: 342,
       Name: "Calcio",
       Order: 1,
       NumSubevents: 27,
@@ -18,7 +18,7 @@ export const sports: Sport[] = [
       Antepost: 1
     },
     {
-      id: 351,
+      Id: 351,
       Name: "Marcatori&Speciali",
       Order: 2,
       NumSubevents: 1812,
@@ -26,7 +26,7 @@ export const sports: Sport[] = [
       Antepost: 0
     },
     {
-      id: 343,
+      Id: 343,
       Name: "Tennis",
       Order: 3,
       NumSubevents: 201,
@@ -34,7 +34,7 @@ export const sports: Sport[] = [
       Antepost: 0
     },
     {
-      id: 348,
+      Id: 348,
       Name: "Basket",
       Order: 4,
       NumSubevents: 116,
@@ -42,7 +42,7 @@ export const sports: Sport[] = [
       Antepost: 0
     },
     {
-      id: 362,
+      Id: 362,
       Name: "Automobilismo",
       Order: 6,
       NumSubevents: 30,
@@ -50,7 +50,7 @@ export const sports: Sport[] = [
       Antepost: 1
     },
     {
-      id: 362,
+      Id: 362,
       Name: "Automobilismo",
       Order: 6,
       NumSubevents: 82,
@@ -58,7 +58,7 @@ export const sports: Sport[] = [
       Antepost: 0
     },
     {
-      id: 363,
+      Id: 363,
       Name: "Motociclismo",
       Order: 7,
       NumSubevents: 24,
@@ -66,7 +66,7 @@ export const sports: Sport[] = [
       Antepost: 1
     },
     {
-      id: 344,
+      Id: 344,
       Name: "Pallavolo",
       Order: 8,
       NumSubevents: 24,
@@ -74,7 +74,7 @@ export const sports: Sport[] = [
       Antepost: 0
     },
     {
-      id: 345,
+      Id: 345,
       Name: "Rugby Union",
       Order: 11,
       NumSubevents: 15,
@@ -82,7 +82,7 @@ export const sports: Sport[] = [
       Antepost: 0
     },
     {
-      id: 372,
+      Id: 372,
       Name: "Rugby League",
       Order: 12,
       NumSubevents: 12,
@@ -90,7 +90,7 @@ export const sports: Sport[] = [
       Antepost: 0
     },
     {
-      id: 347,
+      Id: 347,
       Name: "Hockey su Ghiaccio",
       Order: 13,
       NumSubevents: 62,
@@ -98,7 +98,7 @@ export const sports: Sport[] = [
       Antepost: 0
     },
     {
-      id: 366,
+      Id: 366,
       Name: "Baseball",
       Order: 15,
       NumSubevents: 11,
@@ -106,7 +106,7 @@ export const sports: Sport[] = [
       Antepost: 0
     },
     {
-      id: 357,
+      Id: 357,
       Name: "Pallamano",
       Order: 18,
       NumSubevents: 81,
@@ -114,7 +114,7 @@ export const sports: Sport[] = [
       Antepost: 0
     },
     {
-      id: 360,
+      Id: 360,
       Name: "Snooker",
       Order: 19,
       NumSubevents: 22,
@@ -122,7 +122,7 @@ export const sports: Sport[] = [
       Antepost: 0
     },
     {
-      id: 368,
+      Id: 368,
       Name: "Ciclismo",
       Order: 20,
       NumSubevents: 328,
@@ -130,7 +130,7 @@ export const sports: Sport[] = [
       Antepost: 0
     },
     {
-      id: 365,
+      Id: 365,
       Name: "Boxe & Combattimento",
       Order: 22,
       NumSubevents: 3,
@@ -138,7 +138,7 @@ export const sports: Sport[] = [
       Antepost: 0
     },
     {
-      id: 370,
+      Id: 370,
       Name: "Golf",
       Order: 23,
       NumSubevents: 88,
@@ -146,7 +146,7 @@ export const sports: Sport[] = [
       Antepost: 0
     },
     {
-      id: 367,
+      Id: 367,
       Name: "Pallanuoto",
       Order: 24,
       NumSubevents: 5,
@@ -154,7 +154,7 @@ export const sports: Sport[] = [
       Antepost: 0
     },
     {
-      id: 386,
+      Id: 386,
       Name: "Cricket",
       Order: 26,
       NumSubevents: 14,
@@ -162,7 +162,7 @@ export const sports: Sport[] = [
       Antepost: 0
     },
     {
-      id: 373,
+      Id: 373,
       Name: "Freccette",
       Order: 27,
       NumSubevents: 18,
@@ -170,7 +170,7 @@ export const sports: Sport[] = [
       Antepost: 0
     },
     {
-      id: 420,
+      Id: 420,
       Name: "Spettacolo",
       Order: 30,
       NumSubevents: 82,
@@ -178,7 +178,7 @@ export const sports: Sport[] = [
       Antepost: 0
     },
     {
-      id: 463,
+      Id: 463,
       Name: "Padel",
       Order: 99,
       NumSubevents: 16,
@@ -186,7 +186,7 @@ export const sports: Sport[] = [
       Antepost: 0
     },
     {
-      id: 423,
+      Id: 423,
       Name: "League of Legends",
       Order: 100,
       NumSubevents: 15,

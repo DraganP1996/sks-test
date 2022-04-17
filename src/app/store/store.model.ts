@@ -1,5 +1,5 @@
 export interface SimpleItem {
-    id: number;
+    Id: number;
     Name: string;
 }
 
@@ -45,6 +45,7 @@ export interface Market extends OrderableItem {
     IsNewMarket: boolean;
     ShortName: string | null;
     NumberOfParticipants?: number;
+    ParticipantOddsCount?: number;
 }
 
 export interface MarketOdds extends Market {
@@ -57,7 +58,10 @@ export interface MarketOdds extends Market {
  * T = number for the store
  */
 export interface MarketCategory<T> extends OrderableItem {
-    Markets: T[]
+    Markets: T[];
+    HasParticipants?: boolean;
+    NumberOfParticipants?: number;
+    ParticipantOddsCount?: number;
 }
 
 export interface IEventWithSubEvents extends IEvent {
@@ -90,7 +94,8 @@ export interface SubEvent<T> {
     Markets?: T[];
     activeMarketIds?: number[];
     activeMarketCategoryIds?: number[];
-    activeOddIds?: number[];
+    mainActiveOddsIds?: number[];
+    allActiveOddsIds?: number[];
 }
 
 export interface SubEventDetailsResponse {
@@ -107,7 +112,8 @@ export interface SubEventDetailsResponse {
     SportName: string,
     GroupName: string,
     Playabilities: number[];
-    GroupedMarkets: [];
+    GroupedMarkets: MarketCategory<MarketOdds>[];
+    SottoEventoTypeId: number;
 }
 
 export interface OddData {

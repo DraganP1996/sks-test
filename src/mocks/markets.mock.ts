@@ -2,7 +2,7 @@ import { Market } from "src/app/store/store.model";
 
 export const markets: Market[] = [
     {
-      id: 1,
+      Id: 1,
       Name: "1X2",
       Order: 1,
       IsNewMarket: false,
@@ -10,7 +10,7 @@ export const markets: Market[] = [
       NumberOfParticipants: 0
     },
     {
-      id: 2,
+      Id: 2,
       Name: "Doppia Chance",
       Order: 2,
       IsNewMarket: false,
@@ -18,7 +18,7 @@ export const markets: Market[] = [
       NumberOfParticipants: 0
     },
     {
-      id: 50,
+      Id: 50,
       Name: "Over/Under 1.5",
       Order: 3,
       IsNewMarket: false,
@@ -26,7 +26,7 @@ export const markets: Market[] = [
       NumberOfParticipants: 0
     },
     {
-      id: 51,
+      Id: 51,
       Name: "Over/Under 2.5",
       Order: 4,
       IsNewMarket: false,
@@ -34,7 +34,7 @@ export const markets: Market[] = [
       NumberOfParticipants: 0
     },
     {
-      id: 10,
+      Id: 10,
       Name: "Gol/No Gol",
       Order: 5,
       IsNewMarket: false,
@@ -42,7 +42,7 @@ export const markets: Market[] = [
       NumberOfParticipants: 0
     },
     {
-      id: 424,
+      Id: 424,
       Name: "Combo",
       Order: 6,
       IsNewMarket: false,
@@ -50,7 +50,7 @@ export const markets: Market[] = [
       NumberOfParticipants: 0
     },
     {
-      id: 501,
+      Id: 501,
       Name: "DC Combo",
       Order: 7,
       IsNewMarket: true,
@@ -58,7 +58,7 @@ export const markets: Market[] = [
       NumberOfParticipants: 0
     },
     {
-      id: 7,
+      Id: 7,
       Name: "Risultato Esatto",
       Order: 8,
       IsNewMarket: false,
@@ -66,7 +66,7 @@ export const markets: Market[] = [
       NumberOfParticipants: 0
     },
     {
-      id: 58,
+      Id: 58,
       Name: "Multi Gol",
       Order: 9,
       IsNewMarket: false,
@@ -74,7 +74,7 @@ export const markets: Market[] = [
       NumberOfParticipants: 0
     },
     {
-      id: 1207,
+      Id: 1207,
       Name: "DC+Multigol",
       Order: 10,
       IsNewMarket: false,

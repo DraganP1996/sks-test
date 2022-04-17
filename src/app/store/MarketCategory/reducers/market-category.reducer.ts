@@ -9,7 +9,9 @@ export interface MarketCategoryState extends EntityState<MarketCategory<number>>
   selectedMarketCategoryId: number | null;
 };
 
-export const adapter: EntityAdapter<MarketCategory<number>> = createEntityAdapter<MarketCategory<number>>();
+export const adapter: EntityAdapter<MarketCategory<number>> = createEntityAdapter<MarketCategory<number>>({
+  selectId: (marketCategory: MarketCategory<number>) => marketCategory.Id,
+});
 
 export const initialState: MarketCategoryState = adapter.getInitialState({
   selectedMarketCategoryId: null

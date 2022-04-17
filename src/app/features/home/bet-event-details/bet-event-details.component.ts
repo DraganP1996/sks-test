@@ -79,7 +79,7 @@ export class BetEventDetailsComponent implements OnInit, OnDestroy {
   mapSubEventToOddIds(subEventIds: SubEvent<number>[]): number[] {
     let oddIds: number[] = [];
 
-    subEventIds.forEach(subEvent => oddIds = !!subEvent.activeOddIds ? [...oddIds, ...subEvent.activeOddIds] : oddIds);
+    subEventIds.forEach(subEvent => oddIds = !!subEvent.mainActiveOddsIds ? [...oddIds, ...subEvent.mainActiveOddsIds] : oddIds);
 
     return oddIds;
   }
