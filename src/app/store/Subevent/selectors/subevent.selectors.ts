@@ -1,21 +1,50 @@
-import { EntityMap, EntityMapOne, Predicate, Update } from "@ngrx/entity";
-import { createAction, props } from "@ngrx/store";
+import { createFeatureSelector, createSelector } from "@ngrx/store";
 import { SubEvent } from "../../store.model";
+import { selectAll, SubEventState } from "../reducers/subevent.reducer";
 
-export const loadSubEvents = createAction('[SubEvent/API] Load SubEvents', props<{ subevents: SubEvent[] }>());
-export const loadSubEventsSuccess = createAction('[SubEvent/API] Load SubEvents', props<{ data: SubEvent[] }>());
-export const loadSubEventsFailure = createAction('[SubEvent/API] Load SubEvents', props<{ error: Error }>());
-export const setSubEvents = createAction('[SubEvent/API] Set SubEvents', props<{ subevents: SubEvent[] }>());
-export const addSubEvent = createAction('[SubEvent/API] Add SubEvent', props<{ subevent: SubEvent }>());
-export const setSubEvent = createAction('[SubEvent/API] Set SubEvent', props<{ subevent: SubEvent }>());
-export const upsertSubEvent = createAction('[SubEvent/API] Upsert SubEvent', props<{ subevent: SubEvent }>());
-export const addSubEvents = createAction('[SubEvent/API] Add SubEvents', props<{ subevents: SubEvent[] }>());
-export const upsertSubEvents = createAction('[SubEvent/API] Upsert SubEvents', props<{ subevents: SubEvent[] }>());
-export const updateSubEvent = createAction('[SubEvent/API] Update SubEvent', props<{ update: Update<SubEvent> }>());
-export const updateSubEvents = createAction('[SubEvent/API] Update SubEvents', props<{ updates: Update<SubEvent>[] }>());
-export const mapSubEvent = createAction('[SubEvent/API] Map SubEvent', props<{ entityMap: EntityMapOne<SubEvent> }>());
-export const mapSubEvents = createAction('[SubEvent/API] Map SubEvents', props<{ entityMap: EntityMap<SubEvent> }>());
-export const deleteSubEvent = createAction('[SubEvent/API] Delete SubEvent', props<{ id: string }>());
-export const deleteSubEvents = createAction('[SubEvent/API] Delete SubEvents', props<{ ids: string[] }>());
-export const deleteSubEventsByPredicate = createAction('[SubEvent/API] Delete SubEvents By Predicate', props<{ predicate: Predicate<SubEvent> }>());
-export const clearSubEvents = createAction('[SubEvent/API] Clear SubEvents');
+export const subEventFeatureStoreState = createFeatureSelector<SubEventState>('subevents');
+
+export const subEventsSelector = createSelector(
+    subEventFeatureStoreState,
+  (state: SubEventState) => state
+);
+
+/**
+ * Get SubEvent by Id
+ * @param eventId 
+ * @returns 
+ */
+ export const selectSubEventById = (eventId: number) => createSelector(
+    subEventsSelector,
+    subEventState => subEventState.entities[eventId]
+  );
+
+  /**
+ * Get SubEvent by Ids
+ * @param eventIds 
+ * @returns 
+ */
+ export const selectSubEventsByIds = (eventIds?: number[]) => createSelector(
+    subEventsSelector,
+    subEventState => {
+      const events = !!eventIds ? eventIds.map((id: number) => subEventState.entities[id]): [];
+  
+      return events as SubEvent<number>[];
+    }
+  );
+
+/**
+ * Get currently selected SubEvent id
+ */
+ export const getSelectedEventId = createSelector(
+    subEventsSelector,
+    subEventState => subEventState.selectedSubEventIds
+  );
+
+/**
+ * Get all SubEvents
+ */
+ export const selectAllEvents = createSelector(
+    subEventsSelector,
+    selectAll
+  );

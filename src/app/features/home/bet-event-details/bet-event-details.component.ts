@@ -1,11 +1,12 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { Store } from '@ngrx/store';
-import { Observable, Subject, take, takeUntil } from 'rxjs';
-import { EventState, selectEvent, selectEventsByIds } from 'src/app/store/Event';
+import { mergeMap, Observable, Subject, take, takeUntil, tap } from 'rxjs';
+import { EventState, getEventSubEvents, getSelectedEventId, selectEvent, selectEventById, selectEventsByIds } from 'src/app/store/Event';
 import { getSelectedGroupId, GroupState, loadGroups, selectAllEventsForGroup, selectAllGroupsForSportId, selectedGroupId } from 'src/app/store/Group';
 import {  MarketState } from 'src/app/store/Market';
 import { getSelectedSport, SportState } from 'src/app/store/Sport';
-import { Group, IEvent, MarketCategory } from 'src/app/store/store.model';
+import { Group, IEvent, MarketCategory, SubEvent } from 'src/app/store/store.model';
+import { selectSubEventsByIds } from 'src/app/store/Subevent';
 
 @Component({
   selector: 'app-bet-event-details',
@@ -16,17 +17,19 @@ export class BetEventDetailsComponent implements OnInit, OnDestroy {
 
   selectedSportId!: number;
   selectedGroupId!: number;
+  selectedEventId!: number;
 
   groupsForSelectedSport$ = new Observable<Group<number>[]>();
-
   eventsForSelectedGroup$ = new Observable<IEvent[]>();
-  
+  subEventsForSelectedEvent$ = new Observable<SubEvent<number>[]>();
+
   private _unsubscribe$ = new Subject<void>();
 
   constructor(
     private _sportStore: Store<SportState>,
     private _groupStore: Store<GroupState>,
-    private _eventStore: Store<EventState>
+    private _eventStore: Store<EventState>,
+    private _subeventStore: Store<EventState>
   ) { }
 
   ngOnInit(): void {
@@ -53,6 +56,18 @@ export class BetEventDetailsComponent implements OnInit, OnDestroy {
             });
           }
       });
+
+    this._eventStore.select(getSelectedEventId)
+      .pipe(
+        tap(selectedEventId => this.selectedEventId = selectedEventId),
+        tap(selectedEventId => console.log(`Selected event id ${selectedEventId}`)),
+        mergeMap(selectedEventId => this._eventStore.select(getEventSubEvents(selectedEventId))),
+        takeUntil(this._unsubscribe$))
+      .subscribe(subEventIds => {
+        console.log('SubEvents of selected event id', subEventIds);
+        this.subEventsForSelectedEvent$ = this._subeventStore.select(selectSubEventsByIds(subEventIds))
+        
+      })
   }
 
   selectGroup(groupId: number): void {

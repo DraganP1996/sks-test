@@ -4,6 +4,7 @@ import { loadGroupsSuccess } from '../../Group/actions/group.actions';
 import { loadActiveMarketsForEventSuccess } from '../../Market/actions/market.actions';
 import { loadActiveMarketCategoriesSuccess } from '../../MarketCategory';
 import { IEvent } from '../../store.model';
+import { loadSubeventsSuccess } from '../../Subevent';
 import * as EventActions from '../actions/event.actions';
 
 export interface EventState extends EntityState<IEvent> { 
@@ -39,7 +40,13 @@ export const eventReducer = createReducer(
   }),
 
   on(loadActiveMarketCategoriesSuccess, (state, { eventId, marketCategories }) => {
-    const event = {...state.entities[eventId], actieveMarketCategoryIds: marketCategories.map(market => market.id)};
+    const event = {...state.entities[eventId], activeMarketCategoryIds: marketCategories.map(market => market.id)};
+
+    return adapter.setOne(event as IEvent, state)
+  }),
+
+  on(loadSubeventsSuccess, (state, { eventId, subEvents }) => {
+    const event = {...state.entities[eventId], subEventIds: subEvents.map(subEvent => subEvent.Id)};
 
     return adapter.setOne(event as IEvent, state)
   }),

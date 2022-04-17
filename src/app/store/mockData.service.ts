@@ -4,8 +4,9 @@ import { groupList } from "src/mocks/groupList.mock";
 import { marketCategories } from "src/mocks/market-categories.mock";
 import { markets } from "src/mocks/markets.mock";
 import { sports } from "src/mocks/sports.mock";
+import { subevents } from "src/mocks/subevents.mock";
 import { topEvents } from "src/mocks/top-events.mock";
-import { Group, IEvent, Market, MarketCategory, Sport, TopEventResponse } from "./store.model";
+import { Group, IEvent, IEventWithSubEvents, Market, MarketCategory, Sport, TopEventResponse } from "./store.model";
 
 @Injectable()
 export class MockDataService {
@@ -38,6 +39,13 @@ export class MockDataService {
             return of([]);
             
         return of(marketCategories)
+    }
+
+    getSubEvents(eventId: number): Observable<IEventWithSubEvents[]> {
+        if (eventId !== 1648275)
+            return of([]);
+
+        return of(subevents);
     }
 
 }

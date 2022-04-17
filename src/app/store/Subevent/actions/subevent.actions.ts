@@ -1,21 +1,17 @@
-import { EntityMap, EntityMapOne, Predicate, Update } from "@ngrx/entity";
 import { createAction, props } from "@ngrx/store";
-import { SubEvent } from "../../store.model";
+import { OddData, SubEvent } from "../../store.model";
 
-export const loadSubevents = createAction('[Subevent/API] Load Subevents', props<{ subevents: SubEvent[] }>());
-export const loadSubeventsSuccess = createAction('[Subevent/API] Load Subevents', props<{ data: SubEvent[] }>());
-export const loadSubeventsFailure = createAction('[Subevent/API] Load Subevents', props<{ error: Error }>());
-export const setSubevents = createAction('[Subevent/API] Set Subevents', props<{ subevents: SubEvent[] }>());
-export const addSubevent = createAction('[Subevent/API] Add Subevent', props<{ subevent: SubEvent }>());
-export const setSubevent = createAction('[Subevent/API] Set Subevent', props<{ subevent: SubEvent }>());
-export const upsertSubevent = createAction('[Subevent/API] Upsert Subevent', props<{ subevent: SubEvent }>());
-export const addSubevents = createAction('[Subevent/API] Add Subevents', props<{ subevents: SubEvent[] }>());
-export const upsertSubevents = createAction('[Subevent/API] Upsert Subevents', props<{ subevents: SubEvent[] }>());
-export const updateSubevent = createAction('[Subevent/API] Update Subevent', props<{ update: Update<SubEvent> }>());
-export const updateSubevents = createAction('[Subevent/API] Update Subevents', props<{ updates: Update<SubEvent>[] }>());
-export const mapSubevent = createAction('[Subevent/API] Map Subevent', props<{ entityMap: EntityMapOne<SubEvent> }>());
-export const mapSubevents = createAction('[Subevent/API] Map Subevents', props<{ entityMap: EntityMap<SubEvent> }>());
-export const deleteSubevent = createAction('[Subevent/API] Delete Subevent', props<{ id: string }>());
-export const deleteSubevents = createAction('[Subevent/API] Delete Subevents', props<{ ids: string[] }>());
-export const deleteSubeventsByPredicate = createAction('[Subevent/API] Delete Subevents By Predicate', props<{ predicate: Predicate<SubEvent> }>());
-export const clearSubevents = createAction('[Subevent/API] Clear Subevents');
+const LOAD_SUBEVENT = '[SubEvent/API] Load SubEvents';
+const LOAD_SUBEVENT_SUCCESS = '[SubEvent/API] Load SubEvents Success';
+const LOAD_SUBEVENT_FAILURE = '[SubEvent/API] Load SubEvents Failure';
+
+const UPSERT_SUBEVENTS = '[SubEvent/API] Upsert SubEvents';
+const CLEAR_SUBEVENTS = '[SubEvent/API] Clear SubEvents';
+
+
+export const loadSubevents = createAction(LOAD_SUBEVENT, props<{ subevents: SubEvent<number>[] }>());
+export const loadSubeventsSuccess = createAction(LOAD_SUBEVENT_SUCCESS, props<{ subEvents: SubEvent<number>[], odds: OddData[], eventId: number }>());
+export const loadSubeventsFailure = createAction(LOAD_SUBEVENT_FAILURE, props<{ error: Error }>());
+
+export const upsertSubevents = createAction(UPSERT_SUBEVENTS, props<{ subevents: SubEvent<number>[] }>());
+export const clearSubevents = createAction(CLEAR_SUBEVENTS);

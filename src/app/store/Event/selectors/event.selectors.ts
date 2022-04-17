@@ -19,6 +19,16 @@ export const selectEventById = (eventId: number) => createSelector(
   eventState => eventState.entities[eventId]
 );
 
+export const getEventSubEvents = (eventId: number) => createSelector(
+  selectEventById(eventId!),
+  event => event?.subEventIds
+);
+
+export const selectEventActiveCategories = (eventId: number) => createSelector(
+  selectEventById(eventId),
+  event => event?.activeMarketCategoryIds
+)
+
 /**
  * Get Events by Ids
  * @param eventIds 
@@ -38,7 +48,7 @@ export const selectEventById = (eventId: number) => createSelector(
  */
 export const getSelectedEventId = createSelector(
   eventsSelector,
-  eventState => eventState.selectedEventId
+  eventState => eventState.selectedEventId as number
 );
 
 /**

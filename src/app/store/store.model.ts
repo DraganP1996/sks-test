@@ -48,11 +48,10 @@ export interface Market extends OrderableItem {
 }
 
 export interface MarketOdds extends Market {
-    PartecipantOddsCount: number;
     Odds: OddData[]
 }
 
-/**
+/** Since the normalization of the data in the store:
  * T = Market for BE response without Odds
  * T = MarketOdds for BE response with Odds
  * T = number for the store
@@ -61,8 +60,17 @@ export interface MarketCategory<T> extends OrderableItem {
     Markets: T[]
 }
 
+export interface IEventWithSubEvents extends IEvent {
+    Playabilities: number[];
+    Subevents: SubEvent<MarketOdds>[];
+    GroupOrder: number;
+}
 
-export interface SubEventResponse {
+/** Since the normalization of the data in the store:
+ * T = Market for the BE resonse
+ * T = number for the store
+ */
+export interface SubEvent<T> {
     Id: number,
     Name: string,
     PublicationCode: number,
@@ -79,28 +87,11 @@ export interface SubEventResponse {
     HasParticipants: false,
     NumberOfParticipants: number,
     SottoEventoTypeId: number
-    Markets: Market[]
-}
-
-export interface SubEvent {
-    Id: number;
-    Name: string;
-    PublicationCode: number;
-    StartTimeUtc: string;
-    BetradarMatchId: number;
-    BetradarMatchUid: string;
-    NumQuote: number;
-    EventId: number;
-    EventTypeId: number;
-    EventName: string;
-    SportName: string;
-    GroupName: string;
-    Participants: number | null;
-    HasParticipants: false;
-    NumberOfParticipants: number;
-    SottoEventoTypeId: number;
-    marketIds: number[];
-    oddIds: number[];
+    Markets?: T[];
+    oddIds?: number[];
+    activeMarketIds?: number[];
+    activeMarketCategoryIds?: number[];
+    activeOddIds?: number[];
 }
 
 export interface SubEventDetailsResponse {

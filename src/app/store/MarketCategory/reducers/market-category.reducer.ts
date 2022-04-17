@@ -23,7 +23,7 @@ export const marketCategoryReducer = createReducer(
   }),
 
   on(MarketCategoryActions.loadActiveMarketCategoriesSuccess, (state, { marketCategories, eventId }) => {
-    return adapter.setAll(marketCategories, state);
+    return adapter.upsertMany(marketCategories, state);
   }),
 
   on(MarketCategoryActions.setMarketCategories, (state, { marketCategories }) => {

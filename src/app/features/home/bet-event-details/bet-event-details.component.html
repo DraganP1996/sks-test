@@ -6,6 +6,15 @@
             <ul>
                 <li *ngFor="let event of eventsForSelectedGroup$ | async" (click)="selectEvent(event.id)">
                     {{ event.Name }}
+
+                    <ng-container *ngIf="selectedEventId === event.id">
+                        <ul>
+                            <li *ngFor="let subevent of subEventsForSelectedEvent$ | async">
+                                {{ subevent.Name }}
+
+                            </li>
+                        </ul>
+                    </ng-container>
                 </li>
             </ul>
         </ng-container>
