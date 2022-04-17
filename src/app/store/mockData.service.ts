@@ -1,9 +1,11 @@
 import { Injectable } from "@angular/core";
 import { Observable, of, take } from "rxjs";
 import { groupList } from "src/mocks/groupList.mock";
+import { marketCategories } from "src/mocks/market-categories.mock";
+import { markets } from "src/mocks/markets.mock";
 import { sports } from "src/mocks/sports.mock";
 import { topEvents } from "src/mocks/top-events.mock";
-import { Sport, TopEventResponse } from "./store.model";
+import { GroupResponse, Market, MarketCategoryResponse, Sport, TopEventResponse } from "./store.model";
 
 @Injectable()
 export class MockDataService {
@@ -16,11 +18,23 @@ export class MockDataService {
         return of(topEvents)
     }
 
-    getGroupsForSport(sportId: number) {
+    getGroupsForSport(sportId: number): Observable<GroupResponse[]> {
         if (sportId !== 342)
             return of([]);
 
         return of(groupList)
+    }
+
+    getMarketsForEvent(eventId: number): Observable<Market[]> {
+        if (eventId !== 1648275)
+         return of([]);
+        
+        return of(markets)
+    }
+
+
+    getMarketCategories(): Observable<MarketCategoryResponse[]> {
+        return of(marketCategories)
     }
 
 }

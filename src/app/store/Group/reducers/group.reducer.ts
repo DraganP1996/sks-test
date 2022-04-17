@@ -5,56 +5,40 @@ import * as GroupActions from '../actions/group.actions';
 
 export const groupFeatureKey = 'group';
 
-export interface GroupState  extends EntityState<Group> { }
+export interface GroupState  extends EntityState<Group> { 
+  selectedGroupId: number | null;
+}
 
 export const adapter: EntityAdapter<Group> = createEntityAdapter<Group>();
 
-export const initialState: GroupState = adapter.getInitialState();
+export const initialState: GroupState = adapter.getInitialState({
+  selectedGroupId: null,
+});
 
 export const groupReducer = createReducer(
   initialState,
-  on(GroupActions.addGroup, (state, { group }) => {
-    return adapter.addOne(group, state)
-  }),
-  on(GroupActions.setGroup, (state, { group }) => {
-    return adapter.setOne(group, state)
-  }),
-  on(GroupActions.upsertGroup, (state, { group }) => {
-    return adapter.upsertOne(group, state);
-  }),
-  on(GroupActions.addGroups, (state, { groups }) => {
-    return adapter.addMany(groups, state);
-  }),
-  on(GroupActions.upsertGroups, (state, { groups }) => {
-    return adapter.upsertMany(groups, state);
-  }),
-  on(GroupActions.updateGroup, (state, { update }) => {
-    return adapter.updateOne(update, state);
-  }),
-  on(GroupActions.updateGroups, (state, { updates }) => {
-    return adapter.updateMany(updates, state);
-  }),
-  // on(GroupActions.mapGroup, (state, { entityMap }) => {
-  //   return adapter.mapOne(entityMap, state);
-  // }),
-  // on(GroupActions.mapGroups, (state, { entityMap }) => {
-  //   return adapter.map(entityMap, state);
-  // }),
-  on(GroupActions.deleteGroup, (state, { id }) => {
-    return adapter.removeOne(id, state);
-  }),
-  on(GroupActions.deleteGroups, (state, { ids }) => {
-    return adapter.removeMany(ids, state);
-  }),
-  // on(GroupActions.deleteGroupsByPredicate, (state, { predicate }) => {
-  //   return adapter.removeMany(predicate, state);
-  // }),
+
+  // Load groups
   on(GroupActions.loadGroupsSuccess, (state, { groups }) => {
     return adapter.upsertMany(groups, state);
   }),
+  
+  // Group Selection
+  on(GroupActions.selectedGroupId, (state, { id }) => {
+    return { ...state, selectedGroupId: id }
+  }),
+  
+  // Set groups
   on(GroupActions.setGroups, (state, { groups }) => {
     return adapter.setMany(groups, state);
   }),
+
+  // Upsert groups
+  on(GroupActions.upsertGroups, (state, { groups }) => {
+    return adapter.upsertMany(groups, state);
+  }),
+
+  // Clear groups
   on(GroupActions.clearGroups, state => {
     return adapter.removeAll({ ...state, selectedGroupId: null });
   })

@@ -40,12 +40,18 @@ export interface IEvent extends OrderableItem {
     GroupOrder: number;
 }
 
-export interface MarketCategory extends OrderableItem { }
+export interface MarketCategoryResponse extends OrderableItem {
+    Markets: Market[];
+ }
+
+export interface MarketCategory extends OrderableItem {
+    marketIds: number[];
+}
 
 export interface Market extends OrderableItem {
-    isNewMarket: boolean;
-    shortName: string;
-    numberOfPartecipants: number;
+    IsNewMarket: boolean;
+    ShortName: string | null;
+    NumberOfParticipants?: number;
 }
 
 export interface SubEvent extends OrderableItem {

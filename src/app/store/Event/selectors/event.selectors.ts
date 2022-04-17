@@ -9,23 +9,22 @@ export const eventsSelector = createSelector(
   (state: EventState) => state
 );
 
+/**
+ * Get Event by Id
+ * @param eventId 
+ * @returns 
+ */
 export const selectEventById = (eventId: number) => createSelector(
   eventsSelector,
   eventState => eventState.entities[eventId]
 );
 
-
-export const selectAllEvents = createSelector(
-  eventsSelector,
-  selectAll
-);
-
-export const selectTopEventIds = createSelector(
-  eventsSelector,
-  eventState => eventState.topEventIds
-);
-
-export const selectEventsByIds = (eventIds: number[]) => createSelector(
+/**
+ * Get Events by Ids
+ * @param eventIds 
+ * @returns 
+ */
+ export const selectEventsByIds = (eventIds: number[]) => createSelector(
   eventsSelector,
   eventState => {
     const events = eventIds.map((id: number) => eventState.entities[id]);
@@ -34,7 +33,27 @@ export const selectEventsByIds = (eventIds: number[]) => createSelector(
   }
 );
 
-export const selectEventsForGroup = (groupId: number) => createSelector(
-  selectAllEvents,
-  event => event.filter(event => event.GroupId === groupId)
+/**
+ * Get currently selected event id
+ */
+export const getSelectedEventId = createSelector(
+  eventsSelector,
+  eventState => eventState.selectedEventId
 );
+
+/**
+ * Get all events
+ */
+export const selectAllEvents = createSelector(
+  eventsSelector,
+  selectAll
+);
+
+/**
+ * Get array of top event ids
+ */
+export const selectTopEventIds = createSelector(
+  eventsSelector,
+  eventState => eventState.topEventIds
+);
+

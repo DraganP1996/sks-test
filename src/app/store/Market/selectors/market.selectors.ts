@@ -1,22 +1,19 @@
-import { EntityState } from '@ngrx/entity';
 import { createFeatureSelector, createSelector } from '@ngrx/store';
-import { Market } from '../../store.model';
-import * as fromMarket from '../reducers/market.reducer';
+import { MarketState, selectAll } from '../reducers/market.reducer';
 
-export const selectMarketState = createFeatureSelector<fromMarket.MarketState>(
-  fromMarket.marketFeatureKey
+export const marketFeatureSelector = createFeatureSelector<MarketState>('markets');
+
+export const marketsSelector = createSelector(
+  marketFeatureSelector,
+  (state: MarketState) => state
 );
 
-
-export const selectMarketsState = createFeatureSelector<EntityState<Market>>('market');
-
-export const selectmarketById = (marketId: number) => createSelector(
-  selectMarketsState,
+export const selectMarketById = (marketId: number) => createSelector(
+  marketFeatureSelector,
   marketState => marketState.entities[marketId]
 );
 
-
 export const selectAllCourses = createSelector(
-  selectMarketsState,
-  fromMarket.selectAll
+  marketsSelector,
+  selectAll
 );

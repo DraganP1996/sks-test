@@ -4,7 +4,7 @@
 
         <ng-container *ngIf="selectedGroupId === group.id">
             <ul>
-                <li *ngFor="let event of eventsForSelectedGroup$ | async">
+                <li *ngFor="let event of eventsForSelectedGroup$ | async" (click)="selectEvent(event.id)">
                     {{ event.Name }}
                 </li>
             </ul>

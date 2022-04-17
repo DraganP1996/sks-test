@@ -1,21 +1,19 @@
-import { EntityMap, EntityMapOne, Predicate, Update } from "@ngrx/entity";
 import { createAction, props } from "@ngrx/store";
 import { Market } from "../../store.model";
 
-export const loadMarkets = createAction('[Market/API] Load Markets', props<{ marketCategorys: Market[] }>());
-export const loadMarketsSuccess = createAction('[Market/API] Load Markets', props<{ data: Market[] }>());
-export const loadMarketsFailure = createAction('[Market/API] Load Markets', props<{ error: Error }>());
-export const setMarkets = createAction('[Market/API] Set Markets', props<{ marketCategorys: Market[] }>());
-export const addMarket = createAction('[Market/API] Add Market', props<{ marketCategory: Market }>());
-export const setMarket = createAction('[Market/API] Set Market', props<{ marketCategory: Market }>());
-export const upsertMarket = createAction('[Market/API] Upsert Market', props<{ marketCategory: Market }>());
-export const addMarkets = createAction('[Market/API] Add Markets', props<{ marketCategorys: Market[] }>());
-export const upsertMarkets = createAction('[Market/API] Upsert Markets', props<{ marketCategorys: Market[] }>());
-export const updateMarket = createAction('[Market/API] Update Market', props<{ update: Update<Market> }>());
-export const updateMarkets = createAction('[Market/API] Update Markets', props<{ updates: Update<Market>[] }>());
-export const mapMarket = createAction('[Market/API] Map Market', props<{ entityMap: EntityMapOne<Market> }>());
-export const mapMarkets = createAction('[Market/API] Map Markets', props<{ entityMap: EntityMap<Market> }>());
-export const deleteMarket = createAction('[Market/API] Delete Market', props<{ id: string }>());
-export const deleteMarkets = createAction('[Market/API] Delete Markets', props<{ ids: string[] }>());
-export const deleteMarketsByPredicate = createAction('[Market/API] Delete Markets By Predicate', props<{ predicate: Predicate<Market> }>());
-export const clearMarkets = createAction('[Market/API] Clear Markets');
+const LOAD_MARKETS = '[Market/API] Load Markets';
+const LOAD_MARKETS_SUCCESS = '[Market/API] Load Markets Success';
+const LOAD_MARKETS_FAILURE = '[Market/API] Load Markets Failiure';
+
+const SET_MARKETS = '[Market/API] Set Markets';
+const UPSERT_MARKETS = '[Market/API] Upsert Markets';
+const CLEAR_MARKETS = '[Market/API] Clear Markets'
+
+export const loadMarkets = createAction(LOAD_MARKETS, props<{ eventId: number }>());
+export const loadMarketsSuccess = createAction(LOAD_MARKETS_SUCCESS, props<{ markets: Market[] }>());
+export const loadMarketsFailure = createAction(LOAD_MARKETS_FAILURE, props<{ error: Error }>());
+
+export const setMarkets = createAction(SET_MARKETS, props<{ markets: Market[] }>());
+export const upsertMarkets = createAction(UPSERT_MARKETS, props<{ markets: Market[] }>());
+
+export const clearMarkets = createAction(CLEAR_MARKETS);
