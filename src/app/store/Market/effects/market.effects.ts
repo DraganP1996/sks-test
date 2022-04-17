@@ -5,6 +5,7 @@ import { of } from 'rxjs';
 
 import * as MarketActions from '../actions/market.actions';
 import { MockDataService } from '../../mockData.service';
+import { selectEvent } from '../../Event';
 
 
 
@@ -19,11 +20,11 @@ export class MarketEffects {
   loadMarkets$ = createEffect(() => {
     return this.actions$.pipe( 
 
-      ofType(MarketActions.loadMarkets),
+      ofType(selectEvent),
       concatMap(payload =>
-        this._mockDataService.getMarketsForEvent(payload.eventId).pipe(
-          map(markets => MarketActions.loadMarketsSuccess({ markets })),
-          catchError(error => of(MarketActions.loadMarketsFailure({ error }))))
+        this._mockDataService.getMarketsForEvent(payload.selectedEventId).pipe(
+          map(markets => MarketActions.loadActiveMarketsForEventSuccess({ markets, eventId: payload.selectedEventId })),
+          catchError(error => of(MarketActions.loadActiveMarketsForEventFailure({ error }))))
       )
     );
   });

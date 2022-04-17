@@ -6,6 +6,7 @@ import { of } from 'rxjs';
 import * as MarketCategoryActions from '../actions/market-category.actions';
 import { MockDataService } from '../../mockData.service';
 import { Market, MarketCategory } from '../../store.model';
+import { selectEvent } from '../../Event';
 
 
 
@@ -20,24 +21,23 @@ export class MarketCategoryEffects {
   loadMarketCategories$ = createEffect(() => {
     return this.actions$.pipe( 
 
-      ofType(MarketCategoryActions.loadMarketCategories),
-      concatMap(() =>
-        this._mockDataService.getMarketCategories().pipe(
-          map(marketCategories => {
+      ofType(selectEvent),
+      concatMap(payload =>
+        this._mockDataService.getMarketCategories(payload.selectedEventId).pipe(
+          map(categories => {
             let markets: Market[] = [];
 
-            const formattedMarketCategories = marketCategories.map(marketCategory => {
-              const { id, Name, Order } = marketCategory;
-              const marketIds = marketCategory.Markets.map(market => market.id);
+            const marketCategories = categories.map(categoriy => {
+              const { id, Name, Order } = categoriy;
+              const marketIds = categoriy.Markets.map(market => market.id);
 
-              markets = [...markets, ...marketCategory.Markets];
+              markets = [...markets, ...categoriy.Markets];
 
               return { id, Name, Order, Markets: marketIds }
             });
-            return MarketCategoryActions.loadMarketCategoriesSuccess({ marketCategories:  formattedMarketCategories })
-          
+            return MarketCategoryActions.loadActiveMarketCategoriesSuccess({ marketCategories, markets, eventId: payload.selectedEventId });          
           }),
-          catchError(error => of(MarketCategoryActions.loadMarketCategoriesFailure({ error }))))
+          catchError(error => of(MarketCategoryActions.loadActiveMarketCategoriesFailure({ error }))))
       )
     );
   });

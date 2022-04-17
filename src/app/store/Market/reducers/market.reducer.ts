@@ -1,6 +1,6 @@
 import { createEntityAdapter, EntityAdapter, EntityState } from '@ngrx/entity';
-import { Action, createReducer, on } from '@ngrx/store';
-import { loadMarketCategoriesSuccess } from '../../MarketCategory';
+import {  createReducer, on } from '@ngrx/store';
+import { loadActiveMarketCategoriesSuccess } from '../../MarketCategory';
 import { Market } from '../../store.model';
 import * as MarketActions from '../actions/market.actions';
 
@@ -18,11 +18,15 @@ export const initialState: MarketState = adapter.getInitialState({
 export const marketReducer = createReducer(
   initialState,
 
+  on(loadActiveMarketCategoriesSuccess, (state, { markets }) => {
+    return adapter.upsertMany(markets, state);
+  }),
+
   on(MarketActions.upsertMarkets, (state, { markets }) => {
     return adapter.upsertMany(markets, state);
   }),
 
-  on(MarketActions.loadMarketsSuccess, (state, { markets }) => {
+  on(MarketActions.loadActiveMarketsForEventSuccess, (state, { markets }) => {
     return adapter.setAll(markets, state);
   }),
 

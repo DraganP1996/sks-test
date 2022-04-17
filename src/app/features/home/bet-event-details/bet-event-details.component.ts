@@ -1,10 +1,9 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { Store } from '@ngrx/store';
 import { Observable, Subject, take, takeUntil } from 'rxjs';
-import { EventState, getSelectedEventId, selectEvent, selectEventsByIds } from 'src/app/store/Event';
+import { EventState, selectEvent, selectEventsByIds } from 'src/app/store/Event';
 import { getSelectedGroupId, GroupState, loadGroups, selectAllEventsForGroup, selectAllGroupsForSportId, selectedGroupId } from 'src/app/store/Group';
-import { loadMarkets, MarketState } from 'src/app/store/Market';
-import { loadMarketCategories } from 'src/app/store/MarketCategory';
+import {  MarketState } from 'src/app/store/Market';
 import { getSelectedSport, SportState } from 'src/app/store/Sport';
 import { Group, IEvent, MarketCategory } from 'src/app/store/store.model';
 
@@ -27,9 +26,7 @@ export class BetEventDetailsComponent implements OnInit, OnDestroy {
   constructor(
     private _sportStore: Store<SportState>,
     private _groupStore: Store<GroupState>,
-    private _eventStore: Store<EventState>,
-    private _marketStore: Store<MarketState>,
-    private _marketCategoriesStore: Store<MarketCategory<number>>
+    private _eventStore: Store<EventState>
   ) { }
 
   ngOnInit(): void {
@@ -56,16 +53,6 @@ export class BetEventDetailsComponent implements OnInit, OnDestroy {
             });
           }
       });
-
-    this._eventStore.select(getSelectedEventId)
-      .pipe(takeUntil(this._unsubscribe$))
-      .subscribe(eventId => {
-        if (eventId) {
-          this._marketStore.dispatch(loadMarkets({eventId}));
-          this._marketCategoriesStore.dispatch(loadMarketCategories())
-        }
-      });
-
   }
 
   selectGroup(groupId: number): void {

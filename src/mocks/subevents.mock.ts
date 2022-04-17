@@ -1,4 +1,3 @@
-import { SubEventDetailsResponse } from "src/app/store/store.model";
 
 export const subevents= [
     {

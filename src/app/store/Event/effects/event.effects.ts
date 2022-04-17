@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Actions, createEffect, ofType } from '@ngrx/effects';
-import { catchError, map, concatMap, mergeMap, tap } from 'rxjs/operators';
-import { Observable, EMPTY, of } from 'rxjs';
+import { catchError, map, mergeMap } from 'rxjs/operators';
+import { of } from 'rxjs';
 
 import * as SportActions from '../actions/event.actions';
 import { MockDataService } from '../../mockData.service';

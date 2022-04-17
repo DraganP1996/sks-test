@@ -34,7 +34,12 @@ export interface IEvent extends OrderableItem {
     GroupName: string;
     EventTypeId: number;
     GroupOrder: number;
+    activeMarketIds?: number[];
+    activeMarketCategoryIds?: number[];
+    subEventIds?: number[];
 }
+
+
 
 export interface Market extends OrderableItem {
     IsNewMarket: boolean;

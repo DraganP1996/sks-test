@@ -33,7 +33,10 @@ export class MockDataService {
     }
 
 
-    getMarketCategories(): Observable<MarketCategory<Market>[]> {
+    getMarketCategories(eventId: number): Observable<MarketCategory<Market>[]> {
+        if (eventId !== 1648275)
+            return of([]);
+            
         return of(marketCategories)
     }
 
