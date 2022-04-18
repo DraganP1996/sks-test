@@ -36,9 +36,9 @@ export const subEventsSelector = createSelector(
 /**
  * Get currently selected SubEvent id
  */
- export const getSelectedEventId = createSelector(
+ export const getSelectedSubEventId = createSelector(
     subEventsSelector,
-    subEventState => subEventState.selectedSubEventIds
+    subEventState => subEventState.selectedSubEventIds as number
   );
 
 /**
@@ -48,3 +48,4 @@ export const subEventsSelector = createSelector(
     subEventsSelector,
     selectAll
   );
+

@@ -4,7 +4,7 @@ import { SubEvent } from '../../store.model';
 import * as SubeventActions from '../actions/subevent.actions';
 
 export interface SubEventState extends EntityState<SubEvent<number>> {
-  selectedSubEventIds: number[] | null;
+  selectedSubEventIds: number | null;
 };
 
 export const adapter: EntityAdapter<SubEvent<number>> = createEntityAdapter<SubEvent<number>>({
@@ -21,6 +21,29 @@ export const subeventReducer = createReducer(
   // Load Sub Events Success
   on(SubeventActions.loadSubeventsSuccess, (state, { subEvents }) => {
     return adapter.upsertMany(subEvents, state);
+  }),
+
+  // Load Sub Events Success
+  on(SubeventActions.subeventSelection, (state, { subeventId }) => {
+    return {
+      ...state,
+      selectedSubEventIds: subeventId
+    };
+  }),
+
+  // Load Sub Events Quotas Success
+  on(SubeventActions.loadSubeventQuotasSuccess, (state, { subeventId, activeMarketCategoryIds, activeMarketIds, odds }) => {
+    const subEvent = state.entities[subeventId];
+
+    if (!subEvent) {
+      return {
+        ...state
+      }
+    }
+
+    const allActiveOddsIds = odds.map(odd => odd.Id);
+
+    return adapter.setOne({...subEvent, activeMarketCategoryIds, activeMarketIds, allActiveOddsIds }, state);
   }),
 
   // Clear Subevents

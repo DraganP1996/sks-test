@@ -1,6 +1,6 @@
 import { SubEventDetailsResponse } from "src/app/store/store.model";
 
-const subeventQuotes: SubEventDetailsResponse = {
+export const subeventQuotas: SubEventDetailsResponse = {
     Id: 120718887,
     Name: "Senegal - Netherlands",
     PublicationCode: 4661,

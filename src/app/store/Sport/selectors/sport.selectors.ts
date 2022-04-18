@@ -1,5 +1,6 @@
 import { createFeatureSelector, createSelector } from '@ngrx/store';
 
+import { Sport } from '../../store.model';
 import { selectAll, SportState } from '../reducers/sport.reducer';
 
 
@@ -17,7 +18,7 @@ export const selectsportById = (sportId: number) => createSelector(
 
 export const getSelectedSport = createSelector(
   sportsSelector,
-  sportState => sportState.selectedSportId
+  sportState => sportState.selectedSportId as number
 );
 
 export const selectAllSports = createSelector(

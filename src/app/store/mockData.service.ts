@@ -1,12 +1,13 @@
 import { Injectable } from "@angular/core";
-import { Observable, of, take } from "rxjs";
+import { EMPTY, Observable, of, take } from "rxjs";
 import { groupList } from "src/mocks/groupList.mock";
 import { marketCategories } from "src/mocks/market-categories.mock";
 import { markets } from "src/mocks/markets.mock";
 import { sports } from "src/mocks/sports.mock";
+import { subeventQuotas } from "src/mocks/subeventQuotes.mock";
 import { subevents } from "src/mocks/subevents.mock";
 import { topEvents } from "src/mocks/top-events.mock";
-import { Group, IEvent, IEventWithSubEvents, Market, MarketCategory, Sport, TopEventResponse } from "./store.model";
+import { Group, IEvent, IEventWithSubEvents, Market, MarketCategory, Sport, SubEventDetailsResponse, TopEventResponse } from "./store.model";
 
 @Injectable()
 export class MockDataService {
@@ -46,6 +47,13 @@ export class MockDataService {
             return of([]);
 
         return of(subevents);
+    }
+
+    getSubEventQuotas(subEventId: number): Observable<SubEventDetailsResponse> {
+        if (subEventId !== 120718887)
+        return EMPTY;
+
+    return of(subeventQuotas);
     }
 
 }

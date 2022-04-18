@@ -9,7 +9,7 @@
 
                     <ng-container *ngIf="selectedEventId === event.Id">
                         <ul>
-                            <li *ngFor="let subevent of subEvents">
+                            <li *ngFor="let subevent of subeventOfSelectedEvent" (click)="selectSubEvent(subevent.Id)">
                                 {{ subevent.Name }}
                                 <ng-container *ngIf="subevent.mainActiveOddsIds">
                                     <ul>

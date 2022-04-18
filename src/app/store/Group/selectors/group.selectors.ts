@@ -24,7 +24,7 @@ export const selectgroupById = (groupId: number) => createSelector(
  */
 export const getSelectedGroupId = createSelector(
   groupsSelector,
-  groupState => groupState.selectedGroupId
+  groupState => groupState.selectedGroupId as number
 )
 
 /**

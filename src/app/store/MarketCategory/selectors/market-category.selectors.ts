@@ -24,7 +24,7 @@ export const selectMarketCategoriesByIds = (marketCategoryIds: number[]) => crea
         categories.push(marketCategoryState.entities[marketCategoryId]!)
       });
     
-    return categories;
+    return !!categories ? categories : [];
   }
 );
 

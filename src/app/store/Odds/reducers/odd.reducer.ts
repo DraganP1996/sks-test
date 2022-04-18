@@ -3,11 +3,14 @@ import { createReducer, on } from '@ngrx/store';
 
 import { OddActions } from '..';
 import { OddData } from '../../store.model';
-import { loadSubeventsSuccess } from '../../Subevent';
+import {
+  loadSubeventQuotasSuccess,
+  loadSubeventsSuccess,
+} from '../../Subevent';
 
 export interface OddState extends EntityState<OddData> {
   selectedOddId: number | null;
-};
+}
 
 export const adapter: EntityAdapter<OddData> = createEntityAdapter<OddData>({
   selectId: (odd: OddData) => odd.Id,
@@ -31,14 +34,15 @@ export const oddReducer = createReducer(
   on(OddActions.selectOdd, (state, { id }) => {
     return {
       ...state,
-      selectedOddId: id
+      selectedOddId: id,
     };
+  }),
+
+  // Load Sub Events Quotas Success
+  on(loadSubeventQuotasSuccess, (state, { odds }) => {
+    return adapter.setMany(odds, state);
   })
 );
 
-export const {
-  selectAll,
-  selectEntities,
-  selectIds,
-  selectTotal
-} = adapter.getSelectors();
+export const { selectAll, selectEntities, selectIds, selectTotal } =
+  adapter.getSelectors();
