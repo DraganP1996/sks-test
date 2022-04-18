@@ -21,8 +21,10 @@ export class BetEventDetailsComponent implements OnInit, OnDestroy {
   selectedSport!: Sport;
   selectedGroup!: Group<number>;
   selectedEvent!: IEvent;
-  // subeventOfSelectedEvent!: SubEvent<number>[];
   subeventOfSelectedEvent: SubEvent<number>[] = [];
+  subeventDetails!: SubEvent<number>;
+  subEventMarketCategories: MarketCategory<number>[] = [];
+  subEventMarkets: Market[] = [];
 
   selectedSportId!: number;
   selectedGroupId!: number;
@@ -32,20 +34,13 @@ export class BetEventDetailsComponent implements OnInit, OnDestroy {
   groupsForSelectedSport$ = new Observable<Group<number>[]>();
   eventsForSelectedGroup$ = new Observable<IEvent[]>();
 
-  // subeventOfSelectedEvent: SubEvent<number>[] = [];
-
   subEventDetail!: SubEvent<number>;
 
   quotasExample: {[key: string]: OddData} = {};
 
   private _unsubscribe$ = new Subject<void>();
 
-  constructor(
-    private _subeventStore: Store<EventState>,
-    private _markeCategoryStore: Store<MarketCategory<number>>,
-    private _marketStore: Store<Market>,
-    private _homeFacade: HomeFacade
-  ) { }
+  constructor(private _homeFacade: HomeFacade) { }
 
   ngOnInit(): void {
     this._homeFacade.getSelectedSport$()
@@ -80,19 +75,21 @@ export class BetEventDetailsComponent implements OnInit, OnDestroy {
     )
       .subscribe(odds => odds.forEach(odd => this.quotasExample[odd.Id] = odd));
 
-    this._subeventStore.select(getSelectedSubEventId)
-        .pipe(
-          filter(selectedSubEventId => !!selectedSubEventId),
-          tap(selectedSubEventId => this.selectedSubEventId = selectedSubEventId),
-          switchMap(selectedSubEventId => this._subeventStore.select((selectSubEventById(selectedSubEventId)))),
-          tap(subevent => console.log('The selected subevent', subevent)),
-          filter(subEvent => !!subEvent && !!subEvent.activeMarketCategoryIds),
-          switchMap(subEvent => this._markeCategoryStore.select(selectMarketCategoriesByIds(subEvent!.activeMarketCategoryIds!))),
-          tap(marketsCat => console.log('The selected marketsCats', marketsCat)),
-          map(activeCategories => this.mapMarketCategoriesToMarketIds(activeCategories)),
-          switchMap(marketIds => this._marketStore.select(selectMarketByIds(marketIds))),
-          tap(markets => console.log('The selected markets', markets))
-        ).subscribe();
+    this._homeFacade.getSelectedSubevent$()
+      .pipe(
+        tap(subevent => this.subeventDetails = subevent!),
+        switchMap(subevent => this._homeFacade.queryMarketCategoriesByIds$(subevent!.activeMarketCategoryIds!)),
+        tap(activeCategories => this.subEventMarketCategories = activeCategories),
+        map(activeCategories => this.mapMarketCategoriesToMarketIds(activeCategories)),
+        switchMap(marketCategoryIds => this._homeFacade.queryMarketsByIds$(marketCategoryIds)),
+        tap(markets => this.subEventMarkets = markets),
+        filter(() => !!this.subeventDetails && !!this.subeventDetails.allActiveOddsIds),
+        switchMap(() => this._homeFacade.queryOddsById$(this.subeventDetails.allActiveOddsIds!))
+      )
+      .subscribe(data => {
+        console.log('All the odds for this subevent', data);
+        this.formatDataForDetailedSubeventView();
+      })
   }
 
   selectGroup(groupId: number): void {
@@ -121,6 +118,10 @@ export class BetEventDetailsComponent implements OnInit, OnDestroy {
     marketCategories.forEach(categoy => marketIds = !!categoy.Markets ? [...marketIds, ...categoy.Markets] : marketIds);
 
     return marketIds;
+  }
+
+  formatDataForDetailedSubeventView(): void {
+    console.log('HERE');
   }
 
   ngOnDestroy(): void {
