@@ -26,14 +26,14 @@ export interface Group<T> extends OrderableItem {
 }
 
 export interface IEvent extends OrderableItem {
-    Antepost: number;
+    Antepost?: number;
     NumSubevents: number;
     SportId: number;
     SportName: string;
     GroupId: number,
     GroupName: string;
-    EventTypeId: number;
-    GroupOrder: number;
+    EventTypeId?: number;
+    GroupOrder?: number;
     activeMarketIds?: number[];
     activeMarketCategoryIds?: number[];
     subEventIds?: number[];

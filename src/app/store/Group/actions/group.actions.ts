@@ -10,8 +10,7 @@ const SET_GROUPS = '[Group/API] Set Groups';
 const UPSERT_GROUPS = '[Group/API] Upsert Groups';
 const CLEAR_GROUPS = '[Group/API] Clear Groups';
 
-// LOAD GROUPS FOR SPECIFIC SPORT ID
-export const loadGroups = createAction(LOAD_GROUPS, props<{ sportId: number }>());
+// LOAD GROUPS FOR SPECIFIC SPORT ID SUCCESS/FAILURE
 export const loadGroupsSuccess = createAction(LOAD_GROUPS_SUCCESS, props<{ groups: Group<number>[], events: IEvent[] }>());
 export const loadGroupsFailure = createAction(LOAD_GROUPS_FAILURE, props<{ error: Error }>());
 

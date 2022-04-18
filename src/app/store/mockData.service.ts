@@ -16,7 +16,7 @@ export class MockDataService {
         return of(sports).pipe(take(1))
     }
 
-    getTopEventList(): Observable<TopEventResponse[]> {
+    getTopEventList(): Observable<IEvent[]> {
         return of(topEvents)
     }
 

@@ -19,7 +19,7 @@ export const loadEventsFailure = createAction(LOAD_EVENT_FAILURE, props<{ error:
 
 // Load Top Event Actions
 export const loadTopEvents = createAction(LOAD_TOP_EVENTS);
-export const loadTopEventsSuccess = createAction(LOAD_TOP_EVENTS_SUCCESS, props<{ids: number[]}>());
+export const loadTopEventsSuccess = createAction(LOAD_TOP_EVENTS_SUCCESS, props<{ topEvents: IEvent[]}>());
 
 // Add/Set/Updet Event Actions
 export const setEvents = createAction(SET_EVENTS, props<{ events: IEvent[] }>());

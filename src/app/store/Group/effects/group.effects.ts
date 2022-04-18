@@ -7,6 +7,7 @@ import * as GroupsActions from '../actions/group.actions';
 import { MockDataService } from '../../mockData.service';
 import { Group, IEvent } from '../../store.model';
 import { loadEventsSuccess } from '../../Event';
+import { selectSport } from '../../Sport/actions/sport.actions';
 
 
 @Injectable()
@@ -19,9 +20,9 @@ export class GroupsEffects {
   loadGroups$ = createEffect(() => {
     return this.actions$.pipe(
 
-      ofType(GroupsActions.loadGroups),
+      ofType(selectSport),
       concatMap((payload) =>
-        this._mockDataService.getGroupsForSport(payload.sportId).pipe(
+        this._mockDataService.getGroupsForSport(payload.id).pipe(
           map(groups => {
             let events: IEvent[] = [];
             const formattedGroups: Group<number>[] = groups.map(group => {

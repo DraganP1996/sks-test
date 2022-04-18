@@ -5,6 +5,7 @@ import { HomeRoutingModule } from './home-routing.module';
 import { HomeComponent } from './home.component';
 import { SportListComponent } from './sport-list/sport-list.component';
 import { BetEventDetailsComponent } from './bet-event-details/bet-event-details.component';
+import { ListItemModule } from 'src/app/shared/components/list-item/list-item.module';
 
 
 @NgModule({
@@ -15,7 +16,8 @@ import { BetEventDetailsComponent } from './bet-event-details/bet-event-details.
   ],
   imports: [
     CommonModule,
-    HomeRoutingModule
+    HomeRoutingModule,
+    ListItemModule
   ]
 })
 export class HomeModule { }

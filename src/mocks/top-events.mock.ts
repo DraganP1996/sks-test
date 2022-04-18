@@ -1,4 +1,6 @@
-export const topEvents = [
+import { IEvent } from "src/app/store/store.model";
+
+export const topEvents: IEvent[] = [
     {
       Id: 7882,
       Order: 1,

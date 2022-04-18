@@ -2,7 +2,7 @@ import { Injectable, OnDestroy } from "@angular/core";
 import { Store } from "@ngrx/store";
 import { filter, Observable, Subject, switchMap, takeUntil } from "rxjs";
 import { EventState, getSelectedEventId, loadTopEvents, selectEvent, selectEventById, selectEventsByIds } from "src/app/store/Event";
-import { getSelectedGroupId, GroupState, loadGroups, selectAllGroupsForSportId, selectedGroupId, selectgroupById } from "src/app/store/Group";
+import { getSelectedGroupId, GroupState, selectAllGroupsForSportId, selectedGroupId, selectgroupById } from "src/app/store/Group";
 import { selectMarketByIds } from "src/app/store/Market";
 import { selectMarketCategoriesByIds } from "src/app/store/MarketCategory";
 import { OddState, selectOddsByIds } from "src/app/store/Odds";
@@ -48,7 +48,6 @@ export class HomeFacade implements OnDestroy {
      */
     selectSport(id: number): void {
         this._sportStore.dispatch(selectSport({ id }));
-        this._sportStore.dispatch(loadGroups({ sportId: id })); 
     }
     
     /**

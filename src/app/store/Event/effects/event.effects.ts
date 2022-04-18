@@ -21,7 +21,7 @@ export class EventEffects {
       ofType(SportActions.loadTopEvents),
       mergeMap(() =>
         this._mockDataService.getTopEventList().pipe(
-          map(data => SportActions.loadTopEventsSuccess({ ids: data.map(topEvent => topEvent.Id) })),
+          map(topEvents => SportActions.loadTopEventsSuccess({ topEvents })),
           catchError(error => of(SportActions.loadEventsFailure({ error }))))
       )
     );

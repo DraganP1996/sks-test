@@ -1,7 +1,7 @@
-<ul>
-    <li *ngFor="let sport of sportList$ | async">
-        <button (click)="selectSport(sport.Id)">
-            {{ sport.Name }}
-        </button>
-    </li>
-</ul>
+<app-list-item
+  *ngFor="let sport of sportList$ | async"
+  [item]="sport"
+  [totalCount]="sport.NumSubevents"
+  (itemSelection)="selectSport($event)"
+>
+</app-list-item>

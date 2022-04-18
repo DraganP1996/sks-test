@@ -20,7 +20,8 @@ export const sportReducer = createReducer(
   initialState,
 
   on(SportActions.loadSportsSuccess, (state, { sports }) => {
-    return adapter.setMany(sports, state);
+    // create a feature store for Antepost Sports
+    return adapter.setMany(sports.filter(sport => !sport.Antepost), state);
   }),
 
   on(SportActions.selectSport, (state, { id }) => {

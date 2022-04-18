@@ -30,8 +30,8 @@ export const eventReducer = createReducer(
   }),
 
   // Update top events
-  on(EventActions.loadTopEventsSuccess, (state, { ids }) => {
-    return { ...state, topEventIds: ids }
+  on(EventActions.loadTopEventsSuccess, (state, { topEvents }) => {
+    return { ...state, ...adapter.setMany(topEvents, state), topEventIds: topEvents.map(topEvent => topEvent.Id) }
   }),
 
   // Loading of groups successfully

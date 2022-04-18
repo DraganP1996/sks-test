@@ -22,7 +22,6 @@ export class SportEffects {
 
       ofType(loadSports),
       mergeMap(() =>
-        /** An EMPTY observable only emits completion. Replace with your own observable API request */
         this._mockDataService.getSportList().pipe(
           map((sports: Sport[]) => loadSportsSuccess({ sports })),
           catchError(error => of(SportActions.loadSportsFailure({ error }))))
