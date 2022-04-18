@@ -20,7 +20,7 @@ export const sportReducer = createReducer(
   initialState,
 
   on(SportActions.loadSportsSuccess, (state, { sports }) => {
-    return adapter.setAll(sports, state);
+    return adapter.setMany(sports, state);
   }),
 
   on(SportActions.selectSport, (state, { id }) => {

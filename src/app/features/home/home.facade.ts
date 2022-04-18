@@ -1,6 +1,6 @@
-import { Injectable } from "@angular/core";
+import { Injectable, OnDestroy } from "@angular/core";
 import { Store } from "@ngrx/store";
-import { filter, Observable, Subject, switchMap } from "rxjs";
+import { filter, Observable, Subject, switchMap, takeUntil } from "rxjs";
 import { EventState, getSelectedEventId, loadTopEvents, selectEvent, selectEventById, selectEventsByIds } from "src/app/store/Event";
 import { getSelectedGroupId, GroupState, loadGroups, selectAllGroupsForSportId, selectedGroupId, selectgroupById } from "src/app/store/Group";
 import { selectMarketByIds } from "src/app/store/Market";
@@ -12,12 +12,13 @@ import { Group, IEvent, Market, MarketCategory, OddData, Sport, SubEvent } from 
 import { getSelectedSubEventId, selectSubEventById, selectSubEventsByIds, subeventSelection } from "src/app/store/Subevent";
 
 @Injectable({providedIn: 'root'})
-export class HomeFacade {
+export class HomeFacade implements OnDestroy {
 
     private readonly _selectedSpot$: Observable<number>;
     private readonly _selectedGroup$: Observable<number>;
     private readonly _selectedEvent$: Observable<number>;
     private readonly _selectedSubEvent$: Observable<number>;
+    private readonly _unsubscribe$ = new Subject<void>();
 
     constructor(    
         private _sportStore: Store<SportState>,
@@ -27,10 +28,10 @@ export class HomeFacade {
         private _oddStore: Store<OddState>,
         private _markeCategoryStore: Store<MarketCategory<number>>,
         private _marketStore: Store<Market>) {
-            this._selectedSpot$ = this._sportStore.select(getSelectedSport).pipe(filter(id => !!id));
-            this._selectedGroup$ = this._groupStore.select(getSelectedGroupId).pipe(filter(id => !!id));
-            this._selectedEvent$ = this._eventStore.select(getSelectedEventId).pipe(filter(id => !!id));
-            this._selectedSubEvent$ = this._subeventStore.select(getSelectedSubEventId).pipe(filter(id => !!id));
+            this._selectedSpot$ = this._sportStore.select(getSelectedSport).pipe(filter(id => !!id), takeUntil(this._unsubscribe$));
+            this._selectedGroup$ = this._groupStore.select(getSelectedGroupId).pipe(filter(id => !!id), takeUntil(this._unsubscribe$));
+            this._selectedEvent$ = this._eventStore.select(getSelectedEventId).pipe(filter(id => !!id), takeUntil(this._unsubscribe$));
+            this._selectedSubEvent$ = this._subeventStore.select(getSelectedSubEventId).pipe(filter(id => !!id), takeUntil(this._unsubscribe$));
         }
 
     /**
@@ -156,7 +157,7 @@ export class HomeFacade {
     getSelectedSubevent$(): Observable<SubEvent<number> | undefined> {
         return this._selectedSubEvent$.pipe(
             switchMap(subeventId => this._subeventStore.select(selectSubEventById(subeventId))),
-            filter(subevent => !!subevent && !!subevent.activeMarketCategoryIds && !!subevent.allActiveOddsIds)
+            // filter(subevent => !!subevent && !!subevent.activeMarketCategoryIds && !!subevent.allActiveOddsIds)
         )
     }
 
@@ -176,5 +177,10 @@ export class HomeFacade {
      */
     queryMarketsByIds$(marketIds: number[]): Observable<Market[]> {
         return this._marketStore.select(selectMarketByIds(marketIds))
+    }
+
+    ngOnDestroy(): void {
+        this._unsubscribe$.next();
+        this._unsubscribe$.complete();  
     }
 }

@@ -20,7 +20,7 @@ export const marketReducer = createReducer(
   initialState,
 
   on(loadActiveMarketCategoriesSuccess, (state, { markets }) => {
-    return adapter.upsertMany(markets, state);
+    return adapter.setMany(markets, state);
   }),
 
   on(MarketActions.upsertMarkets, (state, { markets }) => {
@@ -28,7 +28,7 @@ export const marketReducer = createReducer(
   }),
 
   on(MarketActions.loadActiveMarketsForEventSuccess, (state, { markets }) => {
-    return adapter.setAll(markets, state);
+    return adapter.setMany(markets, state);
   }),
 
   on(MarketActions.setMarkets, (state, { markets }) => {

@@ -26,7 +26,7 @@ export const eventReducer = createReducer(
 
   // Not sure if set all is the rigth choose here...
   on(EventActions.loadEvents, (state, { events }) => {
-      return adapter.setAll(events, state);
+      return adapter.setMany(events, state);
   }),
 
   // Update top events
@@ -54,7 +54,7 @@ export const eventReducer = createReducer(
   }),
 
   on(loadGroupsSuccess, (state, { events }) => {
-    return adapter.addMany(events, state)
+    return adapter.setMany(events, state)
   }),
 
   // Event selection

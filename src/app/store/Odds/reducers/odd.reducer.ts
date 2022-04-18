@@ -28,7 +28,7 @@ export const oddReducer = createReducer(
   }),
 
   on(loadSubeventsSuccess, (state, { odds }) => {
-    return adapter.upsertMany(odds, state);
+    return adapter.setMany(odds, state);
   }),
 
   on(OddActions.selectOdd, (state, { id }) => {

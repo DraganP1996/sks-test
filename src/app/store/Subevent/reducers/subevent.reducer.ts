@@ -20,7 +20,7 @@ export const subeventReducer = createReducer(
 
   // Load Sub Events Success
   on(SubeventActions.loadSubeventsSuccess, (state, { subEvents }) => {
-    return adapter.upsertMany(subEvents, state);
+    return adapter.setMany(subEvents, state);
   }),
 
   // Load Sub Events Success

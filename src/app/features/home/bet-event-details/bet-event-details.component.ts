@@ -1,14 +1,6 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
-import { Store } from '@ngrx/store';
-import { EMPTY, filter, map, Observable, Subject, switchMap, takeUntil, tap } from 'rxjs';
-import { EventState, getEventSubEvents, getSelectedEventId, selectEvent, selectEventsByIds } from 'src/app/store/Event';
-import { getSelectedGroupId, GroupState, loadGroups, selectAllEventsForGroup, selectAllGroupsForSportId, selectedGroupId } from 'src/app/store/Group';
-import { selectMarketByIds } from 'src/app/store/Market';
-import { selectMarketCategoriesByIds } from 'src/app/store/MarketCategory';
-import { OddState, selectOddsByIds } from 'src/app/store/Odds';
-import { getSelectedSport, SportState } from 'src/app/store/Sport';
+import { filter, map, Observable, Subject, switchMap, takeUntil, tap } from 'rxjs';
 import { Group, IEvent, Market, MarketCategory, OddData, Sport, SubEvent } from 'src/app/store/store.model';
-import { getSelectedSubEventId, selectSubEventById, selectSubEventsByIds, subeventSelection } from 'src/app/store/Subevent';
 import { HomeFacade } from '../home.facade';
 
 @Component({
@@ -22,7 +14,7 @@ export class BetEventDetailsComponent implements OnInit, OnDestroy {
   selectedGroup!: Group<number>;
   selectedEvent!: IEvent;
   subeventOfSelectedEvent: SubEvent<number>[] = [];
-  subeventDetails!: SubEvent<number>;
+  subeventDetails?: SubEvent<number>;
   subEventMarketCategories: MarketCategory<number>[] = [];
   subEventMarkets: Market[] = [];
 
@@ -34,8 +26,6 @@ export class BetEventDetailsComponent implements OnInit, OnDestroy {
   groupsForSelectedSport$ = new Observable<Group<number>[]>();
   eventsForSelectedGroup$ = new Observable<IEvent[]>();
 
-  subEventDetail!: SubEvent<number>;
-
   quotasExample: {[key: string]: OddData} = {};
 
   private _unsubscribe$ = new Subject<void>();
@@ -44,6 +34,7 @@ export class BetEventDetailsComponent implements OnInit, OnDestroy {
 
   ngOnInit(): void {
     this._homeFacade.getSelectedSport$()
+      .pipe(takeUntil(this._unsubscribe$))
       .subscribe(sport => {
         if (!!sport) {
           this.selectedSport = sport;
@@ -52,6 +43,7 @@ export class BetEventDetailsComponent implements OnInit, OnDestroy {
       });
 
     this._homeFacade.getSelectedGroup$()
+      .pipe(takeUntil(this._unsubscribe$))
       .subscribe(group => {
         if (!group) return;
 
@@ -60,6 +52,7 @@ export class BetEventDetailsComponent implements OnInit, OnDestroy {
       });
 
     this._homeFacade.getSelectedEvent$().pipe(
+      takeUntil(this._unsubscribe$),
       filter(event => !!event && !!event.subEventIds),
       tap(event => {
         if (!event) return;
@@ -77,17 +70,18 @@ export class BetEventDetailsComponent implements OnInit, OnDestroy {
 
     this._homeFacade.getSelectedSubevent$()
       .pipe(
-        tap(subevent => this.subeventDetails = subevent!),
+        takeUntil(this._unsubscribe$),
+        tap(subevent => this.subeventDetails = !!subevent ? subevent : undefined),
+        filter(subevent => !!subevent && !!subevent.activeMarketCategoryIds && !!subevent.allActiveOddsIds),
         switchMap(subevent => this._homeFacade.queryMarketCategoriesByIds$(subevent!.activeMarketCategoryIds!)),
         tap(activeCategories => this.subEventMarketCategories = activeCategories),
         map(activeCategories => this.mapMarketCategoriesToMarketIds(activeCategories)),
         switchMap(marketCategoryIds => this._homeFacade.queryMarketsByIds$(marketCategoryIds)),
-        tap(markets => this.subEventMarkets = markets),
         filter(() => !!this.subeventDetails && !!this.subeventDetails.allActiveOddsIds),
-        switchMap(() => this._homeFacade.queryOddsById$(this.subeventDetails.allActiveOddsIds!))
+        switchMap(() => this._homeFacade.queryOddsById$(this.subeventDetails!.allActiveOddsIds!))
       )
       .subscribe(data => {
-        console.log('All the odds for this subevent', data);
+        console.log('Imao sam vremena samo za vikend, pa sam sastavio normalizovani store medjutim nisam imao vremena za ostalo :(', data);
         this.formatDataForDetailedSubeventView();
       })
   }

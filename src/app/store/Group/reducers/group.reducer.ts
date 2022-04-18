@@ -20,7 +20,7 @@ export const groupReducer = createReducer(
 
   // Load groups
   on(GroupActions.loadGroupsSuccess, (state, { groups }) => {
-    return adapter.upsertMany(groups, state);
+    return adapter.setMany(groups, state);
   }),
   
   // Group Selection
