@@ -30,7 +30,9 @@
 <app-list-item
   *ngFor="let group of groupsForSelectedSport$ | async"
   [item]="group"
-  [totalCount]="group.Events.length"
+  [totalCount]="group.NumSubevents"
+  [expandable]="true"
   (itemSelection)="selectGroup($event)"
 >
+    <app-event-list [eventIds]="group.Events"></app-event-list>
 </app-list-item>

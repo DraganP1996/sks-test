@@ -1,4 +1,5 @@
 import { createFeatureSelector, createSelector } from "@ngrx/store";
+import { selectEntities } from "../../MarketCategory";
 import { SubEvent } from "../../store.model";
 import { selectAll, SubEventState } from "../reducers/subevent.reducer";
 
@@ -48,4 +49,9 @@ export const subEventsSelector = createSelector(
     subEventsSelector,
     selectAll
   );
+
+export const getSubeventsByEventId = (eventId: number) => createSelector(
+  selectAllEvents,
+  subevents => subevents.filter(subevent => subevent.EventId === eventId)
+);
 

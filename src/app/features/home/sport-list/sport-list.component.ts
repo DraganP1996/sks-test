@@ -1,5 +1,6 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { Observable, Subject } from 'rxjs';
+import { ListItemColorMode } from 'src/app/shared/components/list-item/list-item.model';
 
 import { Sport } from 'src/app/store/store.model';
 import { HomeFacade } from '../home.facade';
@@ -12,6 +13,7 @@ import { HomeFacade } from '../home.facade';
 export class SportListComponent implements OnInit, OnDestroy {
 
   sportList$!: Observable<Sport[]>;
+  sportItemConfig = ListItemColorMode.dark;
   
   private _unsubscribe$ = new Subject<void>();
 
@@ -20,6 +22,9 @@ export class SportListComponent implements OnInit, OnDestroy {
 
   ngOnInit(): void {
     this._homeFacade.loadSports();
+
+    this._homeFacade.getSportList$()
+      .subscribe(() => console.log('Sport list changed'))
     this.sportList$ = this._homeFacade.getSportList$();
   }
 

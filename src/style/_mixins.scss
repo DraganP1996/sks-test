@@ -1,0 +1,15 @@
+@import "variables";
+
+@mixin hoverColor($backgroundColor) {
+    @if $backgroundColor == $sks-background {
+        background-color: $sks-light-section
+    }
+
+    @if $backgroundColor == $sks-dark-section {
+        background-color: $sks-light-section
+    }
+
+    @if $backgroundColor == $sks-light-section {
+        background-color: $sks-dark-section
+    }
+}

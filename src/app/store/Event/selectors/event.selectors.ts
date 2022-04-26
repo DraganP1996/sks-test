@@ -1,6 +1,6 @@
 import { createFeatureSelector, createSelector } from '@ngrx/store';
 import { IEvent } from '../../store.model';
-import { EventState, selectAll } from '../reducers/event.reducer';
+import { EventState, selectAll, selectEntities } from '../reducers/event.reducer';
 
 export const eventFeatureStoreState = createFeatureSelector<EventState>('events');
 
@@ -8,6 +8,11 @@ export const eventsSelector = createSelector(
   eventFeatureStoreState,
   (state: EventState) => state
 );
+
+export const eventEntitiesSelector = createSelector(
+  eventsSelector,
+  selectEntities
+)
 
 /**
  * Get Event by Id
@@ -35,12 +40,16 @@ export const selectEventActiveCategories = (eventId: number) => createSelector(
  * @returns 
  */
  export const selectEventsByIds = (eventIds: number[]) => createSelector(
-  eventsSelector,
-  eventState => {
-    const events = eventIds.map((id: number) => eventState.entities[id]);
-
-    return !!events.length ? events as IEvent[] : [];
+  eventEntitiesSelector,
+  entities => {
+    const events = eventIds.map((id: number) => !!entities[id] ? entities[id] : null);
+    return { events: events.length ? events as IEvent[] : []};
   }
+);
+
+export const queryEventsByIds = (eventIds: number[]) => createSelector(
+  selectEventsByIds(eventIds),
+  eventList => eventList.events
 );
 
 /**

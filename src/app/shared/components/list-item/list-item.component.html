@@ -1,5 +1,13 @@
-<div (click)="selectItem(item.Id)" class="list-item">
-    <div class="list-item__name"> {{ item.Name }} </div>
+<div *ngIf="item" appExpandCollapse (click)="selectItem(item.Id)" class="list-item"
+    [ngClass]="{'dark' : colorMode === colorModes.dark, }">
+    <div *ngIf="item.Name" class="list-item__name"> {{ item.Name }} </div>
     <div class="spacer"></div>
-    <div class="list-item__total"> {{ totalCount }} </div>
+    <div *ngIf="totalCount" class="list-item__total"> {{ totalCount }} </div>
 </div>
+
+<div [@expandCollaps]="isExpanded ? 'expanded' : 'collapsed'" class="list-item__content">
+    <ng-content></ng-content>
+</div>
+
+[ngClass]="{'first': true, 'second': true, 'third': false}
+colorMode === colorModes.dark ? 'dark' : 'light'

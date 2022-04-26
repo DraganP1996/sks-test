@@ -23,6 +23,7 @@ export interface Group<T> extends OrderableItem {
     SportId: number;
     Antepost: number;
     Events: T[];
+    NumSubevents?: number;
 }
 
 export interface IEvent extends OrderableItem {

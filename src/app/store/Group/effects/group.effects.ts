@@ -27,10 +27,17 @@ export class GroupsEffects {
             let events: IEvent[] = [];
             const formattedGroups: Group<number>[] = groups.map(group => {
               const { Id, Name, Order, NumQuote, Sport, SportId, Antepost } = group;
-              const Events = group.Events.map(event => event.Id);
+              
+              let numSubevents =  0;
+
+              const Events = group.Events.map(event => {
+                numSubevents += event.NumSubevents;
+
+                return event.Id
+              });
 
               events = [...events, ...group.Events];
-              return { Id, Name, Order, NumQuote, Sport, SportId, Antepost, Events };
+              return { Id, Name, Order, NumQuote, Sport, SportId, Antepost, Events, NumSubevents: numSubevents };
             });
 
             return GroupsActions.loadGroupsSuccess({ groups: formattedGroups, events })

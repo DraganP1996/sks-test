@@ -1,0 +1,9 @@
+<app-list-item
+  *ngFor="let subevent of subevents"
+  [item]="subevent"
+  [totalCount]="10"
+  [expandable]="true"
+>
+  |OPALA
+  <!-- <app-subevent-list [subeventIds]="item.value?.subevents"></app-subevent-list> -->
+</app-list-item>

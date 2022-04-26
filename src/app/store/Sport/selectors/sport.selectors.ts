@@ -1,6 +1,5 @@
 import { createFeatureSelector, createSelector } from '@ngrx/store';
 
-import { Sport } from '../../store.model';
 import { selectAll, SportState } from '../reducers/sport.reducer';
 
 

@@ -10,8 +10,6 @@ import { HomeFacade } from '../home.facade';
 })
 export class BetEventDetailsComponent implements OnInit, OnDestroy {
 
-  selectedSport!: Sport;
-  selectedGroup!: Group<number>;
   selectedEvent!: IEvent;
   subeventOfSelectedEvent: SubEvent<number>[] = [];
   subeventDetails?: SubEvent<number>;
@@ -37,61 +35,47 @@ export class BetEventDetailsComponent implements OnInit, OnDestroy {
       .pipe(takeUntil(this._unsubscribe$))
       .subscribe(sport => {
         if (!!sport) {
-          this.selectedSport = sport;
           this.groupsForSelectedSport$ = this._homeFacade.getListOfGroupsForSport$(sport.Id);
         }
       });
 
-    this._homeFacade.getSelectedGroup$()
-      .pipe(takeUntil(this._unsubscribe$))
-      .subscribe(group => {
-        if (!group) return;
+    // this._homeFacade.getSelectedEvent$().pipe(
+    //   takeUntil(this._unsubscribe$),
+    //   filter(event => !!event && !!event.subEventIds),
+    //   tap(event => {
+    //     if (!event) return;
 
-        this.selectedGroupId = group.Id;
-        this.eventsForSelectedGroup$ = this._homeFacade.getListOfEventsForGroup$(group.Events);
-      });
+    //     this.selectedEvent = event;
+    //     this.selectedEventId = event.Id;
 
-    this._homeFacade.getSelectedEvent$().pipe(
-      takeUntil(this._unsubscribe$),
-      filter(event => !!event && !!event.subEventIds),
-      tap(event => {
-        if (!event) return;
+    //   }),
+    //   switchMap(event => this._homeFacade.getListOfSubeventsForEvent$(event!.subEventIds!)),
+    //   tap(subevents => this.subeventOfSelectedEvent = subevents),
+    //   map(subEvents => this.mapSubEventToOddIds(subEvents)),
+    //   switchMap(oddIds => this._homeFacade.queryOddsById$(oddIds)),
+    // )
+    //   .subscribe(odds => odds.forEach(odd => this.quotasExample[odd.Id] = odd));
 
-        this.selectedEvent = event;
-        this.selectedEventId = event.Id;
-
-      }),
-      switchMap(event => this._homeFacade.getListOfSubeventsForEvent$(event!.subEventIds!)),
-      tap(subevents => this.subeventOfSelectedEvent = subevents),
-      map(subEvents => this.mapSubEventToOddIds(subEvents)),
-      switchMap(oddIds => this._homeFacade.queryOddsById$(oddIds)),
-    )
-      .subscribe(odds => odds.forEach(odd => this.quotasExample[odd.Id] = odd));
-
-    this._homeFacade.getSelectedSubevent$()
-      .pipe(
-        takeUntil(this._unsubscribe$),
-        tap(subevent => this.subeventDetails = !!subevent ? subevent : undefined),
-        filter(subevent => !!subevent && !!subevent.activeMarketCategoryIds && !!subevent.allActiveOddsIds),
-        switchMap(subevent => this._homeFacade.queryMarketCategoriesByIds$(subevent!.activeMarketCategoryIds!)),
-        tap(activeCategories => this.subEventMarketCategories = activeCategories),
-        map(activeCategories => this.mapMarketCategoriesToMarketIds(activeCategories)),
-        switchMap(marketCategoryIds => this._homeFacade.queryMarketsByIds$(marketCategoryIds)),
-        filter(() => !!this.subeventDetails && !!this.subeventDetails.allActiveOddsIds),
-        switchMap(() => this._homeFacade.queryOddsById$(this.subeventDetails!.allActiveOddsIds!))
-      )
-      .subscribe(data => {
-        console.log('Imao sam vremena samo za vikend, pa sam sastavio normalizovani store medjutim nisam imao vremena za ostalo :(', data);
-        this.formatDataForDetailedSubeventView();
-      })
+    // this._homeFacade.getSelectedSubevent$()
+    //   .pipe(
+    //     takeUntil(this._unsubscribe$),
+    //     tap(subevent => this.subeventDetails = !!subevent ? subevent : undefined),
+    //     filter(subevent => !!subevent && !!subevent.activeMarketCategoryIds && !!subevent.allActiveOddsIds),
+    //     switchMap(subevent => this._homeFacade.queryMarketCategoriesByIds$(subevent!.activeMarketCategoryIds!)),
+    //     tap(activeCategories => this.subEventMarketCategories = activeCategories),
+    //     map(activeCategories => this.mapMarketCategoriesToMarketIds(activeCategories)),
+    //     switchMap(marketCategoryIds => this._homeFacade.queryMarketsByIds$(marketCategoryIds)),
+    //     filter(() => !!this.subeventDetails && !!this.subeventDetails.allActiveOddsIds),
+    //     switchMap(() => this._homeFacade.queryOddsById$(this.subeventDetails!.allActiveOddsIds!))
+    //   )
+    //   .subscribe(data => {
+    //     console.log('Imao sam vremena samo za vikend, pa sam sastavio normalizovani store medjutim nisam imao vremena za ostalo :(', data);
+    //     this.formatDataForDetailedSubeventView();
+    //   })
   }
 
   selectGroup(groupId: number): void {
     this._homeFacade.selectGroup(groupId);
-  }
-
-  selectEvent(selectedEventId: number): void {
-    this._homeFacade.selectEvent(selectedEventId);
   }
 
   selectSubEvent(subeventId: number): void {

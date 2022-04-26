@@ -6,13 +6,17 @@ import { HomeComponent } from './home.component';
 import { SportListComponent } from './sport-list/sport-list.component';
 import { BetEventDetailsComponent } from './bet-event-details/bet-event-details.component';
 import { ListItemModule } from 'src/app/shared/components/list-item/list-item.module';
+import { EventListComponent } from './bet-event-details/event-list/event-list.component';
+import { SubeventListComponent } from './bet-event-details/subevent-list/subevent-list.component';
 
 
 @NgModule({
   declarations: [
     HomeComponent,
     SportListComponent,
-    BetEventDetailsComponent
+    BetEventDetailsComponent,
+    EventListComponent,
+    SubeventListComponent
   ],
   imports: [
     CommonModule,

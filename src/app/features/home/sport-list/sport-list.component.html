@@ -1,7 +1,9 @@
+<div class="sport-list__header"> Sport </div>
 <app-list-item
   *ngFor="let sport of sportList$ | async"
   [item]="sport"
   [totalCount]="sport.NumSubevents"
+  [colorMode]="sportItemConfig"
   (itemSelection)="selectSport($event)"
 >
 </app-list-item>

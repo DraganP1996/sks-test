@@ -35,34 +35,40 @@ export const eventReducer = createReducer(
   }),
 
   // Loading of groups successfully
-  on(loadActiveMarketsForEventSuccess, (state, { markets, eventId }) => {
-    const event = {...state.entities[eventId], activeMarketIds: markets.map(market => market.Id)};
+  // on(loadActiveMarketsForEventSuccess, (state, { markets, eventId }) => {
+  //   const marketIds = markets.map(market => market.Id);
 
-    return adapter.setOne(event as IEvent, state)
-  }),
+  //   if (!!state.entities[eventId]!.activeMarketIds && state.entities[eventId]!.activeMarketIds == marketIds)
+  //     return state;
 
-  on(loadActiveMarketCategoriesSuccess, (state, { eventId, marketCategories }) => {
-    const event = {...state.entities[eventId], activeMarketCategoryIds: marketCategories.map(market => market.Id)};
+  //   const event = {...state.entities[eventId], activeMarketIds: marketIds};
 
-    return adapter.setOne(event as IEvent, state)
-  }),
+  //   return adapter.setOne(event as IEvent, state)
+  // }),
 
-  on(loadSubeventsSuccess, (state, { eventId, subEvents }) => {
-    const event = {...state.entities[eventId], subEventIds: subEvents.map(subEvent => subEvent.Id)};
+  // on(loadActiveMarketCategoriesSuccess, (state, { eventId, marketCategories }) => {
+  //   const marketCategoryIds = marketCategories.map(market => market.Id);
 
-    return adapter.setOne(event as IEvent, state)
-  }),
+  //   if (!!state.entities[eventId]!.activeMarketCategoryIds && state.entities[eventId]!.activeMarketCategoryIds!.toString() === marketCategoryIds.toString())
+  //     return state;
+
+  //   const event = {...state.entities[eventId], activeMarketCategoryIds: marketCategoryIds};
+
+  //   return adapter.setOne(event as IEvent, state)
+  // }),
+
+  // on(loadSubeventsSuccess, (state, { eventId, subEvents }) => {
+  //   const subeventIds = subEvents.map(subEvent => subEvent.Id);
+
+  //   if (state.entities[eventId]?.subEventIds == subeventIds)
+  //     return state;
+  //   const event = {...state.entities[eventId], subEventIds: subeventIds};
+
+  //   return adapter.setOne(event as IEvent, state)
+  // }),
 
   on(loadGroupsSuccess, (state, { events }) => {
     return adapter.setMany(events, state)
-  }),
-
-  // Event selection
-  on(EventActions.selectEvent, (state, { selectedEventId }) => {
-    return {
-      ...state,
-      selectedEventId
-    }
   }),
 
   // Add Events (maybe upser or some other strategy)

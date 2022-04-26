@@ -1,6 +1,42 @@
+@import "variables";
+
+$white: #fff;
+
 .list-item {
     cursor: pointer;
     display: flex;
-    padding: 6px 14px;
-    border-bottom: 1px solid black;
+    padding: $sks-list-padding;
+    border-top: $sks-border;
+    color: $white;
+    font-size: $font-size-5;
+
+    &.dark {
+        background-color: $sks-dark-section;
+
+        &:hover {
+            background-color: $sks-light-section;
+        }
+    }
+
+    &.light {
+        background-color: $sks-light-section;
+
+        &:hover {
+            background-color: $sks-dark-section;
+        }
+    }
+
+    &__content {
+        overflow: hidden;
+    }
+
+    @keyframes expand {
+        from { height: 0; }
+        to { height: auto; }
+    }
+
+    @keyframes collapse {
+        from  { height: auto; }
+        to { height: 0; }
+    }
 }

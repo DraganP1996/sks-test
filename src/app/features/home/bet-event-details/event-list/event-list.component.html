@@ -1,0 +1,10 @@
+<app-list-item
+  *ngFor="let item of dictionary | keyvalue"
+  [item]="item.value.event"
+  [colorMode]="sportItemConfig"
+  [totalCount]="item.value.event?.NumSubevents"
+  [expandable]="true"
+  (itemSelection)="selectEvent($event)"
+>
+  <app-subevent-list [subevents]="item.value?.subevents"></app-subevent-list>
+</app-list-item>
