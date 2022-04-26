@@ -1,7 +1,7 @@
 import { Injectable, OnDestroy } from "@angular/core";
 import { Store } from "@ngrx/store";
-import { filter, Observable, Subject, switchMap, takeUntil } from "rxjs";
-import { EventState, getSelectedEventId, loadTopEvents, selectEvent, selectEventById, selectEventsByIds } from "src/app/store/Event";
+import { distinctUntilChanged, filter, map, Observable, Subject, switchMap, take, takeUntil, tap } from "rxjs";
+import { EventState, getSelectedEventId, loadTopEvents, queryEventsByIds, selectEvent, selectEventById, selectEventsByIds } from "src/app/store/Event";
 import { getSelectedGroupId, GroupState, selectAllGroupsForSportId, selectedGroupId, selectgroupById } from "src/app/store/Group";
 import { selectMarketByIds } from "src/app/store/Market";
 import { selectMarketCategoriesByIds } from "src/app/store/MarketCategory";
@@ -9,7 +9,7 @@ import { OddState, selectOddsByIds } from "src/app/store/Odds";
 import { getSelectedSport, selectAllSports, selectsportById, SportState } from "src/app/store/Sport";
 import { loadSports, selectSport } from "src/app/store/Sport/actions/sport.actions";
 import { Group, IEvent, Market, MarketCategory, OddData, Sport, SubEvent } from "src/app/store/store.model";
-import { getSelectedSubEventId, selectSubEventById, selectSubEventsByIds, subeventSelection } from "src/app/store/Subevent";
+import { getSelectedSubEventId, getSubeventsByEventId, selectSubEventById, selectSubEventsByIds, subeventSelection } from "src/app/store/Subevent";
 
 @Injectable({providedIn: 'root'})
 export class HomeFacade implements OnDestroy {
@@ -24,13 +24,15 @@ export class HomeFacade implements OnDestroy {
         private _sportStore: Store<SportState>,
         private _groupStore: Store<GroupState>,
         private _eventStore: Store<EventState>,
+        // ALA SAM GLUP ALA SAM GLUP JAOOO, JAOOO, JAOOO
         private _subeventStore: Store<EventState>,
+        // GRESKA, KOMENTAR ZA BRISANJE CONSOLE.LOG, DEBUGGER, NE ZABORAVLJAJ
         private _oddStore: Store<OddState>,
         private _markeCategoryStore: Store<MarketCategory<number>>,
         private _marketStore: Store<Market>) {
-            this._selectedSpot$ = this._sportStore.select(getSelectedSport).pipe(filter(id => !!id), takeUntil(this._unsubscribe$));
-            this._selectedGroup$ = this._groupStore.select(getSelectedGroupId).pipe(filter(id => !!id), takeUntil(this._unsubscribe$));
-            this._selectedEvent$ = this._eventStore.select(getSelectedEventId).pipe(filter(id => !!id), takeUntil(this._unsubscribe$));
+            this._selectedSpot$ = this._sportStore.select(getSelectedSport).pipe(filter(id => !!id), takeUntil(this._unsubscribe$), tap(sport => console.log('SELECTED SPORT', sport)));
+            this._selectedGroup$ = this._groupStore.select(getSelectedGroupId).pipe(filter(id => !!id), takeUntil(this._unsubscribe$),  tap(group => console.log('SELECTED GROUP', group)));
+            this._selectedEvent$ = this._eventStore.select(getSelectedEventId).pipe(filter(id => !!id), takeUntil(this._unsubscribe$), tap(event => console.log('SELECTED EVENT', event)));
             this._selectedSubEvent$ = this._subeventStore.select(getSelectedSubEventId).pipe(filter(id => !!id), takeUntil(this._unsubscribe$));
         }
 
@@ -64,6 +66,11 @@ export class HomeFacade implements OnDestroy {
      */    
     selectEvent(selectedEventId: number): void {
         this._eventStore.dispatch(selectEvent({ selectedEventId }));
+    }
+
+    querySubeventForEventId(eventId: number): Observable<SubEvent<number>[]> {
+        return this._subeventStore.select(getSubeventsByEventId(eventId))
+            .pipe(filter(data => !!data.length))
     }
 
     /**
@@ -117,7 +124,9 @@ export class HomeFacade implements OnDestroy {
      * @returns 
      */
     getListOfEventsForGroup$(eventIds: number[]): Observable<IEvent[]> {
-        return this._eventStore.select(selectEventsByIds(eventIds));
+        return this._eventStore.select(queryEventsByIds(eventIds))
+                .pipe(distinctUntilChanged())
+            // .pipe(take((1)));
     }
 
 
