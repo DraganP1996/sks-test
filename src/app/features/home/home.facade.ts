@@ -1,15 +1,15 @@
 import { Injectable, OnDestroy } from "@angular/core";
 import { Store } from "@ngrx/store";
-import { distinctUntilChanged, filter, map, Observable, Subject, switchMap, take, takeUntil, tap } from "rxjs";
-import { EventState, getSelectedEventId, loadTopEvents, queryEventsByIds, selectEvent, selectEventById, selectEventsByIds } from "src/app/store/Event";
+import { distinctUntilChanged, filter, from, groupBy, map, mergeMap, Observable, Subject, switchMap, take, takeUntil, tap, toArray } from "rxjs";
+import { EventState, getEventSubEvents, getSelectedEventId, loadTopEvents, queryEventsByIds, selectEvent, selectEventById, selectEventsByIds } from "src/app/store/Event";
 import { getSelectedGroupId, GroupState, selectAllGroupsForSportId, selectedGroupId, selectgroupById } from "src/app/store/Group";
 import { selectMarketByIds } from "src/app/store/Market";
 import { selectMarketCategoriesByIds } from "src/app/store/MarketCategory";
 import { OddState, selectOddsByIds } from "src/app/store/Odds";
-import { getSelectedSport, selectAllSports, selectsportById, SportState } from "src/app/store/Sport";
+import { getSelectedSportId, selectAllSports, selectsportById, SportState } from "src/app/store/Sport";
 import { loadSports, selectSport } from "src/app/store/Sport/actions/sport.actions";
 import { Group, IEvent, Market, MarketCategory, OddData, Sport, SubEvent } from "src/app/store/store.model";
-import { getSelectedSubEventId, getSubeventsByEventId, selectSubEventById, selectSubEventsByIds, subeventSelection } from "src/app/store/Subevent";
+import { getSelectedSubEventId, getSubeventsByEventId, selectSubEventById, selectSubEventsByIds, subeventSelection, SubEventState } from "src/app/store/Subevent";
 
 @Injectable({providedIn: 'root'})
 export class HomeFacade implements OnDestroy {
@@ -24,28 +24,33 @@ export class HomeFacade implements OnDestroy {
         private _sportStore: Store<SportState>,
         private _groupStore: Store<GroupState>,
         private _eventStore: Store<EventState>,
-        // ALA SAM GLUP ALA SAM GLUP JAOOO, JAOOO, JAOOO
-        private _subeventStore: Store<EventState>,
-        // GRESKA, KOMENTAR ZA BRISANJE CONSOLE.LOG, DEBUGGER, NE ZABORAVLJAJ
+        private _subeventStore: Store<SubEventState>,
         private _oddStore: Store<OddState>,
         private _markeCategoryStore: Store<MarketCategory<number>>,
         private _marketStore: Store<Market>) {
-            this._selectedSpot$ = this._sportStore.select(getSelectedSport).pipe(filter(id => !!id), takeUntil(this._unsubscribe$), tap(sport => console.log('SELECTED SPORT', sport)));
-            this._selectedGroup$ = this._groupStore.select(getSelectedGroupId).pipe(filter(id => !!id), takeUntil(this._unsubscribe$),  tap(group => console.log('SELECTED GROUP', group)));
-            this._selectedEvent$ = this._eventStore.select(getSelectedEventId).pipe(filter(id => !!id), takeUntil(this._unsubscribe$), tap(event => console.log('SELECTED EVENT', event)));
-            this._selectedSubEvent$ = this._subeventStore.select(getSelectedSubEventId).pipe(filter(id => !!id), takeUntil(this._unsubscribe$));
+            // Get id of selected sport when changes
+            this._selectedSpot$ = this._sportStore.select(getSelectedSportId);
+
+            // Get id of selected group when changes
+            this._selectedGroup$ = this._groupStore.select(getSelectedGroupId);
+
+            // Get id of selected event when changes
+            this._selectedEvent$ = this._eventStore.select(getSelectedEventId);
+
+            // Get id of selected subevent
+            this._selectedSubEvent$ = this._subeventStore.select(getSelectedSubEventId);
         }
 
     /**
      * Dispatch actions for loading of Sports and Top Events
      */
-    loadSports(): void {
+    loadSportsAndTopEvents(): void {
         this._sportStore.dispatch(loadSports());
         this._eventStore.dispatch(loadTopEvents());
     }
 
     /**
-     * Dispatch action for selection of a specific sport
+     * Dispatch selectSport Action
      * @param id 
      */
     selectSport(id: number): void {
@@ -53,42 +58,27 @@ export class HomeFacade implements OnDestroy {
     }
     
     /**
-     * Dispatch action for selection of a specific group
-     * @param id 
+     * Dispatch selectedGroupId Action
+     * @param groupId 
      */
     selectGroup(groupId: number): void {
         this._groupStore.dispatch(selectedGroupId({ id: groupId}));
     }
 
     /**
-     * Dispatch action for selection of a specific event
-     * @param id 
+     * Dispatch selectEvent Action
+     * @param selectedEventId 
      */    
     selectEvent(selectedEventId: number): void {
         this._eventStore.dispatch(selectEvent({ selectedEventId }));
     }
 
-    querySubeventForEventId(eventId: number): Observable<SubEvent<number>[]> {
-        return this._subeventStore.select(getSubeventsByEventId(eventId))
-            .pipe(filter(data => !!data.length))
-    }
-
     /**
-     * Dispatch action for selection of a specific subevent
-     * @param id 
+     * Dispatch subeventSelection Action
+     * @param subeventId 
      */
     selectSubEvent(subeventId: number): void {
         this._subeventStore.dispatch(subeventSelection({ subeventId }));
-    }
-
-    /**
-     * Get selected sport
-     * @returns 
-     */
-    getSelectedSport$(): Observable<Sport | undefined> {
-        return this._selectedSpot$.pipe(
-            switchMap(sportId => this._sportStore.select(selectsportById(sportId)))
-        )
     }
 
     /**
@@ -100,7 +90,18 @@ export class HomeFacade implements OnDestroy {
     }
 
     /**
-     * Get selected group
+     * Get selected sport when it changes
+     * @returns 
+     */
+    getSelectedSport$(): Observable<Sport> {
+        return this._selectedSpot$.pipe(
+            filter(sportId => !!sportId),
+            switchMap(sportId => this._sportStore.select(selectsportById(sportId)))
+        )
+    }
+
+    /**
+     * Get selected group when it changes
      * @returns 
      */
     getSelectedGroup$(): Observable<Group<number> | undefined> {
@@ -123,12 +124,9 @@ export class HomeFacade implements OnDestroy {
      * @param eventIds 
      * @returns 
      */
-    getListOfEventsForGroup$(eventIds: number[]): Observable<IEvent[]> {
-        return this._eventStore.select(queryEventsByIds(eventIds))
-                .pipe(distinctUntilChanged())
-            // .pipe(take((1)));
+    getEventsByIds$(eventIds: number[]): Observable<IEvent[]> {
+        return this._eventStore.select(queryEventsByIds(eventIds)).pipe(tap(eventIds => console.log('Found event list', eventIds)))
     }
-
 
     /**
      * Get selected event
@@ -140,13 +138,25 @@ export class HomeFacade implements OnDestroy {
         )
     }
 
-    /**
-     * Get list of subevents for a specific event
-     * @param subEventIds 
-     * @returns 
-     */
-    getListOfSubeventsForEvent$(subEventIds: number[]): Observable<SubEvent<number>[]> {
-        return this._subeventStore.select(selectSubEventsByIds(subEventIds))
+    getEventSubevents(eventId: number): Observable<SubEvent<number>[]> {
+        return this._subeventStore.select(getSubeventsByEventId(eventId))
+    }
+
+    getGroupedSubevents(eventId: number): Observable<any> {
+        return this._subeventStore.select(getSubeventsByEventId(eventId)).pipe(
+            filter(subevents => !!subevents.length),
+            take(1),
+            mergeMap(subevents => subevents),
+            map(subevent => {
+                const date = subevent.StartTimeUtc.split('T')[0];
+                const time = subevent.StartTimeUtc.split('T')[1];
+
+                return { subevent, date, time }
+            }),
+            groupBy(formattedSubevent => formattedSubevent.date),
+            mergeMap(group => group.pipe(toArray())),
+            tap(data => console.log('Grouped subevents - Array version', data)),
+        )
     }
 
     /**
@@ -156,17 +166,6 @@ export class HomeFacade implements OnDestroy {
      */
     queryOddsById$(oddIds: number[]): Observable<OddData[]> {
         return this._oddStore.select(selectOddsByIds(oddIds))
-    }
-
-    /**
-     * Get selected subevent
-     * @returns 
-     */
-    getSelectedSubevent$(): Observable<SubEvent<number> | undefined> {
-        return this._selectedSubEvent$.pipe(
-            switchMap(subeventId => this._subeventStore.select(selectSubEventById(subeventId))),
-            // filter(subevent => !!subevent && !!subevent.activeMarketCategoryIds && !!subevent.allActiveOddsIds)
-        )
     }
 
     /**
