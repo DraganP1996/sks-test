@@ -29,10 +29,10 @@ export const eventReducer = createReducer(
       return adapter.setMany(events, state);
   }),
 
-  // Update top events
-  on(EventActions.loadTopEventsSuccess, (state, { topEvents }) => {
-    return { ...state, ...adapter.setMany(topEvents, state), topEventIds: topEvents.map(topEvent => topEvent.Id) }
-  }),
+  // // Update top events
+  // on(EventActions.loadTopEventsSuccess, (state, { topEvents }) => {
+  //   return { ...state, ...adapter.setMany(topEvents, state), topEventIds: topEvents.map(topEvent => topEvent.Id) }
+  // }),
 
   // Loading of groups successfully
   // on(loadActiveMarketsForEventSuccess, (state, { markets, eventId }) => {
@@ -58,13 +58,16 @@ export const eventReducer = createReducer(
   // }),
 
   // on(loadSubeventsSuccess, (state, { eventId, subEvents }) => {
-  //   const subeventIds = subEvents.map(subEvent => subEvent.Id);
+  //   const subEventIds = subEvents.map(subEvent => subEvent.Id);
+  //   const eventToUpdate = state.entities[eventId];
 
-  //   if (state.entities[eventId]?.subEventIds == subeventIds)
+  //   // This is not probably a good way to do that
+  //   if (!eventToUpdate || eventToUpdate.subEventIds == subEventIds)
   //     return state;
-  //   const event = {...state.entities[eventId], subEventIds: subeventIds};
+    
+  //   // eventToUpdate.subEventIds = subeventIds;
 
-  //   return adapter.setOne(event as IEvent, state)
+  //   return adapter.setOne({...eventToUpdate, subEventIds }, state)
   // }),
 
   on(loadGroupsSuccess, (state, { events }) => {

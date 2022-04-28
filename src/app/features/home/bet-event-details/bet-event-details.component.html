@@ -1,38 +1,10 @@
-<!-- <ul>
-    <li *ngFor="let group of groupsForSelectedSport$ | async" (click)="selectGroup(group.Id)">
-        {{ group.Name }}
-
-        <ng-container *ngIf="selectedGroupId === group.Id">
-            <ul>
-                <li *ngFor="let event of eventsForSelectedGroup$ | async" (click)="selectEvent(event.Id)">
-                    {{ event.Name }}
-
-                    <ng-container *ngIf="selectedEventId === event.Id">
-                        <ul>
-                            <li *ngFor="let subevent of subeventOfSelectedEvent" (click)="selectSubEvent(subevent.Id)">
-                                {{ subevent.Name }}
-                                <ng-container *ngIf="subevent.mainActiveOddsIds">
-                                    <ul>
-                                        <li *ngFor="let odd of subevent.mainActiveOddsIds">
-                                            {{ quotasExample[odd].Selection }} - {{ quotasExample[odd].Value }}
-                                        </li>
-                                    </ul>
-                                </ng-container>
-                            </li>
-                        </ul>
-                    </ng-container>
-                </li>
-            </ul>
-        </ng-container>
-    </li>
-</ul> -->
-
 <app-list-item
   *ngFor="let group of groupsForSelectedSport$ | async"
   [item]="group"
   [totalCount]="group.NumSubevents"
   [expandable]="true"
   (itemSelection)="selectGroup($event)"
+  [colorMode]="groupItemConfig"
 >
     <app-event-list [eventIds]="group.Events"></app-event-list>
 </app-list-item>

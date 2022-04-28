@@ -12,10 +12,10 @@ export const sportsSelector = createSelector(
 
 export const selectsportById = (sportId: number) => createSelector(
   sportsSelector,
-  sportState => sportState.entities[sportId]
+  sportState => sportState.entities[sportId]!
 );
 
-export const getSelectedSport = createSelector(
+export const getSelectedSportId = createSelector(
   sportsSelector,
   sportState => sportState.selectedSportId as number
 );

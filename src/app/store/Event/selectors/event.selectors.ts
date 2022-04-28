@@ -25,8 +25,8 @@ export const selectEventById = (eventId: number) => createSelector(
 );
 
 export const getEventSubEvents = (eventId: number) => createSelector(
-  selectEventById(eventId!),
-  event => event?.subEventIds
+  selectEventById(eventId),
+  event => !!event ? event.subEventIds : []
 );
 
 export const selectEventActiveCategories = (eventId: number) => createSelector(
@@ -41,15 +41,12 @@ export const selectEventActiveCategories = (eventId: number) => createSelector(
  */
  export const selectEventsByIds = (eventIds: number[]) => createSelector(
   eventEntitiesSelector,
-  entities => {
-    const events = eventIds.map((id: number) => !!entities[id] ? entities[id] : null);
-    return { events: events.length ? events as IEvent[] : []};
-  }
+  entities => !!eventIds ? eventIds.map((id: number) => entities[id]!) : []
 );
 
 export const queryEventsByIds = (eventIds: number[]) => createSelector(
   selectEventsByIds(eventIds),
-  eventList => eventList.events
+  eventList => eventList
 );
 
 /**

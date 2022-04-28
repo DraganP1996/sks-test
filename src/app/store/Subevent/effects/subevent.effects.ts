@@ -1,12 +1,12 @@
 import { Injectable } from '@angular/core';
 import { Actions, createEffect, ofType } from '@ngrx/effects';
-import { catchError, map, concatMap, tap } from 'rxjs/operators';
-import { of, throwError } from 'rxjs';
+import { catchError, map, concatMap } from 'rxjs/operators';
+import { of } from 'rxjs';
 
 import * as SubeventActions from '../actions/subevent.actions';
 import { selectEvent } from '../../Event';
 import { MockDataService } from '../../mockData.service';
-import { OddData, SubEvent, SubEventDetailsResponse } from '../../store.model';
+import { MarketOdds, OddData, SubEvent, SubEventDetailsResponse } from '../../store.model';
 
 @Injectable()
 export class SubeventEffects {
@@ -21,31 +21,38 @@ export class SubeventEffects {
       concatMap((payload) =>
         this._mockDataService.getSubEvents(payload.selectedEventId).pipe(
           map((subEvents) => {
-            // Since we requested the subEvents for a specific event, the num of Event will be always 1
+            // Since we requested the subEvents for a specific event, I assume that the num of Event will be always 1
             const eventWithSubeventData = subEvents[0];
+
             let allOdds: OddData[] = [];
 
             // Map subevents in a normalized structure
             const normalizesSubEvents = eventWithSubeventData.Subevents.map(
-              (s) => {
+              (subevent: SubEvent<MarketOdds>) => {
+                // All the odd ids related to this subevent
                 let subEventOddIds: number[] = [];
 
-                const normalizedSubEvent = s as unknown as SubEvent<number>;
-                const subEventMarketIds = s.Markets!.map((m) => {
+                // Get all the market ids related to this subevent
+                const subEventMarketIds = subevent.Markets!.map((m) => {
                   const odds = m.Odds;
                   const oddIds = m.Odds.map((o) => o.Id);
 
+                  // update the array containing all the odd ids for this subevent
                   subEventOddIds = [...subEventOddIds, ...oddIds];
+                  // update the array containing all the odds we get from this "endpoint"
                   allOdds = [...allOdds, ...odds];
                   return m.Id;
                 });
 
-                delete normalizedSubEvent.Markets;
-                normalizedSubEvent.activeMarketIds = subEventMarketIds;
-                normalizedSubEvent.mainActiveOddsIds = subEventOddIds;
-                normalizedSubEvent.allActiveOddsIds = [];
+                delete subevent.Markets;
 
-                return normalizedSubEvent;
+                // All the active market ids for this subevent will be here
+                subevent.activeMarketIds = subEventMarketIds;
+                // All the ids of the most important odds of this subevent will be here
+                subevent.mainActiveOddsIds = subEventOddIds;
+                subevent.allActiveOddsIds = [];
+
+                return subevent as unknown as SubEvent<number>;
               }
             );
 

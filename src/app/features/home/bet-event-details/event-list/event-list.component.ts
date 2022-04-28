@@ -19,32 +19,17 @@ export class EventListComponent implements OnInit, OnDestroy {
   eventList$!: Observable<IEvent[]>;
   sportItemConfig = ListItemColorMode.dark;
 
-  dictionary: EventListDictionary = {};
-
   constructor(
     private _homeFacade: HomeFacade
-  ) { }
+  ) { 
+  }
 
   ngOnInit(): void {
-    this._homeFacade.getListOfEventsForGroup$(this.eventIds)
-      .pipe(takeUntil(this._unsubscribe$),tap(() => console.log('SETTING DICTIONARY'))
-      )
-      .subscribe(eventList => this.setEventListDictionary(eventList));
+    this.eventList$ = this._homeFacade.getEventsByIds$(this.eventIds)
   }
 
-  selectEvent(selectedEventId: number): void {
-    this._homeFacade.selectEvent(selectedEventId);
-    console.log('Selected event id', selectedEventId);
-    this._homeFacade.querySubeventForEventId(selectedEventId)
-      .pipe(takeUntil(this._unsubscribe$), tap(data => console.log('SUBEVENTS FOR THE SELECTED EVENT', data)))
-      .subscribe(subevents => {
-        this.dictionary[selectedEventId].subevents = subevents;
-        console.log('THE DICTIONARY CURRENTLY', this.dictionary)
-      })
-  }
-
-  setEventListDictionary(eventList: IEvent[]): void {
-    eventList.forEach(event => this.dictionary[event.Id] = { event, subevents: [] } );
+  selectEvent(eventId: number): void {
+    this._homeFacade.selectEvent(eventId)
   }
 
   ngOnDestroy(): void {

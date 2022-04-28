@@ -1,9 +1,9 @@
-<app-list-item
-  *ngFor="let subevent of subevents"
-  [item]="subevent"
-  [totalCount]="10"
-  [expandable]="true"
->
-  |OPALA
-  <!-- <app-subevent-list [subeventIds]="item.value?.subevents"></app-subevent-list> -->
-</app-list-item>
+<!-- <ng-container *ngIf="subevents$ | async; else noData">
+  <app-list-item *ngFor="let subevent of subevents$ | async" [item]="subevent" [expandable]="true">
+  </app-list-item>
+</ng-container>
+<ng-template #noData> NO DATA HERE </ng-template> -->
+
+<h6>CHECKING GROUPS </h6>
+
+{{ groups$ | async | json }}

@@ -22,16 +22,12 @@ export const subEventsSelector = createSelector(
 
   /**
  * Get SubEvent by Ids
- * @param eventIds 
+ * @param subeventIds 
  * @returns 
  */
- export const selectSubEventsByIds = (eventIds?: number[]) => createSelector(
+ export const selectSubEventsByIds = (subeventIds?: number[]) => createSelector(
     subEventsSelector,
-    subEventState => {
-      const events = !!eventIds ? eventIds.map((id: number) => subEventState.entities[id]): [];
-  
-      return events as SubEvent<number>[];
-    }
+    subEventState => !!subeventIds ? subeventIds.map((id: number) => subEventState.entities[id]!): []
   );
 
 /**
